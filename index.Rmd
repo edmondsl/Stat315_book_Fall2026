@@ -1,0 +1,69 @@
+---
+title: "STAT 315 Notes Fall 2026"
+author: "Colorado State University"
+date: ""
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: ""
+header-includes:
+      - \usepackage{pdfpages}
+---
+
+# Preliminaries {-}
+
+## Getting Started With R {-}
+
+### Installing R {-}
+
+R is the base version of a free, open-source statistical computing program. RStudio is a nice graphic user interface (GUI) that works in conjunction with R. We will be using RStudio this semester as it is easier to learn how to use and has many nice shortcuts that aren't available in the standard R download.
+
+**Note:** R and R Studio can not be installed on Chromebooks or other tablets/mini-computers. If you only have a tablet or a mini-computer, the free version of RStudio Cloud should work: \href{https://posit.cloud/plans/free}{R Studio Cloud}. The free version allows 25 hours of use per month. I think this is likely enough for this course, but be sure to log out!
+
+To begin using RStudio, you will need to install "R" first and then install "RStudio" on your computer.
+
+
+**Step 1: Download R**
+
+- Visit [https://www.r-project.org/](https://www.r-project.org/)
+- Click *CRAN* under *Download*
+- Select any of the mirrors
+- Click the appropriate link for your type of system (Mac, Windows, Linux)
+- Download R on this next page.
+  - For Windows, this will say *install R for the first time*
+  - For Mac, this will be under *Latest release* and will be something like *R-4.1.0.pkg* -- the numbers may differ depending on the most recent version
+- Install R on your computer
+       
+**Step 2: Download RStudio**
+
+- Visit [https://posit.co/downloads](https://posit.co/downloads)
+- Click to download
+- Click the appropriate link for your type of system (Mac, Windows, Linux)
+- Install RStudio on your computer
+
+\newpage
+
+**Step 3: Verify RStudio is working**
+
+- Open RStudio
+- Let's enter a small dataset and calculate the average to make sure everything is working correctly.
+- In the console, type in the following dataset of five homework scores:
+
+```{r}
+# Assignment using = 
+x = c(90,75,100,85,90)
+
+# Alternative assignment using <-
+x <- c(90,75,100,85,90)
+
+# More on the differences between = and <- at:
+# https://www.r-bloggers.com/2014/01/difference-between-assignment-operators-in-r/
+```
+
+In the console, calculate the average of the five homework scores: \
+
+```{r}
+mean(x)
+```
+
+Did you find the average of the five homework scores was 88? If so, you should be set up correctly!
