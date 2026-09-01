@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="probability.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -157,6 +157,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
 <li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
 <li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
 </ul></li>
 </ul>
 
@@ -719,12 +730,6 @@ Total
 <p><strong><em>Histogram</em></strong></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" height="30%" style="display: block; margin: auto;" /></p>
 <!-- \newpage -->
-<pre><code>## Loading required package: gridExtra</code></pre>
-<pre><code>## 
-## Attaching package: &#39;gridExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     combine</code></pre>
 <p><strong>Histogram shapes</strong></p>
 <p><strong>1. Unimodal</strong></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
@@ -838,54 +843,54 @@ Sample
 <h2><span class="header-section-number">1.9</span> R Companion for Chapter 1<a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p> Let’s manually enter the heights data set (183, 170, 160, 175, 187) from chapter 1 and the following R commands will do the calculations we completed by hand.</p>
 <p> Lines of code that begin with are comments and are not executed by the computer. Lines of code that begin with denote the output.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basic-concepts-of-statistics.html#cb7-1" tabindex="-1"></a><span class="co"># manually enter your data by using the &quot;c&quot; command</span></span>
-<span id="cb7-2"><a href="basic-concepts-of-statistics.html#cb7-2" tabindex="-1"></a>heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">183</span>,<span class="dv">165</span>,<span class="dv">165</span>,<span class="dv">175</span>,<span class="dv">187</span>)</span>
-<span id="cb7-3"><a href="basic-concepts-of-statistics.html#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="basic-concepts-of-statistics.html#cb7-4" tabindex="-1"></a><span class="co"># calculate sample statistics on data set</span></span>
-<span id="cb7-5"><a href="basic-concepts-of-statistics.html#cb7-5" tabindex="-1"></a><span class="fu">mean</span>(heights)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="basic-concepts-of-statistics.html#cb4-1" tabindex="-1"></a><span class="co"># manually enter your data by using the &quot;c&quot; command</span></span>
+<span id="cb4-2"><a href="basic-concepts-of-statistics.html#cb4-2" tabindex="-1"></a>heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">183</span>,<span class="dv">165</span>,<span class="dv">165</span>,<span class="dv">175</span>,<span class="dv">187</span>)</span>
+<span id="cb4-3"><a href="basic-concepts-of-statistics.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="basic-concepts-of-statistics.html#cb4-4" tabindex="-1"></a><span class="co"># calculate sample statistics on data set</span></span>
+<span id="cb4-5"><a href="basic-concepts-of-statistics.html#cb4-5" tabindex="-1"></a><span class="fu">mean</span>(heights)</span></code></pre></div>
 <pre><code>## [1] 175</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basic-concepts-of-statistics.html#cb9-1" tabindex="-1"></a><span class="fu">median</span>(heights)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="basic-concepts-of-statistics.html#cb6-1" tabindex="-1"></a><span class="fu">median</span>(heights)</span></code></pre></div>
 <pre><code>## [1] 175</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basic-concepts-of-statistics.html#cb11-1" tabindex="-1"></a><span class="fu">var</span>(heights)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basic-concepts-of-statistics.html#cb8-1" tabindex="-1"></a><span class="fu">var</span>(heights)</span></code></pre></div>
 <pre><code>## [1] 102</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basic-concepts-of-statistics.html#cb13-1" tabindex="-1"></a><span class="fu">sd</span>(heights)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basic-concepts-of-statistics.html#cb10-1" tabindex="-1"></a><span class="fu">sd</span>(heights)</span></code></pre></div>
 <pre><code>## [1] 10.0995</code></pre>
 <p>We can also create a histogram in R. Note that we can specify the breaks for the bins. In this case, the breaks are defined at 160, 170, 180, 190.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-concepts-of-statistics.html#cb15-1" tabindex="-1"></a><span class="fu">hist</span>(heights,<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">160</span>,<span class="dv">170</span>,<span class="dv">180</span>,<span class="dv">190</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basic-concepts-of-statistics.html#cb12-1" tabindex="-1"></a><span class="fu">hist</span>(heights,<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">160</span>,<span class="dv">170</span>,<span class="dv">180</span>,<span class="dv">190</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" height="30%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
 <p> Let’s create a randomized dataset of eye colors and analyze the data.</p>
 <p> When we generate random data in this class, we will use the function, so that we all generate the same random data. If we don’t use the command before generating random data, we will all get different random data.</p>
 <p>Here, we generate 47 random eye colors and take a look at the first few observations.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basic-concepts-of-statistics.html#cb16-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
-<span id="cb16-2"><a href="basic-concepts-of-statistics.html#cb16-2" tabindex="-1"></a>eye.colors <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;amber&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;brown&quot;</span>, <span class="st">&quot;gray&quot;</span>, <span class="st">&quot;green&quot;</span>,</span>
-<span id="cb16-3"><a href="basic-concepts-of-statistics.html#cb16-3" tabindex="-1"></a>                       <span class="st">&quot;hazel&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dv">47</span>, <span class="at">replace =</span> T)</span>
-<span id="cb16-4"><a href="basic-concepts-of-statistics.html#cb16-4" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="basic-concepts-of-statistics.html#cb16-5" tabindex="-1"></a><span class="co"># the &quot;head&quot; function will give the first few data values </span></span>
-<span id="cb16-6"><a href="basic-concepts-of-statistics.html#cb16-6" tabindex="-1"></a><span class="co"># or the &quot;header&quot; of the dataset</span></span>
-<span id="cb16-7"><a href="basic-concepts-of-statistics.html#cb16-7" tabindex="-1"></a><span class="fu">head</span>(eye.colors)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basic-concepts-of-statistics.html#cb13-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb13-2"><a href="basic-concepts-of-statistics.html#cb13-2" tabindex="-1"></a>eye.colors <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;amber&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;brown&quot;</span>, <span class="st">&quot;gray&quot;</span>, <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb13-3"><a href="basic-concepts-of-statistics.html#cb13-3" tabindex="-1"></a>                       <span class="st">&quot;hazel&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dv">47</span>, <span class="at">replace =</span> T)</span>
+<span id="cb13-4"><a href="basic-concepts-of-statistics.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="basic-concepts-of-statistics.html#cb13-5" tabindex="-1"></a><span class="co"># the &quot;head&quot; function will give the first few data values </span></span>
+<span id="cb13-6"><a href="basic-concepts-of-statistics.html#cb13-6" tabindex="-1"></a><span class="co"># or the &quot;header&quot; of the dataset</span></span>
+<span id="cb13-7"><a href="basic-concepts-of-statistics.html#cb13-7" tabindex="-1"></a><span class="fu">head</span>(eye.colors)</span></code></pre></div>
 <pre><code>## [1] &quot;gray&quot;  &quot;gray&quot;  &quot;red&quot;   &quot;hazel&quot; &quot;amber&quot; &quot;amber&quot;</code></pre>
 <p>We can create a frequency table of these values and create a barplot.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basic-concepts-of-statistics.html#cb18-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-concepts-of-statistics.html#cb15-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)</span></code></pre></div>
 <pre><code>## eye.colors
 ## amber  blue brown  gray green hazel   red 
 ##     3    10     3    10     7     8     6</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-concepts-of-statistics.html#cb20-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(eye.colors), <span class="at">xlab =</span> <span class="st">&quot;eye color&quot;</span>, </span>
-<span id="cb20-2"><a href="basic-concepts-of-statistics.html#cb20-2" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;frequency&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Bar plot of eye color occurance&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-concepts-of-statistics.html#cb17-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(eye.colors), <span class="at">xlab =</span> <span class="st">&quot;eye color&quot;</span>, </span>
+<span id="cb17-2"><a href="basic-concepts-of-statistics.html#cb17-2" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;frequency&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Bar plot of eye color occurance&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
 <p>We can also calculate proportion and percentage tables.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-concepts-of-statistics.html#cb21-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors) <span class="co"># shows how many of each value exist</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basic-concepts-of-statistics.html#cb18-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors) <span class="co"># shows how many of each value exist</span></span></code></pre></div>
 <pre><code>## eye.colors
 ## amber  blue brown  gray green hazel   red 
 ##     3    10     3    10     7     8     6</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basic-concepts-of-statistics.html#cb23-1" tabindex="-1"></a><span class="fu">length</span>(eye.colors) <span class="co"># tells how many data points there are</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-concepts-of-statistics.html#cb20-1" tabindex="-1"></a><span class="fu">length</span>(eye.colors) <span class="co"># tells how many data points there are</span></span></code></pre></div>
 <pre><code>## [1] 47</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-concepts-of-statistics.html#cb25-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)<span class="sc">/</span><span class="fu">length</span>(eye.colors) <span class="co"># proportion</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basic-concepts-of-statistics.html#cb22-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)<span class="sc">/</span><span class="fu">length</span>(eye.colors) <span class="co"># proportion</span></span></code></pre></div>
 <pre><code>## eye.colors
 ##      amber       blue      brown       gray      green      hazel        red 
 ## 0.06382979 0.21276596 0.06382979 0.21276596 0.14893617 0.17021277 0.12765957</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-concepts-of-statistics.html#cb27-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)<span class="sc">/</span><span class="fu">length</span>(eye.colors)<span class="sc">*</span><span class="dv">100</span> <span class="co"># percent</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="basic-concepts-of-statistics.html#cb24-1" tabindex="-1"></a><span class="fu">table</span>(eye.colors)<span class="sc">/</span><span class="fu">length</span>(eye.colors)<span class="sc">*</span><span class="dv">100</span> <span class="co"># percent</span></span></code></pre></div>
 <pre><code>## eye.colors
 ##     amber      blue     brown      gray     green     hazel       red 
 ##  6.382979 21.276596  6.382979 21.276596 14.893617 17.021277 12.765957</code></pre>
@@ -897,8 +902,8 @@ Sample
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

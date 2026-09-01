@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Probability | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="Chapter 2 Probability | STAT 315 Notes Fall 2026" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Probability | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Probability | STAT 315 Notes Fall 2026" />
+  
+  
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-concepts-of-statistics.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Probability<a href="probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we’ll delve into Probability, the branch of mathematics that deals with the study of randomness and uncertainty, helping us understand and quantify the likelihood of different outcomes.</p>
+<div id="sample-space-and-events" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Sample Space and Events<a href="probability.html#sample-space-and-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-50" class="definition"><strong>Definition 2.1  </strong></span>An <strong><em>experiment</em></strong> is any activity or process whose outcome is subject to uncertainty.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 2.2  </strong></span>The <strong><em>sample space</em></strong> of an experiment, denoted by <span class="math inline">\(\Omega\)</span> or <span class="math inline">\(\mathcal{S}\)</span>, is the set of all possible outcomes of that experiment.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-52" class="definition"><strong>Definition 2.3  </strong></span>An <strong><em>event</em></strong> is any collection (subset) of outcomes contained in the sample space <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-53" class="example"><strong>Example 2.1  </strong></span>For the following examples, define the sample space and give an example of an event. Code for running the experiment in R is given.</p>
+</div>
+<p><strong>Experiment 1:</strong> Roll a fair six-sided die.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="probability.html#cb26-1" tabindex="-1"></a><span class="co"># roll one fair six-sided die in R</span></span>
+<span id="cb26-2"><a href="probability.html#cb26-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size=</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p><strong>Experiment 2:</strong> Roll two fair six-sided dice.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="probability.html#cb28-1" tabindex="-1"></a><span class="co"># roll two fair six-sided dice in R</span></span>
+<span id="cb28-2"><a href="probability.html#cb28-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1 3</code></pre>
+<p><strong>Experiment 3:</strong> Randomly select a real number in the closed interval from 0 to 1.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="probability.html#cb30-1" tabindex="-1"></a><span class="co"># generate one random number between 0 and 1</span></span>
+<span id="cb30-2"><a href="probability.html#cb30-2" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6137196</code></pre>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="set-theory" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Set Theory<a href="probability.html#set-theory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Note:</strong> For the following examples, suppose a fair six-sided die is rolled, so <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>.</p>
+<p>Define the following events: <span class="math inline">\(A = \text{roll an even} = \{2,4,6\}\)</span>, <span class="math inline">\(B=\text{roll a 3 or higher} =\{3,4,5,6\}\)</span>, <span class="math inline">\(C=\text{roll a prime number}=\{2,3,5\}\)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-54" class="definition"><strong>Definition 2.4  </strong></span>A <strong><em>complement</em></strong> of an event A, denoted by <span class="math inline">\(A^c\)</span> or A’, is the set of all outcomes in <span class="math inline">\(\Omega\)</span> that are not contained in A.</p>
+</div>
+<p><strong>Illustration</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" height="10%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-55" class="definition"><strong>Definition 2.5  </strong></span>The <strong><em>union</em></strong> of two events A and B, denoted by <span class="math inline">\(A \cup B\)</span> and read “A or B”, is the event consisting of all outcomes that are either in A or B or in both.</p>
+</div>
+<p><strong>Illustration</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" height="10%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-56" class="definition"><strong>Definition 2.6  </strong></span>The <strong><em>intersection</em></strong> of two events A and B, denoted by <span class="math inline">\(A \cap B\)</span> and read “A and B”, is the event consisting of all outcomes that are in both A and B.</p>
+</div>
+<p><strong>Illustration</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" height="10%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-57" class="definition"><strong>Definition 2.7  </strong></span>The <strong><em>set difference</em></strong> of two events A and B, denoted by AB and read “difference of A and B”, is the event consisting of all outcomes that are in A but not in B.</p>
+</div>
+<p><strong>Illustration</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" height="10%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-58" class="definition"><strong>Definition 2.8  </strong></span>The <strong><em>null or empty set</em></strong> is the set of no events (or elements), denoted <span class="math inline">\(\emptyset\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-59" class="definition"><strong>Definition 2.9  </strong></span>When <span class="math inline">\(A \cap B = \emptyset\)</span>, A and B are said to be <strong><em>mutually exclusive (or disjoint)</em></strong> events.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 2.2  </strong></span>Suppose a fair six-sided die is rolled, so <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>.</p>
+<p>Define the following events: <span class="math inline">\(A = \text{roll an even} = \{2,4,6\}\)</span>, <span class="math inline">\(B=\text{roll a 3 or higher} =\{3,4,5,6\}\)</span>, <span class="math inline">\(C=\text{roll a prime number}=\{2,3,5\}\)</span>.</p>
+<p>Determine the following sets and fill in the Venn diagrams representing these sets.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 2.3  </strong></span>Draw and determine <span class="math inline">\(A \cup B^c\)</span>.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 2.4  </strong></span>Draw and determine <span class="math inline">\(A \cap B \cap C^C\)</span>.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 2.5  </strong></span>Draw and determine <span class="math inline">\([A \cup B] \cap C\)</span>.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 2.6  </strong></span>Draw and determine <span class="math inline">\(A \cap B \cap C\)</span>.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="axioms-and-rules-of-probability" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Axioms and Rules of Probability<a href="probability.html#axioms-and-rules-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-65" class="definition"><strong>Definition 2.10  </strong></span>The probability of an event, <span class="math inline">\(A\)</span>, is denoted by <span class="math inline">\(P(A)\)</span> and represents the likelihood or chance that the event <span class="math inline">\(A\)</span> will occur. Note that <span class="math inline">\(0 \leq P(A) \leq 1\)</span>.</p>
+</div>
+<p><strong>Axioms of Probability</strong></p>
+<p>The axioms of probability were introduced by the mathematician Andrey Kolmogorov in 1933. These axioms form the foundation of probability theory, providing a rigorous, axiomatic framework for quantifying uncertainty. In mathematics, an axiomatic approach means that all rules and theorems are built from a set of fundamental principles, or axioms.</p>
+<p><strong>Axiom 1:</strong> For any event A, <span class="math inline">\(P(A) \ge 0\)</span></p>
+<p><strong>Axiom 2:</strong> <span class="math inline">\(P(\Omega) = 1\)</span></p>
+<p><strong>Axiom 3:</strong> If <span class="math inline">\(A_1, A_2, A_3, \dots\)</span> is an infinite collection of disjoint events, then
+<span class="math display">\[P \big( \cup_{i=1}^{\infty} A_i \big) = P(A_1 \cup A_2 \cup A_3 \cup \dots) = \sum_{i=1}^{\infty} P(A_i)\]</span></p>
+<p><strong>Probability Rules</strong></p>
+<p>The following can be derived from the Axioms of Probability.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P(\emptyset) = 0\)</span></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>For any event A, <span class="math inline">\(P(A) + P(A^c)\)</span> = 1</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(P(A^c) = 1 - P(A)\)</span></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>For any event A, <span class="math inline">\(0 \le P(A) \le 1\)</span></li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>For any two events A and B,
+<span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></li>
+</ol>
+<ol start="6" style="list-style-type: decimal">
+<li>For any three events A, B, and C,</li>
+</ol>
+<p><span class="math inline">\(P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)\)</span>.</p>
+<ol start="7" style="list-style-type: decimal">
+<li><span class="math inline">\(\left[A \cup B\right]^C = A^C \cap B^C\)</span></li>
+</ol>
+<ol start="8" style="list-style-type: decimal">
+<li><span class="math inline">\(\left[A \cap B\right]^C = A^C \cup B^C\)</span></li>
+</ol>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 2.7  </strong></span>Suppose our class has the following breakdown:</p>
+<p>70% Math students<br />
+20% seniors<br />
+30% Born in Denver<br />
+10% Math students and seniors<br />
+15% Math students and born in Denver<br />
+10% Seniors and Born in Denver<br />
+5% Math students, seniors, and born in Denver<br />
+</p>
+<p>Define events as follows: A = Math student, B = senior, C = Born in Denver.</p>
+<p>Suppose a random student from the class is selected. Calculate the following probabilities.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(A \cup B)\)</span>
+</p></li>
+<li><p><span class="math inline">\(P(C \backslash B)\)</span>
+</p></li>
+<li><p><span class="math inline">\(P([A \cap C]^c)\)</span>
+</p></li>
+<li><p><span class="math inline">\(P(A \cup B \cup C)\)</span>
+</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="counting-techniques" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Counting Techniques<a href="probability.html#counting-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Equally Likely Outcomes</strong></p>
+<p>If <span class="math inline">\(\Omega = \lbrace x_1, x_2, ... x_N \rbrace\)</span> and all outcomes are equally likely, then <span class="math inline">\(P(A) = |A| / N\)</span>, where <span class="math inline">\(|A|\)</span> is the number of outcomes contained in the event A.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 2.8  </strong></span>You roll a fair six-sided die. Calculate <span class="math inline">\(P(even)\)</span>.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-68" class="theorem"><strong>Theorem 2.1  </strong></span>(Product Rule for Ordered Pairs) If the first element of an ordered pair can be selected in <span class="math inline">\(n_1\)</span> ways and for each of the these <span class="math inline">\(n_1\)</span> ways the second element of the pair can be selected in <span class="math inline">\(n_2\)</span> ways, then the number of pairs is <span class="math inline">\(n_1 \cdot n_2\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 2.9  </strong></span>You flip two fair coins. Calculate the probability that all are heads or all are tails.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-70" class="theorem"><strong>Theorem 2.2  </strong></span>(Generalized Product Rule) Suppose a set consists of k elements (k-tuples) and that there are <span class="math inline">\(n_1\)</span> possible choices for the first element, <span class="math inline">\(n_2\)</span> possible choices for the second element, … , and <span class="math inline">\(n_k\)</span> possible choices for the <span class="math inline">\(k^{th}\)</span> element, then there are <span class="math inline">\(n_1 \cdot n_2 \cdot \cdots n_k\)</span> possible k-tuples.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 2.10  </strong></span></p>
+<!-- How many license plates can be chosen if the first three symbols are letters and the last three symbols are numbers? -->
+<p>Quartiles is a word game where one of the goals is to find all five words that contain four tiles each. Suppose we have found 3 of the quartiles. How many total attempts are there to find the fourth quartile?</p>
+</div>
+<p><img src="images/QuartileExample.png" width="80%" height="40%" style="display: block; margin: auto;" />
+</p>
+<div style="page-break-after: always;"></div>
+<p>The factorial function, <span class="math inline">\(n!\)</span>, is important in counting methods and probability. It is the product of all positive integers less than or equal to <span class="math inline">\(n\)</span>, that is, <span class="math inline">\(n! =n \cdot (n-1) \cdot (n-2) \cdot \ldots \cdot 2 \cdot 1 \text{ for } n \in \mathbb{Z}^+\)</span>.</p>
+<p><strong>Note:</strong> <span class="math inline">\(0! = 1\)</span></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-72" class="definition"><strong>Definition 2.11  </strong></span>An ordered subset is called a <strong><em>permutation</em></strong>. The number of permutations of size <span class="math inline">\(k\)</span> that can be formed from the <span class="math inline">\(n\)</span> elements in a set will be denoted by <span class="math inline">\(P_{n,k}\)</span>.</p>
+<p><span class="math inline">\(\boxed{P_{n,k} = \frac{n!}{(n-k)!}}\)</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-73" class="definition"><strong>Definition 2.12  </strong></span>An unordered subset is called a <strong><em>combination</em></strong>. The number of combinations of size <span class="math inline">\(k\)</span> that can be formed from the <span class="math inline">\(n\)</span> elements in a set will be denoted by <span class="math inline">\(\binom{n}{k}\)</span> or <span class="math inline">\(C_{n,k}\)</span>.</p>
+<p><span class="math inline">\(\boxed{\binom{n}{k} = C_{n,k} = \frac{n!}{k! \cdot (n-k)!}}\)</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-74" class="example"><strong>Example 2.11  </strong></span>Suppose there are five competitors in an Olympic competition. A gold, a silver, and a bronze medal are awarded for the top three competitors. Are combinations or permutations more appropriate for this situation? How many possible ways can these three awards be given out?</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-75" class="example"><strong>Example 2.12  </strong></span>Suppose there are five competitors in an Olympic competition and only three can advance to the final competition. Are combinations or permutations more appropriate for this situation? How many possible ways can you choose three people from a group of five?</p>
+</div>
+<div style="page-break-after: always;"></div>
+<!-- :::{.example} -->
+<!-- Powerball is an American lottery game where participants pay \$2 for a chance of winning the grand prize, typically hundreds of millions of dollars. Participants choose five numbers between 1 and 69 and one additional number between 1 and 26. If they choose all the numbers correctly, they win the grand prize. What is the probability of matching all six numbers? -->
+<!-- ::: -->
+<!-- \vfill -->
+<!-- :::{.example} -->
+<!-- Suppose you are dealt three cards from a standard 52-card playing deck. What is the probability that you get a heart, a diamond, and a club in that order? What if order doesn't matter? -->
+<!-- ::: -->
+<!-- \vfill -->
+<!-- \newpage -->
+</div>
+<div id="conditional-probability" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Conditional Probability<a href="probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional probability is the likelihood of an event occurring given that another event has already occurred. It refines our understanding of probability by taking into account additional information that might affect the outcome. Understanding conditional probabilities is crucial in many areas of statistics and decision-making, as it allows us to update our predictions and assessments based on new evidence.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-76" class="definition"><strong>Definition 2.13  </strong></span>For any two events A and B with <span class="math inline">\(P(B)&gt;0\)</span>, the is defined by:
+<span class="math display">\[P(A|B) = \frac{P(A \cap B)}{P(B)}\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-77" class="example"><strong>Example 2.13  </strong></span>The following is a contingency table from a survey on congressional approval.</p>
+</div>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="28%" />
+<col width="32%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Political Affiliation</th>
+<th align="center">Approves of Congress</th>
+<th align="center">Disapproves of Congress</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Republican</td>
+<td align="center">100</td>
+<td align="center">20</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Democrat</td>
+<td align="center">20</td>
+<td align="center">80</td>
+<td align="center">100</td>
+</tr>
+<tr class="odd">
+<td align="center">Independent</td>
+<td align="center">40</td>
+<td align="center">40</td>
+<td align="center">80</td>
+</tr>
+<tr class="even">
+<td align="center">Total</td>
+<td align="center">160</td>
+<td align="center">140</td>
+<td align="center">300</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that a randomly selected individual from the survey approves of Congress?</li>
+</ol>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>What is the probability that a randomly selected individual approves of Congress given that they are Democrat?</li>
+</ol>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Given that the randomly selected person approves of the Congress, what is the probability that they are Republican?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-78" class="theorem"><strong>Theorem 2.3  </strong></span>Multiplication Rule: <span class="math inline">\(P(A \cap B) = P(A|B) \cdot P(B)\)</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-79" class="example"><strong>Example 2.14  </strong></span>Suppose that people with a genetic variation have a 50% chance of getting a rare disease. The probability of having the genetic variation is 1%. What is the probability that a randomly chosen person has the genetic variation and also has the disease?</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-80" class="theorem"><strong>Theorem 2.4  </strong></span>Law of Total Probability: Let <span class="math inline">\(A_1, A_2, \ldots, A_k\)</span> be mutually exclusive and exhaustive events (i.e., the events form a partition). Then for any event B,
+<span class="math display">\[P(B) = P(B|A_1) \cdot P(A_1) + P(B|A_2) \cdot P(A_2) + \ldots + P(B|A_k) \cdot P(A_k) \]</span></p>
+</div>
+<p><strong>Illustration of a Partition</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-81" class="example"><strong>Example 2.15  </strong></span>Box #1 has ten computer chips (five working and five broken). Box #2 has five (one working and four broken). Suppose we randomly select one of the two boxes and then randomly select a chip. What is the probability that the chip is broken?</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-82" class="theorem"><strong>Theorem 2.5  </strong></span>Bayes’ Theorem: Suppose that <span class="math inline">\(A_1 \cap A_2 = \emptyset\)</span> and <span class="math inline">\(A_1 \cup A_2 = \Omega\)</span>, then if <span class="math inline">\(P(B)&gt;0\)</span>,</p>
+<p><span class="math display">\[ P(A_1|B) = \frac{P(B|A_1)P(A_1)}{P(B|A_1)P(A_1)+P(B|A_2)P(A_2)} \]</span></p>
+<p>Let <span class="math inline">\(A_1, A_2, \ldots, A_k\)</span> be a collection of mutually exclusive and exhaustive events, then if <span class="math inline">\(P(B)&gt;0\)</span>,</p>
+<p><span class="math display">\[P(A_j|B) = \frac{P(A_j \cap B)}{P(B)} = \frac{P(B|A_j) \cdot P(A_j)}{\sum_{i=1}^k P(B|A_i) \cdot P(A_i)}
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-83" class="example"><strong>Example 2.16  </strong></span>Suppose a test to detect a rare disease is positive 95% of the time for a person with a disease and is positive 1% of the time for a person without the disease. Further, assume that 0.5% of the population has the disease. Given that a person tests positive for a disease, what is the probability that they actually has the disease?</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Independence<a href="probability.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall:</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-84" class="definition"><strong>Definition 2.14  </strong></span>When <span class="math inline">\(A \cap B = \emptyset\)</span>, A and B are said to be <strong><em>mutually exclusive (or disjoint)</em></strong> events.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-85" class="definition"><strong>Definition 2.15  </strong></span>Two events A and B are <strong><em>independent</em></strong> if <span class="math inline">\(P(A|B) = P(A)\)</span> and <strong><em>dependent</em></strong> otherwise.</p>
+<p>Also, A and B are independent if and only if <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-86" class="example"><strong>Example 2.17  </strong></span>Recall from the previous example that a test to detect a rare disease is positive 95% of the time for a person with a disease and is positive 1% of the time for a person without the disease. Further, assume that 0.5% of the population has the disease. Let <span class="math inline">\(D\)</span> be the event that one has the disease and let <span class="math inline">\(P\)</span> be the event that one has a positive test.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Are D and P mutually exclusive?
+</p></li>
+<li><p>Are D and P independent?
+</p></li>
+</ol>
+</div>
+<div id="objective-vs.-subjective-probability" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Objective vs. Subjective Probability<a href="probability.html#objective-vs.-subjective-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two different interpretations of Probability. Both follow the Axioms of Probability.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-87" class="definition"><strong>Definition 2.16  </strong></span><strong><em>Objective Probability</em></strong> refers to the probability of an event as determined by the long-term frequency of its occurrence, based on repeated trials or observations. It is rooted in empirical data and reflects the likelihood of an event as the proportion of times it occurs in a large number of trials.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-88" class="example"><strong>Example 2.18  </strong></span>I flip a coin 100 times and it lands on head 53 times. I estimate the probability of flipping a heads to be <span class="math inline">\(P_{100}(head) = \frac{53}{100} = 0.53\)</span>. As we flip the coin more and more, we would expect that <span class="math inline">\(P_n(head) \to 0.5\)</span> as <span class="math inline">\(n \to \infty\)</span> if the coin is actually a fair coin.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-89" class="definition"><strong>Definition 2.17  </strong></span><strong><em>Subjective Probability</em></strong> refers to the probability of an event as determined by an individual’s personal judgment or belief, rather than objective data. It reflects the degree of confidence one has in the occurrence of an event. A well-known approach to subjective probability is Bayesian probability, which updates these beliefs based on new evidence.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-90" class="example"><strong>Example 2.19  </strong></span>I am given a coin which I have no reason to believe it is unfair (i.e, <span class="math inline">\(P(head) = 0.5\)</span>). I flip the coin 100 times and 3 land on heads. Since this is very unlikely to happen if the coin is fair, I update my estimate to be <span class="math inline">\(P(head)=0.1\)</span> (i.e., somewhere in between <span class="math inline">\(3/100=0.03\)</span> and <span class="math inline">\(1/2 = 0.5\)</span>).</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-2" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> R Companion for Chapter 2<a href="probability.html#r-companion-for-chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-91" class="example"><strong>Example 2.20  </strong></span>Let’s simulate a fair six-sided die roll. Recall that we need to use the function so that we all generate the same random data. For consistency, I always set the seed to 2020, i.e., set.seed(2020). The sample function will generate 100 random die rolls with each possible outcome (1,2,3,4,5,6) being equally likely.</p>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="probability.html#cb32-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb32-2"><a href="probability.html#cb32-2" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size =</span> <span class="dv">100</span>,<span class="at">replace =</span> T); data</span></code></pre></div>
+<pre><code>##   [1] 4 4 6 1 1 4 2 6 1 5 2 2 6 5 2 3 2 5 4 2 6 6 4 6 4 2 4 5 4 4 3 6 2 2 6 3 5 4 5 5 2 5 1 6 3 5 1 5 3 1 5
+##  [52] 3 2 6 2 1 3 2 1 6 5 5 2 5 6 4 3 6 4 4 2 2 1 6 1 4 6 2 2 2 1 4 1 1 4 2 2 5 5 4 4 4 6 5 4 1 6 5 1 4</code></pre>
+<p>Let’s make a histogram of the simulated data. Recall that each outcome (1,2,3,4,5,6) is equally likely in theory but in our simulation, some numbers may come up more than others. To make the histogram look better, I define the boundary breaks to be 0:6 (i.e., 0,1,2,3,4,5,6).</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="probability.html#cb34-1" tabindex="-1"></a><span class="fu">hist</span>(data,<span class="at">breaks=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>With only 100 random die rolls, the distribution isn’t as flat, uniform, and symmetric as we would expect. The number 3 came up less than we would anticipate. This is OK.</p>
+<div style="page-break-after: always;"></div>
+<p>We can also generate a frequency table and use this to create a barplot. This looks a little nicer than the standard histogram and doesn’t require use to use the argument.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="probability.html#cb35-1" tabindex="-1"></a><span class="fu">table</span>(data)</span></code></pre></div>
+<pre><code>## data
+##  1  2  3  4  5  6 
+## 15 21  8 21 18 17</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="probability.html#cb37-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>If we want a better representation of the true distribution of the fair six-sided die rolls, we could simulate 10000 die rolls instead of 100.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="probability.html#cb38-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb38-2"><a href="probability.html#cb38-2" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size =</span> <span class="dv">10000</span>,<span class="at">replace =</span> T)</span>
+<span id="cb38-3"><a href="probability.html#cb38-3" tabindex="-1"></a><span class="fu">table</span>(data)</span></code></pre></div>
+<pre><code>## data
+##    1    2    3    4    5    6 
+## 1630 1657 1733 1655 1629 1696</code></pre>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="probability.html#cb40-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="75%" height="40%" style="display: block; margin: auto;" /></p>
+<p>Simulation can be helpful for us to verify hand calculations and to estimate quantities that are hard to calculate by hand. Our simulation results won’t exactly match our hand calculations, but if the sample size is large enough, they should be close.\</p>
+<p>For instance, we know that P(Roll=1) = 1/6 for the population of all fair six-sided die rolls. If you refer to the table at the bottom of the previous page, you see that 1 came up 1630 times out of 10000 die rolls. In the simulation, P(1) = 1630/10000 = 0.1630 which is pretty close the the theoretical value of P(1) = 1/6 = 0.1667.\</p>
+<p>Here is an example of how to calculate the probability of a die roll less than 3 in our simulation.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="probability.html#cb41-1" tabindex="-1"></a><span class="co"># Calculate P(Roll &lt; 3)</span></span>
+<span id="cb41-2"><a href="probability.html#cb41-2" tabindex="-1"></a><span class="co"># From theory, we know that P(Roll &lt; 3) = P(1) + P(2) = 1/6 + 1/6 = 1/3</span></span>
+<span id="cb41-3"><a href="probability.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="probability.html#cb41-4" tabindex="-1"></a><span class="co"># count up the number of rolls less than 3</span></span>
+<span id="cb41-5"><a href="probability.html#cb41-5" tabindex="-1"></a>num.under3 <span class="ot">=</span> <span class="fu">sum</span>( data <span class="sc">&lt;</span> <span class="dv">3</span> ) </span>
+<span id="cb41-6"><a href="probability.html#cb41-6" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="probability.html#cb41-7" tabindex="-1"></a><span class="co"># divide the number of rolls less than 3 by the number of rolls</span></span>
+<span id="cb41-8"><a href="probability.html#cb41-8" tabindex="-1"></a>prob.under3 <span class="ot">=</span> num.under3 <span class="sc">/</span> <span class="dv">10000</span></span>
+<span id="cb41-9"><a href="probability.html#cb41-9" tabindex="-1"></a>prob.under3</span></code></pre></div>
+<pre><code>## [1] 0.3287</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="probability.html#cb43-1" tabindex="-1"></a><span class="co"># alternatively:</span></span>
+<span id="cb43-2"><a href="probability.html#cb43-2" tabindex="-1"></a>prob.under3 <span class="ot">=</span> <span class="fu">mean</span>(data <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb43-3"><a href="probability.html#cb43-3" tabindex="-1"></a>prob.under3</span></code></pre></div>
+<pre><code>## [1] 0.3287</code></pre>
+<p>From theory, we expect P(Roll <span class="math inline">\(&lt;\)</span> 3) = 1/3 = 0.3333. In our simulation, we found P(Roll <span class="math inline">\(&lt;\)</span> 3) = 0.3287.</p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-92" class="example"><strong>Example 2.21  </strong></span>Let’s simulate rolling two fair six-sided dice 10,000 times and calculate some probabilities. will represent the first die roll and will represent the second die roll.</p>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="probability.html#cb45-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb45-2"><a href="probability.html#cb45-2" tabindex="-1"></a>d1 <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size =</span> <span class="dv">10000</span>,<span class="at">replace =</span> T)</span>
+<span id="cb45-3"><a href="probability.html#cb45-3" tabindex="-1"></a>d2 <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="at">size =</span> <span class="dv">10000</span>,<span class="at">replace =</span> T)</span></code></pre></div>
+<p>From our simulated data, let’s calculate P(D1 = 1 and D2 = 2), that is, the probability that first die roll is 1 and the second die roll is 2. From theory, this probability should be 1/36 = 0.0278. (We use the for in R.)</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="probability.html#cb46-1" tabindex="-1"></a>num.events <span class="ot">=</span> <span class="fu">sum</span>(d1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> d2 <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb46-2"><a href="probability.html#cb46-2" tabindex="-1"></a>prob <span class="ot">=</span> num.events <span class="sc">/</span> <span class="dv">10000</span>; prob</span></code></pre></div>
+<pre><code>## [1] 0.0256</code></pre>
+<p>Next, let’s calculate P(D1 <span class="math inline">\(&lt;\)</span> 2 or D2 <span class="math inline">\(&gt;\)</span> 2), that is, the probability that the first die roll is less than 2 or the second die roll is greater than 2. From theory, this probability should be 0.7222. We use the for the in R.)</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="probability.html#cb48-1" tabindex="-1"></a>num.events <span class="ot">=</span> <span class="fu">sum</span>(d1 <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">|</span> d2 <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb48-2"><a href="probability.html#cb48-2" tabindex="-1"></a>prob <span class="ot">=</span> num.events <span class="sc">/</span> <span class="dv">10000</span>; prob</span></code></pre></div>
+<pre><code>## [1] 0.7183</code></pre>
+<p>Finally, let’s look at the frequency table and distribution of the sum of the two die rolls.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="probability.html#cb50-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">+</span>d2)</span></code></pre></div>
+<pre><code>## 
+##    2    3    4    5    6    7    8    9   10   11   12 
+##  271  540  824 1154 1373 1703 1360 1149  814  525  287</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="probability.html#cb52-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(d1<span class="sc">+</span>d2),<span class="at">xlab=</span><span class="st">&quot;Sum of Dice&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Counts&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="70%" height="40%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-concepts-of-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

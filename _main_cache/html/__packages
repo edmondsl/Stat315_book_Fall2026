@@ -12,3 +12,4 @@ lubridate
 kableExtra
 knitr
 gridExtra
+bookdown
