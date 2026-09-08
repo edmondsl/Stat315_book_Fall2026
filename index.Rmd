@@ -1,14 +1,21 @@
 ---
 title: "STAT 315 Notes Fall 2026"
 author: "Colorado State University"
-date: ""
-site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: pdf_document
 documentclass: book
-description: ""
-header-includes:
-      - \usepackage{pdfpages}
+link-citations: true
+fontsize: 11pt
+geometry: margin=1in
+classoption: oneside
+bibliography:
+- book.bib
+- packages.bib
+description: STAT315 Notes
+github-repo: "edmondsl.github.io/Stat315_book_Fall2026/"
+url: "https://edmondsl.github.io/Stat315_book_Fall2026/"
+site: bookdown::bookdown_site
 ---
+
 
 # Preliminaries {-}
 

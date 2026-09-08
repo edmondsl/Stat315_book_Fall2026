@@ -1,0 +1,493 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(formatR)
+library(tidyverse)
+library(kableExtra)
+
+# Set so that long lines in R will be wrapped:
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=FALSE)
+knitr::opts_chunk$set(cache=TRUE,warning=F)
+knitr::opts_chunk$set(out.height='40%',fig.align = "center")
+add.space = 0
+
+# kable table global setup
+kt = function(data) {
+  kable(data, align = "c", escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("striped"),
+                  latex_options = c("hold_position"))
+}
+```
+
+# Discrete Random Variables
+
+In this chapter, we'll explore random variables and their associated probability distributions, with a focus on discrete random variables. These concepts are the backbone of probability theory, enabling us to model and analyze uncertainty. We'll also briefly cover the differences between discrete and continuous random variables—discrete variables take on specific, countable values, while continuous variables can assume any value within a range.
+
+## Random Variables
+
+:::{.definition}
+For a given sample space $\Omega$ of an experiment, a ***random variable (RV)*** is a rule that assigns a number to each outcome in $\Omega$. Mathematically, a random variable is a function with the sample space as its domain and the set of real numbers as its range.
+:::
+
+:::{.definition}
+A ***discrete random variable*** is a random variable whose possible values either constitute a finite set or a countably infinite set.
+:::
+
+
+:::{.definition}
+A ***continuous*** random variable is a random variable whose possible values are uncountably infinite or defined over an interval. Note: $P(X=c)=0$ for a continuous random variable $X$ and a constant $c$.
+:::
+
+
+
+:::{.example} 
+For the following cases, determine whether the random variable is discrete or continuous and state the sample space, $\Omega$.
+:::
+
+(a) Roll a fair six-sided die. Let $X$ be the number on the top of the die. 
+\vfill
+
+(b) Pick a random person and let $Y$ be the number of keys in their pocket.
+\vfill
+
+(c) Suppose a student is given 50 minutes to complete an exam. Let $Z$ be the amount of time it takes the student to complete the exam.
+\vfill
+
+
+\newpage
+## Probability Distributions for Discrete Random Variables
+
+:::{.definition}
+The ***probability mass function (pmf)*** or ***probability distribution*** of a discrete random variable $X$ is defined for every number $x$ by $p(x) = P(X=x)$.
+
+**Note:** \(\sum_{x \in X} p(x) = 1\)
+:::
+
+
+:::{.definition}
+The ***cumulative distribution function (CDF)*** $F(x)$ of a discrete random variable $X$ with pmf $p(x)$ is defined for every number x by:
+\(F(x) = P(X \le x) = \sum_{y:y \le x} p(y)\)
+
+- $F(x)$ gives you the probability that a random variable will be at most equal to $x$.
+
+- $F(x)$ must be right-continuous and non-decreasing.
+
+- $F(x)$ must satisfy two limit laws:
+  - (i) $\lim_{x \to -\infty} F(x) = 0$\
+  - (ii) $\lim_{x \to \infty} F(x) = 1$\
+:::
+
+:::{.theorem}
+For any two numbers a and b with $a \le b$, $P(a \le X \le b ) = F(b) - F(a^-)$.
+:::
+
+:::{.example} 
+Roll a fair six-sided die. Let $X$ be the number of the top of the die. Find the pmf and cdf of $X$ and sketch them.
+:::
+
+\vfill
+
+```{r,echo=F}
+library(ggplot2)
+
+# Create a data frame for the grid
+grid_data = expand.grid(x = 0:7, y = 0:7)
+
+# Create the plot
+grid7x7 = ggplot(grid_data, aes(x = x, y = y)) +
+  geom_point(color = "white") +  # Empty grid points
+  geom_hline(yintercept = 0:7, color = "gray80") +  # Horizontal grid lines
+  geom_vline(xintercept = 0:7, color = "gray80") +  # Vertical grid lines
+  # Bold axes with arrows using annotate
+  annotate("segment", x = 0, xend = 7, y = 0, yend = 0, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  annotate("segment", x = 0, xend = 0, y = 0, yend = 7, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  coord_fixed() +  # Equal scaling for x and y axes
+  theme_void() +  # No labels or gridlines
+  theme(
+    axis.text = element_blank(),  # Remove axis text
+    axis.ticks = element_blank(),  # Remove axis ticks
+    plot.margin = margin(20, 20, 20, 20)  # Add margin (top, right, bottom, left)
+  )
+
+# Create a data frame for the 5x5 grid
+grid_data = expand.grid(x = 0:5, y = 0:5)
+
+# Create the plot
+grid5x5 = ggplot(grid_data, aes(x = x, y = y)) +
+  geom_point(color = "white") +  # Empty grid points
+  geom_hline(yintercept = 0:5, color = "gray80") +  # Horizontal grid lines
+  geom_vline(xintercept = 0:5, color = "gray80") +  # Vertical grid lines
+  # Bold axes with arrows using annotate
+  annotate("segment", x = 0, xend = 5, y = 0, yend = 0, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  annotate("segment", x = 0, xend = 0, y = 0, yend = 5, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  coord_fixed() +  # Equal scaling for x and y axes
+  theme_void() +  # No labels or gridlines
+  theme(
+    axis.text = element_blank(),  # Remove axis text
+    axis.ticks = element_blank(),  # Remove axis ticks
+    plot.margin = margin(20, 20, 20, 20)  # Add margin (top, right, bottom, left)
+  )
+
+
+```
+
+```{r,echo=F,out.width="90%"}
+grid.arrange(grid7x7,grid7x7,ncol=2)
+```
+
+
+\vfill
+\vfill
+\vfill
+\vfill
+\vfill
+
+\newpage
+
+
+\vfill
+
+:::{.example} 
+Flip two fair coins. Let $Y$ be the number of coins that land on heads. Find the pmf and cdf of $Y$ and sketch both.
+:::
+
+\vfill
+
+
+```{r,echo=F,out.width="70%"}
+grid.arrange(grid5x5,grid5x5,ncol=2)
+```
+
+
+\vfill
+\vfill
+\vfill
+\vfill
+\vfill
+
+
+
+## Expected Values (Means)
+
+:::{.definition}
+Let X be a discrete random variable with set of possible outcomes $D$ and pmf $p(x)$. The ***expected value*** or ***mean value*** of $X$, denoted $E[X]$ or $\mu$, is: \[E[X] = \sum_{x \in D} x \cdot p(x)\]
+:::
+
+:::{.theorem}
+$E[h(X)] = \sum p(x) \cdot h(x)$
+:::
+
+:::{.theorem}
+\(E[aX+b] = a \cdot E[X] + b\)
+:::
+
+
+
+:::{.definition}
+Let X have a pmf $p(x)$ and expected value $\mu$. Then the ***variance*** of X, denoted by $Var(X)$ or $\sigma^2$, is:
+\[Var(X) = \sigma^2 = \sum_{x \in D} (x-\mu)^2 \cdot p(x) = E[(X-\mu)^2]\]
+:::
+
+:::{.definition}
+The ***standard deviation***, denoted SD  or $\sigma$ is:
+\[SD(X) = \sigma  = \sqrt{Var(X)}\]
+:::
+
+:::{.theorem}
+\(Var(X) = E[X^2] - (E[X])^2 \)
+:::
+
+
+:::{.theorem}
+\(Var(aX+b) = a^2 \cdot \sigma^2\)
+:::
+
+
+
+\newpage
+
+:::{.example} 
+Roll a fair six-sided die. Let $X$ be the number of the top of the die.
+Find $E[X]$ and $Var(X)$.
+:::
+
+```{r,echo=F,out.width="80%"}
+# Create the data frame
+data = data.frame(
+  c("$x$", 1, 2, 3, 4, 5, 6, "$\\Sigma$"),
+  c("$p(x)$", rep("", 6), ""),
+  c("$x*p(x)$", rep("", 6), ""),
+  c("$x^2*p(x)$", rep("", 6), "")
+)
+
+data = t(data)
+rownames(data) = NULL
+
+# Render the table using kable with 'pipe' format
+kt(data)
+```
+
+
+
+:::{.example} 
+Flip two fair coins. Let $Y$ be the number of coins that land on heads.\\
+Find $E[Y]$ and $Var(Y)$.
+:::
+
+```{r,echo=F,out.width="80%"}
+# Create the data frame
+data = data.frame(
+  c("$x$", 0, 1, 2, "$\\Sigma$"),
+  c("$p(x)$", rep("",4)),
+  c("$x*p(x)$", rep("",4)),
+  c("$x^2*p(x)$", rep("",4))
+)
+
+data = t(data)
+rownames(data) = NULL
+
+# Render the table using kable with 'pipe' format
+kt(data)
+```
+
+:::{.example}
+Suppose $Z = 3 \cdot Y + 2$, where $Y$ is defined above. Find $E[Z]$ and $Var(Z)$.
+:::
+
+\newpage
+
+
+## Bernoulli and Binomial Random Variables
+
+:::{.definition}
+Suppose $p(x)$ depends on a quantity that can be assigned any one of a number of possible values, with each different value determining a different probability distribution. Such a quantity is called a ***parameter*** of the distribution. 
+:::
+
+:::{.definition}
+The collection of all probability distributions for different values of the parameter is called a ***family*** of probability distributions.
+:::
+
+:::{.definition}
+A ***Bernoulli($p$)*** random variable $X$ is a discrete random variable with two possible outcomes (typically, these outcomes are 0 and 1).
+
+The PMF of a Bernoulli($p$) is:
+\begin{flushleft}
+$p(x) = \begin{cases}
+1-p & x=0\\
+p & x=1
+\end{cases}$
+\end{flushleft}
+
+If $X \sim \text{Bernoulli(}p)$) random variable, then $E[X] = p$ and $Var(X) = p(1-p)$
+:::
+
+:::{.example}
+Show that if $X$ is a Bernoulli($p$) random variable, then $E[X] = p$ and $Var(X) = p(1-p)$.
+:::
+
+\vfill
+
+
+:::{.definition}
+$X$ is a ***Binomial($n$,$p$)*** random variable if $X$ is a discrete random variable that satisfies the following conditions:
+\begin{itemize}
+\item The experiment consists of $n$ Bernoulli trials, where $n$ is fixed.
+\item The trials are independent.
+\item The probability of success, $p$, is constant from trial to trial.
+\item $X$ is the number of successes
+\end{itemize}
+
+The PMF of a Binomial($n,p$) is:
+
+\( p(x) = \binom{n}{x} p^x (1-p)^{n-x}, x = 0, 1, 2, \ldots, n \) 
+
+If $X \sim \text{Binomial(}n,p)$ random variable, then $E[X] = np$ and $Var(X) = np(1-p)$.
+:::
+
+\newpage
+:::{.example} 
+Basketball player Lebron James has a career free throw percentage of 73.1\% (i.e., there's a 73.1\% chance he will make a basket from the free throw line). Suppose Lebron has six free throw attempts in a game and assume all free throw shots are independent. Answer the following questions.
+:::
+
+(a) Let $X$ be the number of free throws that Lebron makes. Find and sketch the pmf of $X$.
+
+
+```{r,echo = F}
+# Create the data frame
+data = data.frame(
+  c("$x$", 0, 1, 2, 3, 4, 5, 6),
+  c("$p(x)$", rep("",7)))
+
+data = t(data)
+rownames(data) = NULL
+
+# Render the table using kable with 'pipe' format
+kt(data)
+```
+
+```{r, echo=F, out.width='2in',fig.align='right'}
+grid7x7
+```
+
+ (a) On average, how many free throws is Lebron expected to make? What is the variance?
+
+\vfill
+
+ (c) What is the probability that Lebron makes at least five shots?
+
+\vfill
+
+
+\newpage
+
+## Geometric, Discrete Uniform, and Poisson Random Variables
+
+
+:::{.definition}
+$X$ is a ***Geometric($p$)*** random variable is $X$ is a discrete random variable with the following properties.
+
+\begin{itemize}
+\item The experiment consists of independent trials.
+\item Each trial can result in a success or a failure.
+\item The probability of success is $p$ and is constant across all trials.
+\item The experiment continues until a successful trial is observed.
+\item $X$ is the number of total trials
+\end{itemize}
+
+The PMF of a Geometric($p$) is:
+
+\( p(x) = p(1-p)^{x-1}, x = 1, 2, 3, \ldots \) 
+
+If $X \sim \text{Geometric(}p)$ random variable, then $E[X] = \frac{1}{p}$ and $Var(X) = \frac{1-p}{p^2}$.
+:::
+
+:::{.example}
+Basketball player Lebron James has a career free throw percentage of 73.1\%. Suppose he takes shots until makes one. Calculate the probability that 3 or more shots will be required to make his first shot.
+:::
+
+\newpage
+
+:::{.definition}
+$X$ is a ***Discrete Uniform(a,b)*** random variable is $X$ is a discrete random variable such that the outcomes $a, a+1, \ldots, b$ are equally likely. Let $n = b-a+1$.
+
+The PMF of a Uniform($a,b$) is:
+
+\( p(x) = \frac{1}{n}, x = a, a+1, \ldots, b \) 
+
+If $X \sim \text{Uniform(}a,b)$ random variable, then $E[X] = \frac{a+b}{2}$ and $Var(X) = \frac{(b-a+1)^2-1}{12}$.
+:::
+
+:::{.example} 
+Using the formulas above, calculate the expected value and variance of a fair six-sided die roll.
+:::
+
+\vfill
+
+:::{.definition}
+A ***Poisson random variable*** is a discrete random variable with parameter $\lambda$ and the following pmf: \[p(x)=\frac{e^{-\lambda} \lambda^x}{x!}, x = 0, 1, 2, \ldots \]
+
+If $X \sim \text{Poisson(}\lambda)$ random variable, then $E[X] = \lambda$ and $Var(X) = \lambda$.
+:::
+
+
+**Note:** Poisson random variables are often used to model the number of events that occur in a finite period of time.
+
+:::{.example} 
+Jihan is going fishing and on average, she catches 2 fish per day. Assume that the time between successive fish caught is independent. What is the probability that Jihan catches less than 3 fish in a given day?
+:::
+
+\vfill
+
+\newpage
+
+## R Companion for Chapter 3
+
+We can calculate probabilities for common discrete random variables easily in R. There are two parts to finding probabilities using the PMF or CDF. 
+
+R uses four prefixes to reference difference elements of a random variable. These are:
+
+- ***p*** for "probability", the cumulative distribution function (CDF)
+  
+- ***q*** for "quantile", the inverse CDF
+  
+- ***d*** for "density", the probability mass function (PMF)
+  
+- ***r*** for "random", a random variable having the specified distribution
+
+In addition, we have suffixes for common random variables: ***binom*** (binomial), ***pois*** (Poisson), and ***geom*** (Geometric). Note that ***geom*** is defined in terms of failures instead of total trials.
+
+For instance, suppose that $X \sim Binomial(n=10,p=0.5)$, that is, X is a binomial random variable that counts the number of heads in 10 fair coin flips. We can calculate P(X=5), the probability of exactly 5 heads in 10 fair coin flips, as follows.
+
+```{r}
+dbinom(x=5,size=10,prob=0.5)
+```
+
+If we want the probability of at most five heads in 10 coin flips, $P(X \leq 5)$, we can use ***pbinom}.
+
+```{r}
+pbinom(q=5,size=10,prob=0.5)
+```
+
+Now, suppose that $Y \sim Poisson(\lambda = 2)$ and we want to know $P(Y > 3)$. First, we note that $P(Y > 3) = 1 - P(Y \leq 3)$.
+
+```{r}
+1-ppois(q=3,lambda=2)
+```
+
+If we use the prefix ***r***, we can generate simulated data according to a particular random variable. Let's generate 10,000 observations from a Poisson distribution with $\lambda=3$, look at the first few values, and then calculate some summary statistics. This will require us to use the ***rpois*** function to generate random Poisson data.
+
+```{r}
+rand.data = rpois(n=10000,lambda=3)
+head(rand.data) # look at the first few values
+mean(rand.data) # calculate the mean
+var(rand.data) # calculate the variance
+```
+
+
+From theory, we know that if $Y \sim Poisson(\lambda=3)$, then $E[Y] = Var(Y) = \lambda = 3$. Our simulated results are pretty close to the theoretical values.
+
+```{r}
+table(rand.data)
+barplot(table(rand.data))
+```
+
+How would you describe the distribution above? It seems to be asymmetric, skewed right (tail on the right), and unimodal.
+
+\newpage
+
+:::{.example}
+Let's simulate some data and calculate the probabilities in the sample. Suppose we flip 10 fair coins and we count the number of heads. Let X be the number of heads. We can model X as a binomial random variable with parameters n=10 (number of coin flips) and p=0.5 (fair coin). Let's simulate running this experiment 100 times.
+:::
+
+```{r}
+set.seed(2020)
+coins = rbinom(n=100,size=10,prob=0.5)
+table(coins)
+barplot(table(coins))
+```
+
+In our simulation, what was the probability that 5 heads occurred out of 10 flips? In the above table, we can see we got 5 heads on 32 of the 100 simulations, so $P(5) = 32/100 = 0.32$.\\
+
+We could also calculate as follows:
+
+```{r}
+p5 = sum(coins == 5)/100; p5
+```
+
+What is the probability that we got more than 7 heads?
+
+```{r}
+p = sum(coins > 7)/100; p
+```

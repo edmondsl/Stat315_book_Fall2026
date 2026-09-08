@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Discrete Random Variables | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="STAT315 Notes" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Discrete Random Variables | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="STAT315 Notes" />
+  <meta name="github-repo" content="edmondsl.github.io/Stat315_book_Fall2026/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Discrete Random Variables | STAT 315 Notes Fall 2026" />
+  
+  <meta name="twitter:description" content="STAT315 Notes" />
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probability.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT315 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>3</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variables"><i class="fa fa-check"></i><b>3.1</b> Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Probability Distributions for Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-values-means"><i class="fa fa-check"></i><b>3.3</b> Expected Values (Means)</a></li>
+<li class="chapter" data-level="3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables"><i class="fa fa-check"></i><b>3.4</b> Bernoulli and Binomial Random Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables"><i class="fa fa-check"></i><b>3.5</b> Geometric, Discrete Uniform, and Poisson Random Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#r-companion-for-chapter-3"><i class="fa fa-check"></i><b>3.6</b> R Companion for Chapter 3</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="discrete-random-variables" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Discrete Random Variables<a href="discrete-random-variables.html#discrete-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we’ll explore random variables and their associated probability distributions, with a focus on discrete random variables. These concepts are the backbone of probability theory, enabling us to model and analyze uncertainty. We’ll also briefly cover the differences between discrete and continuous random variables—discrete variables take on specific, countable values, while continuous variables can assume any value within a range.</p>
+<div id="random-variables" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Random Variables<a href="discrete-random-variables.html#random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-93" class="definition"><strong>Definition 3.1  </strong></span>For a given sample space <span class="math inline">\(\Omega\)</span> of an experiment, a <strong><em>random variable (RV)</em></strong> is a rule that assigns a number to each outcome in <span class="math inline">\(\Omega\)</span>. Mathematically, a random variable is a function with the sample space as its domain and the set of real numbers as its range.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-94" class="definition"><strong>Definition 3.2  </strong></span>A <strong><em>discrete random variable</em></strong> is a random variable whose possible values either constitute a finite set or a countably infinite set.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-95" class="definition"><strong>Definition 3.3  </strong></span>A <strong><em>continuous</em></strong> random variable is a random variable whose possible values are uncountably infinite or defined over an interval. Note: <span class="math inline">\(P(X=c)=0\)</span> for a continuous random variable <span class="math inline">\(X\)</span> and a constant <span class="math inline">\(c\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-96" class="example"><strong>Example 3.1  </strong></span>For the following cases, determine whether the random variable is discrete or continuous and state the sample space, <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Roll a fair six-sided die. Let <span class="math inline">\(X\)</span> be the number on the top of the die.
+</p></li>
+<li><p>Pick a random person and let <span class="math inline">\(Y\)</span> be the number of keys in their pocket.
+</p></li>
+<li><p>Suppose a student is given 50 minutes to complete an exam. Let <span class="math inline">\(Z\)</span> be the amount of time it takes the student to complete the exam.
+</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="probability-distributions-for-discrete-random-variables" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Probability Distributions for Discrete Random Variables<a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-97" class="definition"><strong>Definition 3.4  </strong></span>The <strong><em>probability mass function (pmf)</em></strong> or <strong><em>probability distribution</em></strong> of a discrete random variable <span class="math inline">\(X\)</span> is defined for every number <span class="math inline">\(x\)</span> by <span class="math inline">\(p(x) = P(X=x)\)</span>.</p>
+<p><strong>Note:</strong> <span class="math inline">\(\sum_{x \in X} p(x) = 1\)</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-98" class="definition"><strong>Definition 3.5  </strong></span>The <strong><em>cumulative distribution function (CDF)</em></strong> <span class="math inline">\(F(x)\)</span> of a discrete random variable <span class="math inline">\(X\)</span> with pmf <span class="math inline">\(p(x)\)</span> is defined for every number x by:
+<span class="math inline">\(F(x) = P(X \le x) = \sum_{y:y \le x} p(y)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(F(x)\)</span> gives you the probability that a random variable will be at most equal to <span class="math inline">\(x\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x)\)</span> must be right-continuous and non-decreasing.</p></li>
+<li><p><span class="math inline">\(F(x)\)</span> must satisfy two limit laws:</p>
+<ul>
+<li><ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(\lim_{x \to -\infty} F(x) = 0\)</span><br />
+</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-roman">
+<li><span class="math inline">\(\lim_{x \to \infty} F(x) = 1\)</span><br />
+</li>
+</ol></li>
+</ul></li>
+</ul>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-99" class="theorem"><strong>Theorem 3.1  </strong></span>For any two numbers a and b with <span class="math inline">\(a \le b\)</span>, <span class="math inline">\(P(a \le X \le b ) = F(b) - F(a^-)\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-100" class="example"><strong>Example 3.2  </strong></span>Roll a fair six-sided die. Let <span class="math inline">\(X\)</span> be the number of the top of the die. Find the pmf and cdf of <span class="math inline">\(X\)</span> and sketch them.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="90%" height="40%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-101" class="example"><strong>Example 3.3  </strong></span>Flip two fair coins. Let <span class="math inline">\(Y\)</span> be the number of coins that land on heads. Find the pmf and cdf of <span class="math inline">\(Y\)</span> and sketch both.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="70%" height="40%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="expected-values-means" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Expected Values (Means)<a href="discrete-random-variables.html#expected-values-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-102" class="definition"><strong>Definition 3.6  </strong></span>Let X be a discrete random variable with set of possible outcomes <span class="math inline">\(D\)</span> and pmf <span class="math inline">\(p(x)\)</span>. The <strong><em>expected value</em></strong> or <strong><em>mean value</em></strong> of <span class="math inline">\(X\)</span>, denoted <span class="math inline">\(E[X]\)</span> or <span class="math inline">\(\mu\)</span>, is: <span class="math display">\[E[X] = \sum_{x \in D} x \cdot p(x)\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-103" class="theorem"><strong>Theorem 3.2  </strong></span><span class="math inline">\(E[h(X)] = \sum p(x) \cdot h(x)\)</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-104" class="theorem"><strong>Theorem 3.3  </strong></span><span class="math inline">\(E[aX+b] = a \cdot E[X] + b\)</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-105" class="definition"><strong>Definition 3.7  </strong></span>Let X have a pmf <span class="math inline">\(p(x)\)</span> and expected value <span class="math inline">\(\mu\)</span>. Then the <strong><em>variance</em></strong> of X, denoted by <span class="math inline">\(Var(X)\)</span> or <span class="math inline">\(\sigma^2\)</span>, is:
+<span class="math display">\[Var(X) = \sigma^2 = \sum_{x \in D} (x-\mu)^2 \cdot p(x) = E[(X-\mu)^2]\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-106" class="definition"><strong>Definition 3.8  </strong></span>The <strong><em>standard deviation</em></strong>, denoted SD or <span class="math inline">\(\sigma\)</span> is:
+<span class="math display">\[SD(X) = \sigma  = \sqrt{Var(X)}\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-107" class="theorem"><strong>Theorem 3.4  </strong></span><span class="math inline">\(Var(X) = E[X^2] - (E[X])^2\)</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-108" class="theorem"><strong>Theorem 3.5  </strong></span><span class="math inline">\(Var(aX+b) = a^2 \cdot \sigma^2\)</span></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-109" class="example"><strong>Example 3.4  </strong></span>Roll a fair six-sided die. Let <span class="math inline">\(X\)</span> be the number of the top of the die.
+Find <span class="math inline">\(E[X]\)</span> and <span class="math inline">\(Var(X)\)</span>.</p>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x*p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x^2*p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="example">
+<p><span id="exm:unlabeled-div-110" class="example"><strong>Example 3.5  </strong></span>Flip two fair coins. Let <span class="math inline">\(Y\)</span> be the number of coins that land on heads.\
+Find <span class="math inline">\(E[Y]\)</span> and <span class="math inline">\(Var(Y)\)</span>.</p>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x*p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x^2*p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="example">
+<p><span id="exm:unlabeled-div-111" class="example"><strong>Example 3.6  </strong></span>Suppose <span class="math inline">\(Z = 3 \cdot Y + 2\)</span>, where <span class="math inline">\(Y\)</span> is defined above. Find <span class="math inline">\(E[Z]\)</span> and <span class="math inline">\(Var(Z)\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="bernoulli-and-binomial-random-variables" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Bernoulli and Binomial Random Variables<a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-112" class="definition"><strong>Definition 3.9  </strong></span>Suppose <span class="math inline">\(p(x)\)</span> depends on a quantity that can be assigned any one of a number of possible values, with each different value determining a different probability distribution. Such a quantity is called a <strong><em>parameter</em></strong> of the distribution.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-113" class="definition"><strong>Definition 3.10  </strong></span>The collection of all probability distributions for different values of the parameter is called a <strong><em>family</em></strong> of probability distributions.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-114" class="definition"><strong>Definition 3.11  </strong></span>A <strong><em>Bernoulli(<span class="math inline">\(p\)</span>)</em></strong> random variable <span class="math inline">\(X\)</span> is a discrete random variable with two possible outcomes (typically, these outcomes are 0 and 1).</p>
+The PMF of a Bernoulli(<span class="math inline">\(p\)</span>) is:
+<p>If <span class="math inline">\(X \sim \text{Bernoulli(}p)\)</span>) random variable, then <span class="math inline">\(E[X] = p\)</span> and <span class="math inline">\(Var(X) = p(1-p)\)</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-115" class="example"><strong>Example 3.7  </strong></span>Show that if <span class="math inline">\(X\)</span> is a Bernoulli(<span class="math inline">\(p\)</span>) random variable, then <span class="math inline">\(E[X] = p\)</span> and <span class="math inline">\(Var(X) = p(1-p)\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-116" class="definition"><strong>Definition 3.12  </strong></span></p>
+<span class="math inline">\(X\)</span> is a <strong><em>Binomial(<span class="math inline">\(n\)</span>,<span class="math inline">\(p\)</span>)</em></strong> random variable if <span class="math inline">\(X\)</span> is a discrete random variable that satisfies the following conditions:
+<p>The PMF of a Binomial(<span class="math inline">\(n,p\)</span>) is:</p>
+<p><span class="math inline">\(p(x) = \binom{n}{x} p^x (1-p)^{n-x}, x = 0, 1, 2, \ldots, n\)</span></p>
+<p>If <span class="math inline">\(X \sim \text{Binomial(}n,p)\)</span> random variable, then <span class="math inline">\(E[X] = np\)</span> and <span class="math inline">\(Var(X) = np(1-p)\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-117" class="example"><strong>Example 3.8  </strong></span>Basketball player Lebron James has a career free throw percentage of 73.1% (i.e., there’s a 73.1% chance he will make a basket from the free throw line). Suppose Lebron has six free throw attempts in a game and assume all free throw shots are independent. Answer the following questions.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Let <span class="math inline">\(X\)</span> be the number of free throws that Lebron makes. Find and sketch the pmf of <span class="math inline">\(X\)</span>.</li>
+</ol>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p(x)\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="2in" height="40%" style="display: block; margin: auto 0 auto auto;" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>On average, how many free throws is Lebron expected to make? What is the variance?</li>
+</ol>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>What is the probability that Lebron makes at least five shots?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="geometric-discrete-uniform-and-poisson-random-variables" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Geometric, Discrete Uniform, and Poisson Random Variables<a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-118" class="definition"><strong>Definition 3.13  </strong></span><span class="math inline">\(X\)</span> is a <strong><em>Geometric(<span class="math inline">\(p\)</span>)</em></strong> random variable is <span class="math inline">\(X\)</span> is a discrete random variable with the following properties.</p>
+<p>The PMF of a Geometric(<span class="math inline">\(p\)</span>) is:</p>
+<p><span class="math inline">\(p(x) = p(1-p)^{x-1}, x = 1, 2, 3, \ldots\)</span></p>
+<p>If <span class="math inline">\(X \sim \text{Geometric(}p)\)</span> random variable, then <span class="math inline">\(E[X] = \frac{1}{p}\)</span> and <span class="math inline">\(Var(X) = \frac{1-p}{p^2}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-119" class="example"><strong>Example 3.9  </strong></span>Basketball player Lebron James has a career free throw percentage of 73.1%. Suppose he takes shots until makes one. Calculate the probability that 3 or more shots will be required to make his first shot.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="definition">
+<p><span id="def:unlabeled-div-120" class="definition"><strong>Definition 3.14  </strong></span><span class="math inline">\(X\)</span> is a <strong><em>Discrete Uniform(a,b)</em></strong> random variable is <span class="math inline">\(X\)</span> is a discrete random variable such that the outcomes <span class="math inline">\(a, a+1, \ldots, b\)</span> are equally likely. Let <span class="math inline">\(n = b-a+1\)</span>.</p>
+<p>The PMF of a Uniform(<span class="math inline">\(a,b\)</span>) is:</p>
+<p><span class="math inline">\(p(x) = \frac{1}{n}, x = a, a+1, \ldots, b\)</span></p>
+<p>If <span class="math inline">\(X \sim \text{Uniform(}a,b)\)</span> random variable, then <span class="math inline">\(E[X] = \frac{a+b}{2}\)</span> and <span class="math inline">\(Var(X) = \frac{(b-a+1)^2-1}{12}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-121" class="example"><strong>Example 3.10  </strong></span>Using the formulas above, calculate the expected value and variance of a fair six-sided die roll.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-122" class="definition"><strong>Definition 3.15  </strong></span>A <strong><em>Poisson random variable</em></strong> is a discrete random variable with parameter <span class="math inline">\(\lambda\)</span> and the following pmf: <span class="math display">\[p(x)=\frac{e^{-\lambda} \lambda^x}{x!}, x = 0, 1, 2, \ldots \]</span></p>
+<p>If <span class="math inline">\(X \sim \text{Poisson(}\lambda)\)</span> random variable, then <span class="math inline">\(E[X] = \lambda\)</span> and <span class="math inline">\(Var(X) = \lambda\)</span>.</p>
+</div>
+<p><strong>Note:</strong> Poisson random variables are often used to model the number of events that occur in a finite period of time.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-123" class="example"><strong>Example 3.11  </strong></span>Jihan is going fishing and on average, she catches 2 fish per day. Assume that the time between successive fish caught is independent. What is the probability that Jihan catches less than 3 fish in a given day?</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-3" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> R Companion for Chapter 3<a href="discrete-random-variables.html#r-companion-for-chapter-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can calculate probabilities for common discrete random variables easily in R. There are two parts to finding probabilities using the PMF or CDF.</p>
+<p>R uses four prefixes to reference difference elements of a random variable. These are:</p>
+<ul>
+<li><p><strong><em>p</em></strong> for “probability”, the cumulative distribution function (CDF)</p></li>
+<li><p><strong><em>q</em></strong> for “quantile”, the inverse CDF</p></li>
+<li><p><strong><em>d</em></strong> for “density”, the probability mass function (PMF)</p></li>
+<li><p><strong><em>r</em></strong> for “random”, a random variable having the specified distribution</p></li>
+</ul>
+<p>In addition, we have suffixes for common random variables: <strong><em>binom</em></strong> (binomial), <strong><em>pois</em></strong> (Poisson), and <strong><em>geom</em></strong> (Geometric). Note that <strong><em>geom</em></strong> is defined in terms of failures instead of total trials.</p>
+<p>For instance, suppose that <span class="math inline">\(X \sim Binomial(n=10,p=0.5)\)</span>, that is, X is a binomial random variable that counts the number of heads in 10 fair coin flips. We can calculate P(X=5), the probability of exactly 5 heads in 10 fair coin flips, as follows.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="discrete-random-variables.html#cb53-1" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="at">x=</span><span class="dv">5</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2460938</code></pre>
+<p>If we want the probability of at most five heads in 10 coin flips, <span class="math inline">\(P(X \leq 5)\)</span>, we can use ***pbinom}.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="discrete-random-variables.html#cb55-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="at">q=</span><span class="dv">5</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6230469</code></pre>
+<p>Now, suppose that <span class="math inline">\(Y \sim Poisson(\lambda = 2)\)</span> and we want to know <span class="math inline">\(P(Y &gt; 3)\)</span>. First, we note that <span class="math inline">\(P(Y &gt; 3) = 1 - P(Y \leq 3)\)</span>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="discrete-random-variables.html#cb57-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">ppois</span>(<span class="at">q=</span><span class="dv">3</span>,<span class="at">lambda=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1428765</code></pre>
+<p>If we use the prefix <strong><em>r</em></strong>, we can generate simulated data according to a particular random variable. Let’s generate 10,000 observations from a Poisson distribution with <span class="math inline">\(\lambda=3\)</span>, look at the first few values, and then calculate some summary statistics. This will require us to use the <strong><em>rpois</em></strong> function to generate random Poisson data.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="discrete-random-variables.html#cb59-1" tabindex="-1"></a>rand.data <span class="ot">=</span> <span class="fu">rpois</span>(<span class="at">n=</span><span class="dv">10000</span>,<span class="at">lambda=</span><span class="dv">3</span>)</span>
+<span id="cb59-2"><a href="discrete-random-variables.html#cb59-2" tabindex="-1"></a><span class="fu">head</span>(rand.data) <span class="co"># look at the first few values</span></span></code></pre></div>
+<pre><code>## [1] 3 6 2 4 1 4</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="discrete-random-variables.html#cb61-1" tabindex="-1"></a><span class="fu">mean</span>(rand.data) <span class="co"># calculate the mean</span></span></code></pre></div>
+<pre><code>## [1] 3.0088</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="discrete-random-variables.html#cb63-1" tabindex="-1"></a><span class="fu">var</span>(rand.data) <span class="co"># calculate the variance</span></span></code></pre></div>
+<pre><code>## [1] 3.047827</code></pre>
+<p>From theory, we know that if <span class="math inline">\(Y \sim Poisson(\lambda=3)\)</span>, then <span class="math inline">\(E[Y] = Var(Y) = \lambda = 3\)</span>. Our simulated results are pretty close to the theoretical values.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="discrete-random-variables.html#cb65-1" tabindex="-1"></a><span class="fu">table</span>(rand.data)</span></code></pre></div>
+<pre><code>## rand.data
+##    0    1    2    3    4    5    6    7    8    9   10   11 
+##  520 1458 2252 2213 1676 1031  514  211   79   28   15    3</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="discrete-random-variables.html#cb67-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(rand.data))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>How would you describe the distribution above? It seems to be asymmetric, skewed right (tail on the right), and unimodal.</p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-124" class="example"><strong>Example 3.12  </strong></span>Let’s simulate some data and calculate the probabilities in the sample. Suppose we flip 10 fair coins and we count the number of heads. Let X be the number of heads. We can model X as a binomial random variable with parameters n=10 (number of coin flips) and p=0.5 (fair coin). Let’s simulate running this experiment 100 times.</p>
+</div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="discrete-random-variables.html#cb68-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb68-2"><a href="discrete-random-variables.html#cb68-2" tabindex="-1"></a>coins <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="at">n=</span><span class="dv">100</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span>
+<span id="cb68-3"><a href="discrete-random-variables.html#cb68-3" tabindex="-1"></a><span class="fu">table</span>(coins)</span></code></pre></div>
+<pre><code>## coins
+##  1  2  3  4  5  6  7  8  9 
+##  3  1 12 19 32 19  8  5  1</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="discrete-random-variables.html#cb70-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(coins))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>In our simulation, what was the probability that 5 heads occurred out of 10 flips? In the above table, we can see we got 5 heads on 32 of the 100 simulations, so <span class="math inline">\(P(5) = 32/100 = 0.32\)</span>.\</p>
+<p>We could also calculate as follows:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="discrete-random-variables.html#cb71-1" tabindex="-1"></a>p5 <span class="ot">=</span> <span class="fu">sum</span>(coins <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">/</span><span class="dv">100</span>; p5</span></code></pre></div>
+<pre><code>## [1] 0.32</code></pre>
+<p>What is the probability that we got more than 7 heads?</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="discrete-random-variables.html#cb73-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">sum</span>(coins <span class="sc">&gt;</span> <span class="dv">7</span>)<span class="sc">/</span><span class="dv">100</span>; p</span></code></pre></div>
+<pre><code>## [1] 0.06</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

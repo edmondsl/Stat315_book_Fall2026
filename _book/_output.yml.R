@@ -1,0 +1,13 @@
+bookdown::gitbook:
+  css: style.css
+config:
+  toc:
+  before: |
+  <li><a href="./">STAT315 Notes</a></li>
+  download: ["pdf"]
+bookdown::pdf_book:
+  includes:
+  in_header: preamble.tex
+latex_engine: xelatex
+citation_package: natbib
+keep_tex: yes
