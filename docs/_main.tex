@@ -1953,21 +1953,20 @@ $x^2*p(x)$ &  &  &  &  &  &  & \\
 \end{table}
 
 \begin{example}
-Flip two fair coins. Let \(Y\) be the number of coins that land on heads.\textbackslash{}
-Find \(E[Y]\) and \(Var(Y)\).
+Flip two fair coins. Let \(Y\) be the number of coins that land on heads. Find \(E[Y]\) and \(Var(Y)\).
 \end{example}
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{c|c|c|c|c}
 \hline
-$x$ & 0 & 1 & 2 & $\Sigma$\\
+$y$ & 0 & 1 & 2 & $\Sigma$\\
 \hline
-$p(x)$ &  &  &  & \\
+$p(y)$ &  &  &  & \\
 \hline
-$x*p(x)$ &  &  &  & \\
+$y*p(y)$ &  &  &  & \\
 \hline
-$x^2*p(x)$ &  &  &  & \\
+$y^2*p(y)$ &  &  &  & \\
 \hline
 \end{tabular}
 \end{table}
@@ -2299,6 +2298,486 @@ What is the probability that we got more than 7 heads?
 \begin{verbatim}
 ## [1] 0.06
 \end{verbatim}
+
+\chapter{Continuous Random Variables}\label{continuous-random-variables}
+
+In this chapter, we will explore continuous random variables, which are types of random variables that can take any value within an uncountable set, such as an interval or a combination of intervals. We will also delve into some of the most commonly encountered continuous random variables, with a particular focus on the Normal distribution.
+
+A \textbf{\emph{continuous random variable}} is a random variable whose possible values either constitute an interval of real numbers or a union of intervals of real numbers.
+
+\section{Probability Density Function (pdf)}\label{probability-density-function-pdf}
+
+\begin{definition}
+Let \(X\) be a continuous random variable. The \textbf{\emph{probability distribution}} or \textbf{\emph{probability density function (pdf)}} of \(X\) is a function \(f(x)\) such that for any two numbers a and b with \(a \le b\), \(P(a \le X \le b) = \int_a^b f(x) dx\).
+
+\textbf{\emph{Note:}} All valid pdfs must satisfy two conditions:\\
+(1) \(f(x) \geq 0\) (\(f(x)\) is non-negative).\\
+(2) \(\int_{-\infty}^\infty f(x) dx = 1\) (area under \(f(x)\) is equal to 1)
+\end{definition}
+
+\begin{example}
+Suppose \(X\) is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}\)
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Is \(f(x)\) a valid pdf?
+\end{enumerate}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is \(P(X < 1)\)?
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[width=0.2\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-68-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is \(P(1/2 \le X \le 3/2)\)?
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[width=0.2\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-69-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  What is \(P(X=1)\)?
+\end{enumerate}
+
+\newpage
+
+\textbf{\emph{Caution!}} For a continuous random variable \(X\), \(P(X=c)=0\) for all constants \(c\). While it may be possible for \(X\) to be exactly equal to the constant \(c\), it can only happen with probability zero. In general, when dealing with continuous random variables, we consider the probability that \(X\) takes on a value over an interval rather than a specific value.\textbackslash{}
+
+\section{Cumulative Distribution Functions}\label{cumulative-distribution-functions}
+
+\begin{definition}
+The \textbf{\emph{cumulative distribution function (CDF)}} of a continuous random variable \(X\) is defined for every number \(x\) by \(F(x) = P(X \le x) = \int_{-\infty}^x f(y) dy\). F(x) represents the area under the curve to the left of \(x\).
+\end{definition}
+
+\textbf{\emph{Note:}} Conditions on \(F(x)\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(0 \le F(x) \le 1\)
+\item
+  \(\lim_{x \to -\infty} F(x) = 0\)
+\item
+  \(\lim_{x \to \infty} F(x) = 1\)
+\end{itemize}
+
+\begin{theorem}
+If \(X\) is a continuous random variable with pdf \(f(x)\) and CDF \(F(x)\), then at every x at which the derivative \(F'(x)\) exists, \(F'(x) = f(x)\).
+\end{theorem}
+
+\begin{theorem}
+
+Let X be a continuous random variable with pdf \(f(x)\) and CDF \(F(x)\). Then we have the following:
+
+\begin{itemize}
+\tightlist
+\item
+  For any number \(a\), \(P(X>a) = 1-F(a)\)\\
+\item
+  For any two numbers \(a\) and \(b\) with \(a \le b\), \(P(a \le X \le b) = F(b) - F(a)\).
+\end{itemize}
+
+\end{theorem}
+
+\begin{example}
+
+Suppose \(X\) is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Find the CDF of \(X\) and sketch it.
+\end{enumerate}
+
+\end{example}
+
+\begin{flushleft}\includegraphics[width=0.3\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-70-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Use the CDF to calculate \(P(X \leq 1)\).
+\end{enumerate}
+
+\vfill
+
+\newpage
+
+\section{Expected Values}\label{expected-values}
+
+\begin{definition}
+The \textbf{\emph{expected value}} or \textbf{\emph{mean}} of a continuous random variable \(X\) with pdf \(f(x)\) is:
+\[ E[X] = \mu = \int_{-\infty}^{\infty} x \cdot f(x) dx\]
+\end{definition}
+
+\begin{theorem}
+If \(X\) is a continuous random variable with pdf \(f(x)\) and \(h(X)\) is any function of \(X\), then:
+\[E[h(X)] = \int_{-\infty}^{\infty} h(x) \cdot f(x) dx\]
+\end{theorem}
+
+\begin{definition}
+The \textbf{\emph{variance}} of a continuous random variable \(X\) with pdf \(f(x)\) is:
+
+\[Var(X) = \sigma^2 = \int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x) dx = E[(X-\mu)^2] = E[X^2] -(E[X])^2\]
+\end{definition}
+
+\begin{definition}
+The \textbf{\emph{standard deviation}} of a continuous random variable \(X\) is: \[SD(X) = \sigma = \sqrt{Var(X)}\]
+\end{definition}
+
+\begin{theorem}
+If \(X\) is a continuous random variable and \(Y=aX+b\), then:
+\[E[Y]=aE[X]+b \text{ and } Var(Y)=a^2Var(X)\]
+\end{theorem}
+
+\begin{example}
+Suppose \(X\) is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}\)
+
+Determine \(E[X]\), \(E[X^2]\), \(Var(X)\), \(SD(X)\).
+\end{example}
+
+\newpage
+
+\section{Normal Distribution}\label{normal-distribution}
+
+\begin{definition}
+A continuous random variable X is said to be \textbf{\emph{Normal(\(\mu\),\(\sigma^2\))}} or \(\mathcal{N}(\mu,\sigma^2)\) random variable if the pdf of X is: \[f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)}, -\infty < x < \infty\]
+
+If \(X \sim \mathcal{N}(\mu,\sigma^2)\), then \(E[X] = \mu\) and \(Var(X) = \sigma^2\), that is, the expected value is \(\mu\) and the variance is \(\sigma^2\).
+\end{definition}
+
+\begin{center}\includegraphics[width=0.4\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-71-1} \end{center}
+
+\begin{definition}
+The normal distribution with parameter values \(\mu=0\) and \(\sigma=1\) is called the \textbf{\emph{standard normal distribution}}.
+\end{definition}
+
+\textbf{Note:} \(X \sim \mathcal{N}(\mu, \sigma^2)\), F(x) is denoted \(\Phi(x)\). There is no closed form solution for \(\Phi(x)\) since \(\Phi(x) = F(x) = \int_{-\infty}^x \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)} = (?).\) Instead, we use software to assist in these calculations.
+
+\begin{theorem}
+If \(X \sim \mathcal{N}(\mu, \sigma^2)\), that is, X is a normal distribution with mean \(\mu\) and standard deviation \(\sigma\), then \(Z = \frac{X-\mu}{\sigma}\) has a standard normal distribution.
+\end{theorem}
+
+\begin{theorem}
+If \(Z \sim \mathcal{N}(0,1)\), that is, X is a standard normal distribution, then \(X = \sigma \cdot Z + \mu\) is a normal distribution with mean \(\mu\) and standard deviation \(\sigma\).
+\end{theorem}
+
+\begin{theorem}
+
+The \textbf{\emph{Empirical Rule}} states that if \(X\) is (approximately) normally distributed then:
+
+\begin{itemize}
+\tightlist
+\item
+  Approximately 68\% of the values are within 1 SD of the mean.
+\item
+  Approximately 95\% of the values are within 2 SD of the mean.
+\item
+  Approximately 99.7\% of the values are within 3 SD of the mean.
+\end{itemize}
+
+\end{theorem}
+
+\begin{example}
+Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Between what two bounds do approximately 95\% of house cat weights lie?
+\vfill
+\end{example}
+
+\newpage
+
+\begin{example}
+Suppose \(Z \sim \mathcal{N}(0,1)\), that is, \(Z\) is a standard normal distribution. Calculate the following and draw an accompanying picture:
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  \(P(Z < 0.68)\)
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.15\textheight]{_main_files/figure-latex/unnamed-chunk-73-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(P(Z \geq -1.21)\)
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.15\textheight]{_main_files/figure-latex/unnamed-chunk-74-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(P(0.43 \le Z < 0.68)\)
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.15\textheight]{_main_files/figure-latex/unnamed-chunk-75-1} \end{flushleft}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Suppose \(P(Z < c) = 0.89\). Find \(c\).
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.15\textheight]{_main_files/figure-latex/unnamed-chunk-76-1} \end{flushleft}
+
+\newpage
+
+\begin{example}
+Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Calculate the following and draw an accompanying picture.
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  \(P(X<15)\)
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.2\textheight]{_main_files/figure-latex/unnamed-chunk-77-1} \end{flushleft}
+
+\vfill
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the probability that a randomly chosen house cat will weigh between 8 and 12 pounds?
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.2\textheight]{_main_files/figure-latex/unnamed-chunk-78-1} \end{flushleft}
+
+\vfill
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is the \(99^{th}\) percentile of house cat weights?
+\end{enumerate}
+
+\begin{flushleft}\includegraphics[height=0.2\textheight]{_main_files/figure-latex/unnamed-chunk-79-1} \end{flushleft}
+
+\vfill
+
+\newpage
+
+\section{The Exponential and Uniform Random Variables}\label{the-exponential-and-uniform-random-variables}
+
+\begin{definition}
+A continuous random variable X is said to be an \textbf{\emph{Exponential(\(\lambda\))}} random variable or an exponential random variable with parameter \(\lambda >0\) if the pmf of X is:
+
+\(f(x|\lambda) =
+\begin{cases}
+\lambda e^{-\lambda x} & x \geq 0\\
+0 & otherwise
+\end{cases}\)
+
+If \(X \sim exp(\lambda)\), then \(E[X] = \frac{1}{\lambda}\) and \(Var(X) = \frac{1}{\lambda^2}\).
+\end{definition}
+
+\begin{example}
+Suppose \(X \sim exp(\lambda)\), find the CDF of X.
+\end{example}
+
+\vfill
+
+\begin{example}
+Suppose that \(X \sim exp(\lambda = 2)\). Find \(P(X > 2)\).
+\end{example}
+
+\vfill
+\vfill
+
+\newpage
+
+\section{(Continuous) Uniform{[}a,b{]} Random Variable}\label{continuous-uniformab-random-variable}
+
+\begin{definition}
+A continuous random variable X is said to be \textbf{\emph{Uniform{[}\(a\),\(b\){]}}} random variable if the pdf of \(X\) is:
+
+\(f(x|a,b) =
+\begin{cases}
+\frac{1}{b-a} & a \le x \le b \\
+0 & otherwise \\
+\end{cases}\)
+
+If \(X \sim \text{Uniform(}a,b\)) random variable, then \(E[X] = \frac{a+b}{2}\) and \(Var(X) = \frac{(b-a)^2}{12}\).
+\end{definition}
+
+\begin{example}
+Show that if \(X \sim Uniform[a,b]\), then \(E[X] = \frac{a+b}{2}\).
+\end{example}
+
+\vfill
+
+\begin{example}
+Suppose your local bus shows up once every 60 minutes, but you don't have a schedule, so you assume it's equally likely to show up at any time in the next 60 minutes. Let \(X\) be the amount of time you have to wait for the bus. Sketch the pmf and calculate the probability that your bus shows up in the next 10 minutes.
+\end{example}
+
+\begin{flushleft}\includegraphics[width=0.5\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-80-1} \end{flushleft}
+
+\newpage
+
+\section{R Companion for Chapter 4}\label{r-companion-for-chapter-4}
+
+Similar to last chapter, we can calculate probabilities for common continuous random variables in R and generate random data according to continuous distributions.
+
+R uses four prefixes to reference difference elements of a random variable. These are:
+
+\textbf{p} for ``probability'', the cumulative distribution function (CDF)
+\textbf{q} for ``quantile'', the inverse CDF
+\textbf{d} for ``density'', the probability mass function (PMF)
+\textbf{r} for ``random'', a random variable having the specified distribution
+
+Suffixes for continuous random variables include: \textbf{norm} (normal/Gaussian), \textbf{exp} (exponential), and \textbf{t} (t).
+
+Suppose \(X \sim \mathcal{N}(\mu=100,\sigma=15)\), the distribution often used to model IQ scores. Suppose we want to know the probability of a randomly chosen IQ score below 110.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\AttributeTok{q=}\DecValTok{110}\NormalTok{,}\AttributeTok{mean=}\DecValTok{100}\NormalTok{,}\AttributeTok{sd=}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7475075
+\end{verbatim}
+
+In other words, about 75\% of IQ scores are less than 110.\textbackslash{}
+
+Let's calculate the probability that a randomly chosen score is above 130. Note that \(P(X>130) = 1 - P(X \leq 130)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pnorm}\NormalTok{(}\AttributeTok{q=}\DecValTok{130}\NormalTok{,}\AttributeTok{mean=}\DecValTok{100}\NormalTok{,}\AttributeTok{sd=}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02275013
+\end{verbatim}
+
+In other words, about 2.3\% of IQ scores are greater than 130.\textbackslash{}
+
+We can also do inverse normal calculations using the prefix \textbf{q} which stands for quantile. Suppose we want to know the 90th percentile of IQ scores. We can calculate this using the \textbf{qnorm} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\AttributeTok{p=}\FloatTok{0.9}\NormalTok{,}\AttributeTok{mean=}\DecValTok{100}\NormalTok{,}\AttributeTok{sd=}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 119.2233
+\end{verbatim}
+
+This result shows that the 90th percentile of IQ scores corresponds to an approximate IQ of 119.
+
+\newpage
+
+In the second half of the course, we will be using the \textbf{t-distribution} frequently when dealing with statistical applications. Let's generate 10,000 random values for a t-distribution with 20 degrees of freedom, i.e., \(Z \sim t(df=20)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2020}\NormalTok{)}
+\NormalTok{rand.data }\OtherTok{=} \FunctionTok{rt}\NormalTok{(}\AttributeTok{n=}\DecValTok{10000}\NormalTok{,}\AttributeTok{df=}\DecValTok{20}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(rand.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-84-1} \end{center}
+
+Based on the plot above, this distribution is approximately symmetric, bell-shaped, and unimodal.\textbackslash{}
+
+Let's calculate some summary statistics for this data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(rand.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.009077007
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(rand.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.01514699
+\end{verbatim}
+
+The mean and median are both approximately equal to zero and since these values are nearly equal, we can confirm that the distribution is approximately symmetric.
+
+Finally, let's calculate the probability in our simulated data so that \(P(Z>1)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num.events }\OtherTok{=} \FunctionTok{sum}\NormalTok{(rand.data }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{)}
+\NormalTok{prob }\OtherTok{=}\NormalTok{ num.events }\SpecialCharTok{/} \DecValTok{10000}\NormalTok{; prob}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1623
+\end{verbatim}
+
+Approximately 16\% of our randomly generated t-distribution values are greater than 1.
 
   \bibliography{book.bib,packages.bib}
 

@@ -1,0 +1,521 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(formatR)
+library(tidyverse)
+library(kableExtra)
+
+# Set so that long lines in R will be wrapped:
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=FALSE)
+knitr::opts_chunk$set(cache=TRUE,warning=F)
+knitr::opts_chunk$set(out.height='40%',fig.align = "center")
+add.space = 0
+
+# kable table global setup
+kt <- function(data) {
+  kable(data, align = "c", escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("striped"),
+                  latex_options = c("hold_position"))
+}
+```
+
+# Continuous Random Variables
+
+In this chapter, we will explore continuous random variables, which are types of random variables that can take any value within an uncountable set, such as an interval or a combination of intervals. We will also delve into some of the most commonly encountered continuous random variables, with a particular focus on the Normal distribution.
+
+A ***continuous random variable*** is a random variable whose possible values either constitute an interval of real numbers or a union of intervals of real numbers.
+
+## Probability Density Function (pdf)
+
+:::{.definition}
+Let $X$ be a continuous random variable. The ***probability distribution*** or ***probability density function (pdf)*** of $X$ is a function $f(x)$ such that for any two numbers a and b with $a \le b$, \(P(a \le X \le b) = \int_a^b f(x) dx\).
+
+***Note:*** All valid pdfs must satisfy two conditions:\
+(1) $f(x) \geq 0$ ($f(x)$ is non-negative).\
+(2) \(\int_{-\infty}^\infty f(x) dx = 1\) (area under $f(x)$ is equal to 1)
+:::
+
+
+
+```{r,echo=F}
+library(ggplot2)
+
+# Create a data frame for the grid
+grid_data <- expand.grid(x = 0:7, y = 0:7)
+
+# Create the plot
+grid7x7 = ggplot(grid_data, aes(x = x, y = y)) +
+  geom_point(color = "white") +  # Empty grid points
+  geom_hline(yintercept = 0:7, color = "gray80") +  # Horizontal grid lines
+  geom_vline(xintercept = 0:7, color = "gray80") +  # Vertical grid lines
+  # Bold axes with arrows using annotate
+  annotate("segment", x = 0, xend = 7, y = 0, yend = 0, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  annotate("segment", x = 0, xend = 0, y = 0, yend = 7, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  coord_fixed() +  # Equal scaling for x and y axes
+  theme_void() +  # No labels or gridlines
+  theme(
+    axis.text = element_blank(),  # Remove axis text
+    axis.ticks = element_blank(),  # Remove axis ticks
+    plot.margin = margin(20, 20, 20, 20)  # Add margin (top, right, bottom, left)
+  )
+
+# Create a data frame for the 5x5 grid
+grid_data <- expand.grid(x = 0:5, y = 0:5)
+
+# Create the plot
+grid5x5 <- ggplot(grid_data, aes(x = x, y = y)) +
+  geom_point(color = "white") +  # Empty grid points
+  geom_hline(yintercept = 0:5, color = "gray80") +  # Horizontal grid lines
+  geom_vline(xintercept = 0:5, color = "gray80") +  # Vertical grid lines
+  # Bold axes with arrows using annotate
+  annotate("segment", x = 0, xend = 5, y = 0, yend = 0, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  annotate("segment", x = 0, xend = 0, y = 0, yend = 5, 
+           arrow = arrow(length = unit(0.3, "cm"), type = "closed"), 
+           color = "black", linewidth = 1.5) +
+  coord_fixed() +  # Equal scaling for x and y axes
+  theme_void() +  # No labels or gridlines
+  theme(
+    axis.text = element_blank(),  # Remove axis text
+    axis.ticks = element_blank(),  # Remove axis ticks
+    plot.margin = margin(20, 20, 20, 20)  # Add margin (top, right, bottom, left)
+  )
+
+
+```
+
+
+
+:::{.example} 
+Suppose $X$ is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}
+\)
+:::
+
+ (a) Is $f(x)$ a valid pdf? 
+
+\newpage
+
+ (b) What is $P(X < 1)$?
+ 
+```{r,echo=F,out.width="20%",fig.align='left'}
+grid5x5
+```
+
+ (c) What is $P(1/2 \le X \le 3/2)$?
+ 
+```{r,echo=F,out.width="20%",fig.align='left'}
+grid5x5
+```
+
+ (d) What is $P(X=1)$?
+ 
+\newpage
+
+ ***Caution!*** For a continuous random variable $X$, $P(X=c)=0$ for all constants $c$. While it may be possible for $X$ to be exactly equal to the constant $c$, it can only happen with probability zero. In general, when dealing with continuous random variables, we consider the probability that $X$ takes on a value over an interval rather than a specific value.\\
+
+
+## Cumulative Distribution Functions
+
+
+:::{.definition}
+The ***cumulative distribution function (CDF)*** of a continuous random variable $X$ is defined for every number $x$ by $F(x) = P(X \le x) = \int_{-\infty}^x f(y) dy$. F(x) represents the area under the curve to the left of $x$.
+:::
+
+ ***Note:*** Conditions on $F(x)$:
+ 
+- $0 \le F(x) \le 1$
+- $\lim_{x \to -\infty} F(x) = 0$ 
+- $\lim_{x \to \infty} F(x) = 1$
+
+
+:::{.theorem} 
+If $X$ is a continuous random variable with pdf $f(x)$ and CDF $F(x)$, then at every x at which the derivative $F'(x)$ exists, $F'(x) = f(x)$.
+:::
+
+:::{.theorem} 
+Let X be a continuous random variable with pdf $f(x)$ and CDF $F(x)$. Then we have the following:
+
+- For any number $a$, \(P(X>a) = 1-F(a)\)\
+- For any two numbers $a$ and $b$ with $a \le b$, $P(a \le X \le b) = F(b) - F(a)$.
+:::
+
+
+:::{.example} 
+Suppose $X$ is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}
+\)
+
+(a) Find the CDF of $X$ and sketch it.
+:::
+
+```{r,echo=F,out.width="30%",fig.align='left'}
+grid5x5
+```
+
+(b) Use the CDF to calculate $P(X \leq 1)$.
+
+\vfill
+
+\newpage
+
+## Expected Values
+
+:::{.definition}
+The ***expected value*** or ***mean*** of a continuous random variable $X$ with pdf $f(x)$ is:
+\[ E[X] = \mu = \int_{-\infty}^{\infty} x \cdot f(x) dx\]
+:::
+
+:::{.theorem}
+If $X$ is a continuous random variable with pdf $f(x)$ and $h(X)$ is any function of $X$, then:
+\[E[h(X)] = \int_{-\infty}^{\infty} h(x) \cdot f(x) dx\]
+:::
+
+:::{.definition}
+The ***variance*** of a continuous random variable $X$ with pdf $f(x)$ is:
+
+\[Var(X) = \sigma^2 = \int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x) dx = E[(X-\mu)^2] = E[X^2] -(E[X])^2\]
+:::
+
+:::{.definition}
+The ***standard deviation*** of a continuous random variable $X$ is: \[SD(X) = \sigma = \sqrt{Var(X)}\]
+:::
+
+:::{.theorem}
+If $X$ is a continuous random variable and $Y=aX+b$, then: 
+\[E[Y]=aE[X]+b \text{ and } Var(Y)=a^2Var(X)\]
+:::
+
+:::{.example} 
+Suppose $X$ is a random variable with the following pdf:
+
+\(f(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x}{2} & 0 \le x \le 2 \\
+0 & x > 2\\
+\end{cases}
+\)
+
+Determine $E[X]$, $E[X^2]$, $Var(X)$, $SD(X)$.
+:::
+
+
+
+\newpage
+
+## Normal Distribution
+
+:::{.definition}
+A continuous random variable X is said to be ***Normal($\mu$,$\sigma^2$)*** or $\mathcal{N}(\mu,\sigma^2)$ random variable if the pdf of X is: \[f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)}, -\infty < x < \infty\]
+
+If $X \sim \mathcal{N}(\mu,\sigma^2)$, then $E[X] = \mu$ and $Var(X) = \sigma^2$, that is, the expected value is $\mu$ and the variance is $\sigma^2$.
+:::
+
+```{r,out.width="40%",echo=F}
+# Define the range of x values
+x <- seq(-5, 5, length.out = 1000)
+
+# Calculate the PDFs for the four normal distributions
+pdf1 <- dnorm(x, mean = 0, sd = 1)  # N(0,1)
+pdf2 <- dnorm(x, mean = 1, sd = 1)  # N(1,1)
+pdf3 <- dnorm(x, mean = 1, sd = 2)  # N(1,2)
+pdf4 <- dnorm(x, mean = 0, sd = 2)  # N(0,2)
+
+# Plot the distributions
+plot(x, pdf1, type = "l", lty = 1, lwd = 2, ylim = c(0, 0.5), 
+     ylab = "Density", xlab = "x", main = "Normal Distribution PDFs")
+lines(x, pdf2, lty = 2, lwd = 2)  # Dashed line
+lines(x, pdf3, lty = 3, lwd = 2)  # Dotted line
+lines(x, pdf4, lty = 4, lwd = 2)  # Dot-dash line
+
+# Add a legend
+legend("topright", legend = c("N(0,1)", "N(1,1)", "N(1,2)", "N(0,2)"), 
+       lty = 1:4, lwd = 2)
+
+# Add gridlines
+grid()
+```
+
+:::{.definition}
+The normal distribution with parameter values $\mu=0$ and $\sigma=1$ is called the ***standard normal distribution***.
+:::
+
+**Note:** $X \sim \mathcal{N}(\mu, \sigma^2)$, F(x) is denoted $\Phi(x)$. There is no closed form solution for $\Phi(x)$ since $\Phi(x) = F(x) = \int_{-\infty}^x \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)} = (?).$ Instead, we use software to assist in these calculations.
+
+:::{.theorem} 
+If $X \sim \mathcal{N}(\mu, \sigma^2)$, that is, X is a normal distribution with mean $\mu$ and standard deviation $\sigma$, then $Z = \frac{X-\mu}{\sigma}$ has a standard normal distribution.
+:::
+
+:::{.theorem} 
+If $Z \sim \mathcal{N}(0,1)$, that is, X is a standard normal distribution, then $X = \sigma \cdot Z + \mu$ is a normal distribution with mean $\mu$ and standard deviation $\sigma$.
+:::
+
+:::{.theorem} 
+The ***Empirical Rule*** states that if $X$ is (approximately) normally distributed then: 
+
+- Approximately 68\% of the values are within 1 SD of the mean.
+- Approximately 95\% of the values are within 2 SD of the mean.
+- Approximately 99.7\% of the values are within 3 SD of the mean.
+:::
+
+:::{.example} 
+Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Between what two bounds do approximately 95\% of house cat weights lie?
+\vfill
+:::
+
+\newpage
+
+```{r,echo=F}
+# Create a data frame for the plot
+df <- data.frame(
+  x = seq(-3, 3, length.out = 1000),
+  pdf = dnorm(seq(-3, 3, length.out = 1000))
+)
+
+# Create the std normal plot
+std_norm_plot <- ggplot(df, aes(x = x, y = pdf)) +
+  geom_line(linewidth = 1) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45), name = "f(z)") +  # Extend y-axis to 0.5 and label as f(z)
+  scale_x_continuous(expand = c(0, 0), name = "") +     # Label the x-axis as z
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black", size = 0.8),  # Add axis lines
+    axis.text.x = element_text(color = "black", size = 12),  # Number labels on x-axis
+    axis.text.y = element_text(color = "black", size = 12),  # Number labels on y-axis
+    axis.ticks = element_line(color = "black", size = 0.8)   # Add axis ticks
+  ) +
+  geom_vline(xintercept = c(-3, -2, -1, 0, 1, 2, 3), color = "grey", linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "black", size = 0.8)  # Add a horizontal line at y = 0
+
+# Create the normal plot
+norm_plot <- ggplot(df, aes(x = x, y = pdf)) +
+  geom_line(size = 1) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45), name = "f(z)") +  # Extend y-axis to 0.5 and label as f(z)
+  scale_x_continuous(expand = c(0, 0), name = "", labels = NULL) +  # Remove x-axis labels
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black", size = 0.8),  # Add axis lines
+    axis.text.x = element_blank(),  # Remove x-axis number labels
+    axis.text.y = element_text(color = "black", size = 12),  # Number labels on y-axis
+    axis.ticks.x = element_blank(),  # Remove x-axis ticks
+    axis.ticks.y = element_line(color = "black", size = 0.8)   # Add axis ticks on y-axis
+  ) +
+  geom_vline(xintercept = c(-3, -2, -1, 0, 1, 2, 3), color = "grey", linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "black", size = 0.8)  # Add a horizontal line at y = 0
+```
+
+:::{.example} 
+Suppose $Z \sim \mathcal{N}(0,1)$, that is, $Z$ is a standard normal distribution. Calculate the  following and draw an accompanying picture:
+:::
+
+ (a) $P(Z < 0.68)$
+ 
+```{r,echo=F,out.height="15%",fig.align='left'}
+std_norm_plot
+```
+
+ (b) $P(Z \geq -1.21)$
+ 
+```{r,echo=F,out.height="15%",fig.align='left'}
+std_norm_plot
+```
+
+ (c) $P(0.43 \le Z < 0.68)$
+  
+```{r,echo=F,out.height="15%",fig.align='left'}
+std_norm_plot
+```
+
+ (d) Suppose $P(Z < c) = 0.89$. Find $c$.
+  
+```{r,echo=F,out.height="15%",fig.align='left'}
+std_norm_plot
+```
+
+\newpage
+
+
+:::{.example} 
+Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Calculate the following and draw an accompanying picture.
+:::
+
+ (a) $P(X<15)$
+
+```{r,echo=F,out.height="20%",fig.align='left'}
+library(gridExtra)
+grid.arrange(norm_plot,norm_plot,ncol=2)
+```
+
+\vfill
+
+ (b) What is the probability that a randomly chosen house cat will weigh between 8 and 12 pounds?
+
+```{r,echo=F,out.height="20%",fig.align='left'}
+grid.arrange(norm_plot,norm_plot,ncol=2)
+```
+
+\vfill
+
+ (c) What is the $99^{th}$ percentile of house cat weights?
+
+```{r,echo=F,out.height="20%",fig.align='left'}
+grid.arrange(norm_plot,norm_plot,ncol=2)
+```
+
+\vfill
+
+\newpage
+
+
+
+
+## The Exponential and Uniform Random Variables
+
+
+:::{.definition}
+A continuous random variable X is said to be an ***Exponential($\lambda$)*** random variable or an exponential random variable with parameter $\lambda >0$ if the pmf of X is:
+
+\(f(x|\lambda) =
+\begin{cases}
+\lambda e^{-\lambda x} & x \geq 0\\
+0 & otherwise
+\end{cases}
+\)
+
+If $X \sim exp(\lambda)$, then $E[X] = \frac{1}{\lambda}$ and $Var(X) = \frac{1}{\lambda^2}$.
+:::
+
+:::{.example} 
+Suppose $X \sim exp(\lambda)$, find the CDF of X.
+:::
+
+\vfill
+
+:::{.example} 
+Suppose that $X \sim exp(\lambda = 2)$. Find $P(X > 2)$.
+:::
+\vfill
+\vfill
+
+\newpage
+
+## (Continuous) Uniform[a,b] Random Variable
+
+:::{.definition}
+A continuous random variable X is said to be ***Uniform[$a$,$b$]*** random variable if the pdf of $X$ is: 
+
+\(f(x|a,b) =
+\begin{cases}
+\frac{1}{b-a} & a \le x \le b \\
+0 & otherwise \\
+\end{cases}
+\)
+
+If $X \sim \text{Uniform(}a,b$) random variable, then $E[X] = \frac{a+b}{2}$ and $Var(X) = \frac{(b-a)^2}{12}$.
+:::
+
+:::{.example} 
+Show that if $X \sim Uniform[a,b]$, then $E[X] = \frac{a+b}{2}$.
+:::
+
+\vfill
+
+
+:::{.example} 
+Suppose your local bus shows up once every 60 minutes, but you don't have a schedule, so you assume it's equally likely to show up at any time in the next 60 minutes. Let $X$ be the amount of time you have to wait for the bus. Sketch the pmf and calculate the probability that your bus shows up in the next 10 minutes.
+:::
+
+```{r, echo=F,out.width="50%",fig.align='left'}
+grid7x7
+```
+
+\newpage
+
+## R Companion for Chapter 4
+
+Similar to last chapter, we can calculate probabilities for common continuous random variables in R and generate random data according to continuous distributions.
+
+R uses four prefixes to reference difference elements of a random variable. These are:
+
+**p** for "probability", the cumulative distribution function (CDF)
+**q** for "quantile", the inverse CDF
+**d** for "density", the probability mass function (PMF)
+**r** for "random", a random variable having the specified distribution
+
+Suffixes for continuous random variables include: **norm** (normal/Gaussian), **exp** (exponential), and **t** (t).
+
+Suppose $X \sim \mathcal{N}(\mu=100,\sigma=15)$, the distribution often used to model IQ scores. Suppose we want to know the probability of a randomly chosen IQ score below 110.
+
+```{r}
+pnorm(q=110,mean=100,sd=15)
+```
+
+In other words, about 75\% of IQ scores are less than 110.\\
+
+Let's calculate the probability that a randomly chosen score is above 130. Note that $P(X>130) = 1 - P(X \leq 130)$.
+
+```{r}
+1-pnorm(q=130,mean=100,sd=15)
+```
+
+In other words, about 2.3\% of IQ scores are greater than 130.\\
+
+We can also do inverse normal calculations using the prefix **q** which stands for quantile. Suppose we want to know the 90th percentile of IQ scores. We can calculate this using the **qnorm** function.
+
+```{r}
+qnorm(p=0.9,mean=100,sd=15)
+```
+
+This result shows that the 90th percentile of IQ scores corresponds to an approximate IQ of 119.
+
+\newpage
+
+In the second half of the course, we will be using the **t-distribution** frequently when dealing with statistical applications. Let's generate 10,000 random values for a t-distribution with 20 degrees of freedom, i.e., $Z \sim t(df=20)$.
+
+```{r}
+set.seed(2020)
+rand.data = rt(n=10000,df=20)
+hist(rand.data)
+```
+
+Based on the plot above, this distribution is approximately symmetric, bell-shaped, and unimodal.\\
+
+Let's calculate some summary statistics for this data.
+
+```{r}
+mean(rand.data)
+median(rand.data)
+```
+
+The mean and median are both approximately equal to zero and since these values are nearly equal, we can confirm that the distribution is approximately symmetric.
+
+Finally, let's calculate the probability in our simulated data so that $P(Z>1)$.
+
+```{r}
+num.events = sum(rand.data > 1)
+prob = num.events / 10000; prob
+```
+
+Approximately 16\% of our randomly generated t-distribution values are greater than 1.

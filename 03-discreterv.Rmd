@@ -242,17 +242,16 @@ kt(data)
 
 
 :::{.example} 
-Flip two fair coins. Let $Y$ be the number of coins that land on heads.\\
-Find $E[Y]$ and $Var(Y)$.
+Flip two fair coins. Let $Y$ be the number of coins that land on heads. Find $E[Y]$ and $Var(Y)$.
 :::
 
 ```{r,echo=F,out.width="80%"}
 # Create the data frame
 data = data.frame(
-  c("$x$", 0, 1, 2, "$\\Sigma$"),
-  c("$p(x)$", rep("",4)),
-  c("$x*p(x)$", rep("",4)),
-  c("$x^2*p(x)$", rep("",4))
+  c("$y$", 0, 1, 2, "$\\Sigma$"),
+  c("$p(y)$", rep("",4)),
+  c("$y*p(y)$", rep("",4)),
+  c("$y^2*p(y)$", rep("",4))
 )
 
 data = t(data)

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Continuous Random Variables | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="STAT315 Notes" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Continuous Random Variables | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="STAT315 Notes" />
+  <meta name="github-repo" content="edmondsl.github.io/Stat315_book_Fall2026/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Continuous Random Variables | STAT 315 Notes Fall 2026" />
+  
+  <meta name="twitter:description" content="STAT315 Notes" />
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="discrete-random-variables.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT315 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>3</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variables"><i class="fa fa-check"></i><b>3.1</b> Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Probability Distributions for Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-values-means"><i class="fa fa-check"></i><b>3.3</b> Expected Values (Means)</a></li>
+<li class="chapter" data-level="3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables"><i class="fa fa-check"></i><b>3.4</b> Bernoulli and Binomial Random Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables"><i class="fa fa-check"></i><b>3.5</b> Geometric, Discrete Uniform, and Poisson Random Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#r-companion-for-chapter-3"><i class="fa fa-check"></i><b>3.6</b> R Companion for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>4</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#probability-density-function-pdf"><i class="fa fa-check"></i><b>4.1</b> Probability Density Function (pdf)</a></li>
+<li class="chapter" data-level="4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#cumulative-distribution-functions"><i class="fa fa-check"></i><b>4.2</b> Cumulative Distribution Functions</a></li>
+<li class="chapter" data-level="4.3" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-values"><i class="fa fa-check"></i><b>4.3</b> Expected Values</a></li>
+<li class="chapter" data-level="4.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#normal-distribution"><i class="fa fa-check"></i><b>4.4</b> Normal Distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#the-exponential-and-uniform-random-variables"><i class="fa fa-check"></i><b>4.5</b> The Exponential and Uniform Random Variables</a></li>
+<li class="chapter" data-level="4.6" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#continuous-uniformab-random-variable"><i class="fa fa-check"></i><b>4.6</b> (Continuous) Uniform[a,b] Random Variable</a></li>
+<li class="chapter" data-level="4.7" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#r-companion-for-chapter-4"><i class="fa fa-check"></i><b>4.7</b> R Companion for Chapter 4</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="continuous-random-variables" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Continuous Random Variables<a href="continuous-random-variables.html#continuous-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will explore continuous random variables, which are types of random variables that can take any value within an uncountable set, such as an interval or a combination of intervals. We will also delve into some of the most commonly encountered continuous random variables, with a particular focus on the Normal distribution.</p>
+<p>A <strong><em>continuous random variable</em></strong> is a random variable whose possible values either constitute an interval of real numbers or a union of intervals of real numbers.</p>
+<div id="probability-density-function-pdf" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Probability Density Function (pdf)<a href="continuous-random-variables.html#probability-density-function-pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-125" class="definition"><strong>Definition 4.1  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable. The <strong><em>probability distribution</em></strong> or <strong><em>probability density function (pdf)</em></strong> of <span class="math inline">\(X\)</span> is a function <span class="math inline">\(f(x)\)</span> such that for any two numbers a and b with <span class="math inline">\(a \le b\)</span>, <span class="math inline">\(P(a \le X \le b) = \int_a^b f(x) dx\)</span>.</p>
+<p><strong><em>Note:</em></strong> All valid pdfs must satisfy two conditions:<br />
+(1) <span class="math inline">\(f(x) \geq 0\)</span> (<span class="math inline">\(f(x)\)</span> is non-negative).<br />
+(2) <span class="math inline">\(\int_{-\infty}^\infty f(x) dx = 1\)</span> (area under <span class="math inline">\(f(x)\)</span> is equal to 1)</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-126" class="example"><strong>Example 4.1  </strong></span>Suppose <span class="math inline">\(X\)</span> is a random variable with the following pdf:</p>
+<p><span class="math inline">\(f(x) =
+\begin{cases}
+0 &amp; x &lt; 0 \\
+\frac{x}{2} &amp; 0 \le x \le 2 \\
+0 &amp; x &gt; 2\\
+\end{cases}\)</span></p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Is <span class="math inline">\(f(x)\)</span> a valid pdf?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>What is <span class="math inline">\(P(X &lt; 1)\)</span>?</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="20%" height="40%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>What is <span class="math inline">\(P(1/2 \le X \le 3/2)\)</span>?</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="20%" height="40%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>What is <span class="math inline">\(P(X=1)\)</span>?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p><strong><em>Caution!</em></strong> For a continuous random variable <span class="math inline">\(X\)</span>, <span class="math inline">\(P(X=c)=0\)</span> for all constants <span class="math inline">\(c\)</span>. While it may be possible for <span class="math inline">\(X\)</span> to be exactly equal to the constant <span class="math inline">\(c\)</span>, it can only happen with probability zero. In general, when dealing with continuous random variables, we consider the probability that <span class="math inline">\(X\)</span> takes on a value over an interval rather than a specific value.\</p>
+</div>
+<div id="cumulative-distribution-functions" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Cumulative Distribution Functions<a href="continuous-random-variables.html#cumulative-distribution-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-127" class="definition"><strong>Definition 4.2  </strong></span>The <strong><em>cumulative distribution function (CDF)</em></strong> of a continuous random variable <span class="math inline">\(X\)</span> is defined for every number <span class="math inline">\(x\)</span> by <span class="math inline">\(F(x) = P(X \le x) = \int_{-\infty}^x f(y) dy\)</span>. F(x) represents the area under the curve to the left of <span class="math inline">\(x\)</span>.</p>
+</div>
+<p><strong><em>Note:</em></strong> Conditions on <span class="math inline">\(F(x)\)</span>:</p>
+<ul>
+<li><span class="math inline">\(0 \le F(x) \le 1\)</span></li>
+<li><span class="math inline">\(\lim_{x \to -\infty} F(x) = 0\)</span></li>
+<li><span class="math inline">\(\lim_{x \to \infty} F(x) = 1\)</span></li>
+</ul>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-128" class="theorem"><strong>Theorem 4.1  </strong></span>If <span class="math inline">\(X\)</span> is a continuous random variable with pdf <span class="math inline">\(f(x)\)</span> and CDF <span class="math inline">\(F(x)\)</span>, then at every x at which the derivative <span class="math inline">\(F&#39;(x)\)</span> exists, <span class="math inline">\(F&#39;(x) = f(x)\)</span>.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-129" class="theorem"><strong>Theorem 4.2  </strong></span>Let X be a continuous random variable with pdf <span class="math inline">\(f(x)\)</span> and CDF <span class="math inline">\(F(x)\)</span>. Then we have the following:</p>
+<ul>
+<li>For any number <span class="math inline">\(a\)</span>, <span class="math inline">\(P(X&gt;a) = 1-F(a)\)</span><br />
+</li>
+<li>For any two numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with <span class="math inline">\(a \le b\)</span>, <span class="math inline">\(P(a \le X \le b) = F(b) - F(a)\)</span>.</li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-130" class="example"><strong>Example 4.2  </strong></span>Suppose <span class="math inline">\(X\)</span> is a random variable with the following pdf:</p>
+<p><span class="math inline">\(f(x) =
+\begin{cases}
+0 &amp; x &lt; 0 \\
+\frac{x}{2} &amp; 0 \le x \le 2 \\
+0 &amp; x &gt; 2\\
+\end{cases}\)</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the CDF of <span class="math inline">\(X\)</span> and sketch it.</li>
+</ol>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="30%" height="40%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Use the CDF to calculate <span class="math inline">\(P(X \leq 1)\)</span>.</li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="expected-values" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Expected Values<a href="continuous-random-variables.html#expected-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-131" class="definition"><strong>Definition 4.3  </strong></span>The <strong><em>expected value</em></strong> or <strong><em>mean</em></strong> of a continuous random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f(x)\)</span> is:
+<span class="math display">\[ E[X] = \mu = \int_{-\infty}^{\infty} x \cdot f(x) dx\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-132" class="theorem"><strong>Theorem 4.3  </strong></span>If <span class="math inline">\(X\)</span> is a continuous random variable with pdf <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(h(X)\)</span> is any function of <span class="math inline">\(X\)</span>, then:
+<span class="math display">\[E[h(X)] = \int_{-\infty}^{\infty} h(x) \cdot f(x) dx\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-133" class="definition"><strong>Definition 4.4  </strong></span>The <strong><em>variance</em></strong> of a continuous random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f(x)\)</span> is:</p>
+<p><span class="math display">\[Var(X) = \sigma^2 = \int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x) dx = E[(X-\mu)^2] = E[X^2] -(E[X])^2\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-134" class="definition"><strong>Definition 4.5  </strong></span>The <strong><em>standard deviation</em></strong> of a continuous random variable <span class="math inline">\(X\)</span> is: <span class="math display">\[SD(X) = \sigma = \sqrt{Var(X)}\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-135" class="theorem"><strong>Theorem 4.4  </strong></span>If <span class="math inline">\(X\)</span> is a continuous random variable and <span class="math inline">\(Y=aX+b\)</span>, then:
+<span class="math display">\[E[Y]=aE[X]+b \text{ and } Var(Y)=a^2Var(X)\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-136" class="example"><strong>Example 4.3  </strong></span>Suppose <span class="math inline">\(X\)</span> is a random variable with the following pdf:</p>
+<p><span class="math inline">\(f(x) =
+\begin{cases}
+0 &amp; x &lt; 0 \\
+\frac{x}{2} &amp; 0 \le x \le 2 \\
+0 &amp; x &gt; 2\\
+\end{cases}\)</span></p>
+<p>Determine <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(E[X^2]\)</span>, <span class="math inline">\(Var(X)\)</span>, <span class="math inline">\(SD(X)\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="normal-distribution" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Normal Distribution<a href="continuous-random-variables.html#normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-137" class="definition"><strong>Definition 4.6  </strong></span>A continuous random variable X is said to be <strong><em>Normal(<span class="math inline">\(\mu\)</span>,<span class="math inline">\(\sigma^2\)</span>)</em></strong> or <span class="math inline">\(\mathcal{N}(\mu,\sigma^2)\)</span> random variable if the pdf of X is: <span class="math display">\[f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)}, -\infty &lt; x &lt; \infty\]</span></p>
+<p>If <span class="math inline">\(X \sim \mathcal{N}(\mu,\sigma^2)\)</span>, then <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(Var(X) = \sigma^2\)</span>, that is, the expected value is <span class="math inline">\(\mu\)</span> and the variance is <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="40%" height="40%" style="display: block; margin: auto;" /></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-138" class="definition"><strong>Definition 4.7  </strong></span>The normal distribution with parameter values <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span> is called the <strong><em>standard normal distribution</em></strong>.</p>
+</div>
+<p><strong>Note:</strong> <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, F(x) is denoted <span class="math inline">\(\Phi(x)\)</span>. There is no closed form solution for <span class="math inline">\(\Phi(x)\)</span> since <span class="math inline">\(\Phi(x) = F(x) = \int_{-\infty}^x \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)} = (?).\)</span> Instead, we use software to assist in these calculations.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-139" class="theorem"><strong>Theorem 4.5  </strong></span>If <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, that is, X is a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then <span class="math inline">\(Z = \frac{X-\mu}{\sigma}\)</span> has a standard normal distribution.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-140" class="theorem"><strong>Theorem 4.6  </strong></span>If <span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>, that is, X is a standard normal distribution, then <span class="math inline">\(X = \sigma \cdot Z + \mu\)</span> is a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-141" class="theorem"><strong>Theorem 4.7  </strong></span>The <strong><em>Empirical Rule</em></strong> states that if <span class="math inline">\(X\)</span> is (approximately) normally distributed then:</p>
+<ul>
+<li>Approximately 68% of the values are within 1 SD of the mean.</li>
+<li>Approximately 95% of the values are within 2 SD of the mean.</li>
+<li>Approximately 99.7% of the values are within 3 SD of the mean.</li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-142" class="example"><strong>Example 4.4  </strong></span>Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Between what two bounds do approximately 95% of house cat weights lie?
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-143" class="example"><strong>Example 4.5  </strong></span>Suppose <span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>, that is, <span class="math inline">\(Z\)</span> is a standard normal distribution. Calculate the following and draw an accompanying picture:</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(Z &lt; 0.68)\)</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(Z \geq -1.21)\)</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(0.43 \le Z &lt; 0.68)\)</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Suppose <span class="math inline">\(P(Z &lt; c) = 0.89\)</span>. Find <span class="math inline">\(c\)</span>.</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" height="15%" style="display: block; margin: auto auto auto 0;" /></p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-144" class="example"><strong>Example 4.6  </strong></span>Suppose the weights of house cats are approximately normally distributed with mean of 10 pounds and a standard deviation of 3 pounds. Calculate the following and draw an accompanying picture.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(X&lt;15)\)</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" height="20%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>What is the probability that a randomly chosen house cat will weigh between 8 and 12 pounds?</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" height="20%" style="display: block; margin: auto auto auto 0;" /></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>What is the <span class="math inline">\(99^{th}\)</span> percentile of house cat weights?</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" height="20%" style="display: block; margin: auto auto auto 0;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-exponential-and-uniform-random-variables" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> The Exponential and Uniform Random Variables<a href="continuous-random-variables.html#the-exponential-and-uniform-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-145" class="definition"><strong>Definition 4.8  </strong></span>A continuous random variable X is said to be an <strong><em>Exponential(<span class="math inline">\(\lambda\)</span>)</em></strong> random variable or an exponential random variable with parameter <span class="math inline">\(\lambda &gt;0\)</span> if the pmf of X is:</p>
+<p><span class="math inline">\(f(x|\lambda) =
+\begin{cases}
+\lambda e^{-\lambda x} &amp; x \geq 0\\
+0 &amp; otherwise
+\end{cases}\)</span></p>
+<p>If <span class="math inline">\(X \sim exp(\lambda)\)</span>, then <span class="math inline">\(E[X] = \frac{1}{\lambda}\)</span> and <span class="math inline">\(Var(X) = \frac{1}{\lambda^2}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-146" class="example"><strong>Example 4.7  </strong></span>Suppose <span class="math inline">\(X \sim exp(\lambda)\)</span>, find the CDF of X.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-147" class="example"><strong>Example 4.8  </strong></span>Suppose that <span class="math inline">\(X \sim exp(\lambda = 2)\)</span>. Find <span class="math inline">\(P(X &gt; 2)\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="continuous-uniformab-random-variable" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> (Continuous) Uniform[a,b] Random Variable<a href="continuous-random-variables.html#continuous-uniformab-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-148" class="definition"><strong>Definition 4.9  </strong></span>A continuous random variable X is said to be <strong><em>Uniform[<span class="math inline">\(a\)</span>,<span class="math inline">\(b\)</span>]</em></strong> random variable if the pdf of <span class="math inline">\(X\)</span> is:</p>
+<p><span class="math inline">\(f(x|a,b) =
+\begin{cases}
+\frac{1}{b-a} &amp; a \le x \le b \\
+0 &amp; otherwise \\
+\end{cases}\)</span></p>
+<p>If <span class="math inline">\(X \sim \text{Uniform(}a,b\)</span>) random variable, then <span class="math inline">\(E[X] = \frac{a+b}{2}\)</span> and <span class="math inline">\(Var(X) = \frac{(b-a)^2}{12}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-149" class="example"><strong>Example 4.9  </strong></span>Show that if <span class="math inline">\(X \sim Uniform[a,b]\)</span>, then <span class="math inline">\(E[X] = \frac{a+b}{2}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-150" class="example"><strong>Example 4.10  </strong></span>Suppose your local bus shows up once every 60 minutes, but you don’t have a schedule, so you assume it’s equally likely to show up at any time in the next 60 minutes. Let <span class="math inline">\(X\)</span> be the amount of time you have to wait for the bus. Sketch the pmf and calculate the probability that your bus shows up in the next 10 minutes.</p>
+</div>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="50%" height="40%" style="display: block; margin: auto auto auto 0;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-4" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> R Companion for Chapter 4<a href="continuous-random-variables.html#r-companion-for-chapter-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Similar to last chapter, we can calculate probabilities for common continuous random variables in R and generate random data according to continuous distributions.</p>
+<p>R uses four prefixes to reference difference elements of a random variable. These are:</p>
+<p><strong>p</strong> for “probability”, the cumulative distribution function (CDF)
+<strong>q</strong> for “quantile”, the inverse CDF
+<strong>d</strong> for “density”, the probability mass function (PMF)
+<strong>r</strong> for “random”, a random variable having the specified distribution</p>
+<p>Suffixes for continuous random variables include: <strong>norm</strong> (normal/Gaussian), <strong>exp</strong> (exponential), and <strong>t</strong> (t).</p>
+<p>Suppose <span class="math inline">\(X \sim \mathcal{N}(\mu=100,\sigma=15)\)</span>, the distribution often used to model IQ scores. Suppose we want to know the probability of a randomly chosen IQ score below 110.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="continuous-random-variables.html#cb75-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="dv">110</span>,<span class="at">mean=</span><span class="dv">100</span>,<span class="at">sd=</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 0.7475075</code></pre>
+<p>In other words, about 75% of IQ scores are less than 110.\</p>
+<p>Let’s calculate the probability that a randomly chosen score is above 130. Note that <span class="math inline">\(P(X&gt;130) = 1 - P(X \leq 130)\)</span>.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="continuous-random-variables.html#cb77-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="at">q=</span><span class="dv">130</span>,<span class="at">mean=</span><span class="dv">100</span>,<span class="at">sd=</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 0.02275013</code></pre>
+<p>In other words, about 2.3% of IQ scores are greater than 130.\</p>
+<p>We can also do inverse normal calculations using the prefix <strong>q</strong> which stands for quantile. Suppose we want to know the 90th percentile of IQ scores. We can calculate this using the <strong>qnorm</strong> function.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="continuous-random-variables.html#cb79-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p=</span><span class="fl">0.9</span>,<span class="at">mean=</span><span class="dv">100</span>,<span class="at">sd=</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 119.2233</code></pre>
+<p>This result shows that the 90th percentile of IQ scores corresponds to an approximate IQ of 119.</p>
+<div style="page-break-after: always;"></div>
+<p>In the second half of the course, we will be using the <strong>t-distribution</strong> frequently when dealing with statistical applications. Let’s generate 10,000 random values for a t-distribution with 20 degrees of freedom, i.e., <span class="math inline">\(Z \sim t(df=20)\)</span>.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="continuous-random-variables.html#cb81-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb81-2"><a href="continuous-random-variables.html#cb81-2" tabindex="-1"></a>rand.data <span class="ot">=</span> <span class="fu">rt</span>(<span class="at">n=</span><span class="dv">10000</span>,<span class="at">df=</span><span class="dv">20</span>)</span>
+<span id="cb81-3"><a href="continuous-random-variables.html#cb81-3" tabindex="-1"></a><span class="fu">hist</span>(rand.data)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>Based on the plot above, this distribution is approximately symmetric, bell-shaped, and unimodal.\</p>
+<p>Let’s calculate some summary statistics for this data.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="continuous-random-variables.html#cb82-1" tabindex="-1"></a><span class="fu">mean</span>(rand.data)</span></code></pre></div>
+<pre><code>## [1] -0.009077007</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="continuous-random-variables.html#cb84-1" tabindex="-1"></a><span class="fu">median</span>(rand.data)</span></code></pre></div>
+<pre><code>## [1] -0.01514699</code></pre>
+<p>The mean and median are both approximately equal to zero and since these values are nearly equal, we can confirm that the distribution is approximately symmetric.</p>
+<p>Finally, let’s calculate the probability in our simulated data so that <span class="math inline">\(P(Z&gt;1)\)</span>.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="continuous-random-variables.html#cb86-1" tabindex="-1"></a>num.events <span class="ot">=</span> <span class="fu">sum</span>(rand.data <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb86-2"><a href="continuous-random-variables.html#cb86-2" tabindex="-1"></a>prob <span class="ot">=</span> num.events <span class="sc">/</span> <span class="dv">10000</span>; prob</span></code></pre></div>
+<pre><code>## [1] 0.1623</code></pre>
+<p>Approximately 16% of our randomly generated t-distribution values are greater than 1.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="discrete-random-variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
