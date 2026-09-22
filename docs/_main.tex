@@ -2779,6 +2779,473 @@ Finally, let's calculate the probability in our simulated data so that \(P(Z>1)\
 
 Approximately 16\% of our randomly generated t-distribution values are greater than 1.
 
+\chapter{Multivariate Random Variables}\label{multivariate-random-variables}
+
+These notes will explore pairs of random variables that may be related. To understand the relationship between these variables, we will start by defining joint probability distributions. Following that, we will examine the concepts of covariance and correlation to quantify and describe the nature of the relationship between the two variables.
+
+\section{Joint Probability Distributions}\label{joint-probability-distributions}
+
+\begin{definition}
+Let \(X\) and \(Y\) be two discrete random variables defined on the sample space \(\Omega\) of an experiment. The \textbf{\emph{joint probability mass function}}, \(p(x,y)\), is defined for each pair of numbers (x,y) by:
+
+\[p(x,y) = P(X=x \text{ and } Y=y)\]
+
+\textbf{Note:} \(p(x,y) \geq 0\) and \(\sum_x \sum_y p(x,y) = 1\)
+\end{definition}
+
+\begin{definition}
+
+Let \(X\) and \(Y\) be two continuous random variables defined on the sample space \(\Omega\) of an experiment. The \textbf{\emph{joint probability density function}} \(f(x,y)\) for variables \(X\) and \(Y\) is a function satisfying:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(f(x,y) \geq 0\)\\
+\item
+  \(\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) dy dx = 1\)
+\end{enumerate}
+
+\end{definition}
+
+\textbf{Note:} For any two-dimensional set A, \(P((X,Y) \in A) = {\int \int}_A f(x,y) dy dx\).
+
+\textbf{Note:} If A is a two-dimensional rectangle
+
+\(\{(x,y): a \le x \le b, c \le y \le d\}\), then: \(P((X,Y) \in A) = \int_a^b \int_c^d f(x,y) dy dx\)
+
+\newpage
+
+\begin{example}
+Let \(f(x,y) = c xy, 0 \leq x \leq 1, 0 \leq y \leq 1\). Find \(c\) so that \(f(x,y)\) is a valid joint pdf.
+\end{example}
+
+\newpage
+
+\section{Marginal Probability Functions}\label{marginal-probability-functions}
+
+\begin{definition}
+The \textbf{\emph{marginal probability mass function}} of a discrete random variable \(X\) with joint pmf \(p(x,y)\) is denoted by \(p_X(x)\) and is given by: \(p_X(x) = \sum_y p(x,y)\)
+\end{definition}
+
+\begin{definition}
+The \textbf{\emph{marginal probability density function}} of a continuous random variable X with joint pdf \(f(x,y)\) is denoted by \(f_X(x)\) and is given by: \(f_X(x) = \int_y f(x,y) dy\)
+\end{definition}
+
+\begin{example}
+An apartment complex has the following joint distribution of \(X\) bedrooms and \(Y\) bathrooms. Determine the marginal pmfs and calculate the probability a randomly selected apartment has more bedrooms than bathrooms (i.e., \(P(X>Y)\)).
+\end{example}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+Y | X & 1 & 2 & 3 & $\Sigma$\\
+\hline
+1 & 0.3 & 0.3 & 0 & \\
+\hline
+2 & 0 & 0.3 & 0.1 & \\
+\hline
+$\Sigma$ &  &  &  & \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{example}
+Let \(X\) and \(Y\) have the joint pdf, \(f(x,y)\), as follows.
+\end{example}
+
+\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) & 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 & \text{otherwise}
+\end{cases}\)
+:::
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Confirm \(f(x,y)\) is a valid pdf
+\item
+  Determine the marginal pdfs
+\item
+  Calculate \(P(X<1/2,Y<1/2)\)
+\end{enumerate}
+
+\vfill
+
+\newpage
+
+\section{Independent Random Variables}\label{independent-random-variables}
+
+\begin{definition}
+Two discrete random variables are \textbf{\emph{independent}} if \(p(x,y) = p_X(x) \cdot p_Y(y)\).
+\end{definition}
+
+\begin{definition}
+Two continuous random variables are \textbf{\emph{independent}} if \(f(x,y) = f_X(x) \cdot f_Y(y)\).
+\end{definition}
+
+\begin{definition}
+If two random variables are not independent, they are \textbf{\emph{dependent}}.
+\end{definition}
+
+\textbf{Note:} You can also check independence by seeing if the conditional distribution equals the marginal distribution, i.e., \(p_{Y|X}(y|x) = p_{Y}(y)\) OR \(p_{X|Y}(x|y) = p_X(x)\).
+
+\begin{example}
+Let \(X\) and \(Y\) have the joint pdf, \(f(x)\), as follows. Are \(X\) and \(Y\) independent?
+\end{example}
+
+\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) & 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 & \text{otherwise}
+\end{cases}\)
+
+\vfill
+
+\begin{example}
+An apartment complex has the following joint distribution of \(X\) bedrooms and \(Y\) bathrooms. Are \(X\) and \(Y\) independent?
+\end{example}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+Y | X & 1 & 2 & 3 & $\Sigma$\\
+\hline
+1 & 0.3 & 0.3 & 0 & \\
+\hline
+2 & 0 & 0.3 & 0.1 & \\
+\hline
+$\Sigma$ &  &  &  & \\
+\hline
+\end{tabular}
+\end{table}
+
+\vfill
+
+\newpage
+
+\section{Conditional Distributions}\label{conditional-distributions}
+
+\begin{definition}
+Let \(X\) and \(Y\) be two discrete distributions with joint pmf \(p(x,y)\) and marginal pmf of \(X\) \(p_X(x)\). Then for any \(X\) value of \(x\) for which \(p_X(x) > 0\), the \textbf{\emph{conditional probability mass function}} of \(Y\) given that \(X=x\) is:
+\[p_{Y|X}(y|x) = \frac{p(x,y)}{p_X(x)} \]
+\end{definition}
+
+\begin{definition}
+Let \(X\) and \(Y\) be two continuous distributions with joint pdf \(f(x,y)\) and marginal pdf of \(X\) \(f_X(x)\). Then for any \(X\) value of \(x\) for which \(f_X(x) > 0\), the \textbf{\emph{conditional probability density function}} of \(Y\) given that \(X=x\) is:
+
+\[f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)} \]
+\end{definition}
+
+\begin{example}
+
+For the apartment example, determine the conditional pmf \(p_{Y|X}(y|x=2)\). The joint pmf, \(p_{X,Y}(x,y)\), is provided below.
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+Y | X & 1 & 2 & 3 & $\Sigma$\\
+\hline
+1 & 0.3 & 0.3 & 0 & \\
+\hline
+2 & 0 & 0.3 & 0.1 & \\
+\hline
+$\Sigma$ &  &  &  & \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{example}
+
+\vfill
+
+\begin{example}
+Let \(X\) and \(Y\) have the joint pdf, \(f(x,y)\), as follows. Determine the conditional pdf, \(f_{Y|X}(y|x)\).
+\end{example}
+
+\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) & 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 & \text{otherwise}
+\end{cases}\)
+
+\vfill \vfill
+
+\newpage
+
+\section{Expected Values, Covariance, and Correlation}\label{expected-values-covariance-and-correlation}
+
+\begin{theorem}
+Let X and Y be jointly distributed pmf \(p(x,y)\) (if X and Y are discrete) or pdf \(f(x,y)\) (if X and Y are continuous). The expected value of the function \(h(X,Y)\), \(E[h(X,Y)]\), is given by:
+
+\[E[h(X,Y)] = \sum_x \sum_y h(x,y) \cdot p(x,y) \text{ (if X and Y are discrete)} \]
+
+\[E[h(X,Y)] = \int_x \int_y h(x,y) \cdot f(x,y) dy dx \text{ (if X and Y are continuous)} \]
+\end{theorem}
+
+\begin{definition}
+The \textbf{\emph{covariance}} between two random variables is given by: \[ Cov(X,Y) = E[XY] - E[X]E[Y]\]
+\end{definition}
+
+\begin{definition}
+The \textbf{\emph{correlation coefficient}} between two random variables is given by: \[Corr(X,Y) = \rho_{XY} = \rho = \frac{Cov(X,Y)}{\sigma_X \cdot \sigma_Y}\]
+
+\begin{theorem}
+For any two random variables \(X\) and \(Y\), \(-1 \le \rho_{XY} \le 1\).
+\end{theorem}
+
+\begin{theorem}
+If \(X\) and \(Y\) are independent then \(\rho_{XY} = 0\)
+\end{theorem}
+
+\textbf{Note:} \(\rho_{XY} = 0\) does not imply that two random variables are independent!
+\end{definition}
+
+\begin{example}
+For the apartment example, determine \(E[X]\), \(E[Y]\), \(E[XY]\), and \(Cov(X,Y)\). The joint pmf, \(p_{X,Y}(x,y)\), is provided below.
+\end{example}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+Y | X & 1 & 2 & 3 & $\Sigma$\\
+\hline
+1 & 0.3 & 0.3 & 0 & \\
+\hline
+2 & 0 & 0.3 & 0.1 & \\
+\hline
+$\Sigma$ &  &  &  & \\
+\hline
+\end{tabular}
+\end{table}
+
+\vfill
+
+\begin{theorem}
+
+Let X and Y be random variables and a and b be constants.
+
+\begin{itemize}
+\tightlist
+\item
+  \(E[aX+bY] = aE[X] + bE[Y]\)
+\item
+  \(Var(aX+bY) = a^2 Var(X) + b^2 Var(Y) + 2ab \cdot Cov(X,Y)\)
+\item
+  \(Var(aX+bY) = a^2 Var(X) + b^2 Var(Y)\), if X and Y are independent
+\end{itemize}
+
+\end{theorem}
+
+\newpage
+
+\section{Bivariate Normal Distribution}\label{bivariate-normal-distribution}
+
+The \textbf{\emph{bivariate normal distribution}} of (\(X\),\(Y\)) has the following joint probability distribution function:
+
+\[f(x,y) = \frac{1}{2 \pi \sigma_1 \sigma_2 \sqrt{1-\rho^2}} \cdot exp\Bigg[-\frac{1}{2(1-\rho^2)}\bigg(\Big(\frac{x-\mu_X}{\sigma_X}\bigg)^2 + 2 \rho \frac{(x-\mu_X)(y-\mu_Y)}{\sigma_1 \sigma_2} + \Big(\frac{y-\mu_Y}{\sigma_Y}\Big)^2 \bigg) \Bigg] \]
+
+\[-\infty < x < \infty , -\infty < y < \infty\]
+
+\smallskip
+
+where \(E[X] = \mu_X\), \(Var(X) = \sigma_X^2\), \(E[Y] = \mu_Y\), \(Var(Y) = \sigma_Y^2\), \(\rho = Corr(X,Y)\)
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{images/bivariate1.png}
+\caption{Bivariate Normal Distribution}
+\end{figure}
+
+We won't work directly with the multivariate normal distribution, but there are some useful properties of normal random variables which we will use.
+
+\begin{theorem}
+If \(X \sim \mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y \sim \mathcal{N}(\mu_Y,\sigma^2_Y)\), then:
+\(X+Y \sim \mathcal{N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y+2Cov(X,Y))\), that is, the sum of normal random variables is a normal random variable.
+\end{theorem}
+
+\begin{theorem}
+If \(X \sim \mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y \sim \mathcal{N}(\mu_Y,\sigma^2_Y)\) and X and Y are independent, then: \(X+Y \sim \mathcal{N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y)\).
+\end{theorem}
+
+\begin{example}
+Suppose \(X\) and \(Y\) are independent normal random variables with means \(\mu_X=2\) and \(\mu_Y=3\) and variances \(\sigma_X^2=1\) and \(\sigma_Y^2=4\). Determine the distribution of \(Z = 4X-Y\).
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{R Companion for Chapter 5}\label{r-companion-for-chapter-5}
+
+\begin{example}
+Let's return to the Hubble dataset. Let's load the dataset into R and then plot the data. Note the plot parameter \textbf{pch=16} fills in the data points for a nicer looking plot.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hubble }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\AttributeTok{file =} \StringTok{"hubble.csv"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(Velocity}\SpecialCharTok{\textasciitilde{}}\NormalTok{Distance,}\AttributeTok{data=}\NormalTok{hubble, }\AttributeTok{pch=}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-92-1} \end{center}
+
+There appears to be a positive relationship between Distance and Velocity. We can calculate the correlation and covariance between the two variables as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(hubble}\SpecialCharTok{$}\NormalTok{Distance,hubble}\SpecialCharTok{$}\NormalTok{Velocity)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.789032
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cov}\NormalTok{(hubble}\SpecialCharTok{$}\NormalTok{Distance,hubble}\SpecialCharTok{$}\NormalTok{Velocity)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 189.159
+\end{verbatim}
+
+The correlation is +0.789 indicating a positive, moderately strong linear relationship between Distance and Velocity. The covariance is 189.159 which is less interpretable since covariance is dependent on the units of measurement. For this reason, we typically prefer to use correlation rather than covariance.
+
+\newpage
+
+\begin{example}
+The \textbf{mtcars} dataset is provided in the base version of R. To find out more info about this dataset, you can get details by calling \textbf{?mtcars}.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# get info on the mtcars dataset}
+\NormalTok{?mtcars}
+\end{Highlighting}
+\end{Shaded}
+
+In the side window of R Studio, it should display the following description after running \textbf{?mtcars}.
+
+The data were extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973--74 models).
+
+Let's load the dataset and take a look at the first few values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(mtcars)}
+\FunctionTok{head}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+\end{verbatim}
+
+In the code below, we extract just these two variables from \textbf{mtcars} and create a new dataset \textbf{m}. From this new dataset \textbf{m}, we can construct a two-way table of counts for the combinations of \textbf{cyl} and \textbf{gear}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# creating new dataset m}
+\NormalTok{m }\OtherTok{=}\NormalTok{ mtcars[ , }\FunctionTok{c}\NormalTok{(}\StringTok{"cyl"}\NormalTok{, }\StringTok{"gear"}\NormalTok{)]}
+
+\CommentTok{\# construct a two{-}way table of counts for cyl and gear}
+\NormalTok{m.table }\OtherTok{=} \FunctionTok{table}\NormalTok{(m}\SpecialCharTok{$}\NormalTok{cyl, m}\SpecialCharTok{$}\NormalTok{gear)}
+\NormalTok{m.table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##      3  4  5
+##   4  1  8  2
+##   6  2  4  1
+##   8 12  0  2
+\end{verbatim}
+
+\newpage
+
+We can also construct the joint probability mass function by dividing our table by the total number of observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# calculate the number of total observations}
+\NormalTok{n }\OtherTok{=} \FunctionTok{sum}\NormalTok{(m.table); n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# construct the joint pmf}
+\NormalTok{m.pmf }\OtherTok{=}\NormalTok{ m.table}\SpecialCharTok{/}\NormalTok{n; m.pmf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##           3       4       5
+##   4 0.03125 0.25000 0.06250
+##   6 0.06250 0.12500 0.03125
+##   8 0.37500 0.00000 0.06250
+\end{verbatim}
+
+Using the table, we can see that P(gear=3 and cyl=8) = 0.375 for example. What is P(gear=4 and cylinder = 4)? The middle entry of the table tells us this value is 0.125. In other words, 12.5\% of the cars in this dataset have 4 gears and 4 cylinders.
+
+Next, we are going to look at the joint probability mass function (PMF) of the variables \textbf{cyl} and \textbf{gear}. We can get the marginal PMFs by summing across rows and columns of the joint pmf.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# marginal pmf of gear}
+\FunctionTok{colSums}\NormalTok{(m.pmf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       3       4       5 
+## 0.46875 0.37500 0.15625
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# marginal pmf of cyl}
+\FunctionTok{rowSums}\NormalTok{(m.pmf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       4       6       8 
+## 0.34375 0.21875 0.43750
+\end{verbatim}
+
+From the tables above, you should see that P(gear=3)=0.46875 and P(cyl=4)=0.34375.
+
+Finally, we can get the correlation as follows. Note that gear and cyl have a negative, moderate linear relationship.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(m}\SpecialCharTok{$}\NormalTok{cyl,m}\SpecialCharTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.4926866
+\end{verbatim}
+
   \bibliography{book.bib,packages.bib}
 
 \end{document}

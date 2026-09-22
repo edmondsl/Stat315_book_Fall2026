@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Multivariate Random Variables | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="STAT315 Notes" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Multivariate Random Variables | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="STAT315 Notes" />
+  <meta name="github-repo" content="edmondsl.github.io/Stat315_book_Fall2026/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Multivariate Random Variables | STAT 315 Notes Fall 2026" />
+  
+  <meta name="twitter:description" content="STAT315 Notes" />
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="continuous-random-variables.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT315 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>3</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variables"><i class="fa fa-check"></i><b>3.1</b> Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Probability Distributions for Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-values-means"><i class="fa fa-check"></i><b>3.3</b> Expected Values (Means)</a></li>
+<li class="chapter" data-level="3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables"><i class="fa fa-check"></i><b>3.4</b> Bernoulli and Binomial Random Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables"><i class="fa fa-check"></i><b>3.5</b> Geometric, Discrete Uniform, and Poisson Random Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#r-companion-for-chapter-3"><i class="fa fa-check"></i><b>3.6</b> R Companion for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>4</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#probability-density-function-pdf"><i class="fa fa-check"></i><b>4.1</b> Probability Density Function (pdf)</a></li>
+<li class="chapter" data-level="4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#cumulative-distribution-functions"><i class="fa fa-check"></i><b>4.2</b> Cumulative Distribution Functions</a></li>
+<li class="chapter" data-level="4.3" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-values"><i class="fa fa-check"></i><b>4.3</b> Expected Values</a></li>
+<li class="chapter" data-level="4.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#normal-distribution"><i class="fa fa-check"></i><b>4.4</b> Normal Distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#the-exponential-and-uniform-random-variables"><i class="fa fa-check"></i><b>4.5</b> The Exponential and Uniform Random Variables</a></li>
+<li class="chapter" data-level="4.6" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#continuous-uniformab-random-variable"><i class="fa fa-check"></i><b>4.6</b> (Continuous) Uniform[a,b] Random Variable</a></li>
+<li class="chapter" data-level="4.7" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#r-companion-for-chapter-4"><i class="fa fa-check"></i><b>4.7</b> R Companion for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html"><i class="fa fa-check"></i><b>5</b> Multivariate Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#joint-probability-distributions"><i class="fa fa-check"></i><b>5.1</b> Joint Probability Distributions</a></li>
+<li class="chapter" data-level="5.2" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#marginal-probability-functions"><i class="fa fa-check"></i><b>5.2</b> Marginal Probability Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#independent-random-variables"><i class="fa fa-check"></i><b>5.3</b> Independent Random Variables</a></li>
+<li class="chapter" data-level="5.4" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>5.4</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="5.5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#expected-values-covariance-and-correlation"><i class="fa fa-check"></i><b>5.5</b> Expected Values, Covariance, and Correlation</a></li>
+<li class="chapter" data-level="5.6" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>5.6</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#r-companion-for-chapter-5"><i class="fa fa-check"></i><b>5.7</b> R Companion for Chapter 5</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-random-variables" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Multivariate Random Variables<a href="multivariate-random-variables.html#multivariate-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>These notes will explore pairs of random variables that may be related. To understand the relationship between these variables, we will start by defining joint probability distributions. Following that, we will examine the concepts of covariance and correlation to quantify and describe the nature of the relationship between the two variables.</p>
+<div id="joint-probability-distributions" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Joint Probability Distributions<a href="multivariate-random-variables.html#joint-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-151" class="definition"><strong>Definition 5.1  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two discrete random variables defined on the sample space <span class="math inline">\(\Omega\)</span> of an experiment. The <strong><em>joint probability mass function</em></strong>, <span class="math inline">\(p(x,y)\)</span>, is defined for each pair of numbers (x,y) by:</p>
+<p><span class="math display">\[p(x,y) = P(X=x \text{ and } Y=y)\]</span></p>
+<p><strong>Note:</strong> <span class="math inline">\(p(x,y) \geq 0\)</span> and <span class="math inline">\(\sum_x \sum_y p(x,y) = 1\)</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-152" class="definition"><strong>Definition 5.2  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two continuous random variables defined on the sample space <span class="math inline">\(\Omega\)</span> of an experiment. The <strong><em>joint probability density function</em></strong> <span class="math inline">\(f(x,y)\)</span> for variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is a function satisfying:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(f(x,y) \geq 0\)</span><br />
+</li>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) dy dx = 1\)</span></li>
+</ol>
+</div>
+<p><strong>Note:</strong> For any two-dimensional set A, <span class="math inline">\(P((X,Y) \in A) = {\int \int}_A f(x,y) dy dx\)</span>.</p>
+<p><strong>Note:</strong> If A is a two-dimensional rectangle</p>
+<p><span class="math inline">\(\{(x,y): a \le x \le b, c \le y \le d\}\)</span>, then: <span class="math inline">\(P((X,Y) \in A) = \int_a^b \int_c^d f(x,y) dy dx\)</span></p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-153" class="example"><strong>Example 5.1  </strong></span>Let <span class="math inline">\(f(x,y) = c xy, 0 \leq x \leq 1, 0 \leq y \leq 1\)</span>. Find <span class="math inline">\(c\)</span> so that <span class="math inline">\(f(x,y)\)</span> is a valid joint pdf.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="marginal-probability-functions" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Marginal Probability Functions<a href="multivariate-random-variables.html#marginal-probability-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-154" class="definition"><strong>Definition 5.3  </strong></span>The <strong><em>marginal probability mass function</em></strong> of a discrete random variable <span class="math inline">\(X\)</span> with joint pmf <span class="math inline">\(p(x,y)\)</span> is denoted by <span class="math inline">\(p_X(x)\)</span> and is given by: <span class="math inline">\(p_X(x) = \sum_y p(x,y)\)</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-155" class="definition"><strong>Definition 5.4  </strong></span>The <strong><em>marginal probability density function</em></strong> of a continuous random variable X with joint pdf <span class="math inline">\(f(x,y)\)</span> is denoted by <span class="math inline">\(f_X(x)\)</span> and is given by: <span class="math inline">\(f_X(x) = \int_y f(x,y) dy\)</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-156" class="example"><strong>Example 5.2  </strong></span>An apartment complex has the following joint distribution of <span class="math inline">\(X\)</span> bedrooms and <span class="math inline">\(Y\)</span> bathrooms. Determine the marginal pmfs and calculate the probability a randomly selected apartment has more bedrooms than bathrooms (i.e., <span class="math inline">\(P(X&gt;Y)\)</span>).</p>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y &amp;#124; X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-157" class="example"><strong>Example 5.3  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint pdf, <span class="math inline">\(f(x,y)\)</span>, as follows.</p>
+</div>
+<p><span class="math inline">\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) &amp; 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 &amp; \text{otherwise}
+\end{cases}\)</span>
+:::</p>
+<ol style="list-style-type: lower-alpha">
+<li>Confirm <span class="math inline">\(f(x,y)\)</span> is a valid pdf</li>
+<li>Determine the marginal pdfs</li>
+<li>Calculate <span class="math inline">\(P(X&lt;1/2,Y&lt;1/2)\)</span></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="independent-random-variables" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Independent Random Variables<a href="multivariate-random-variables.html#independent-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-158" class="definition"><strong>Definition 5.5  </strong></span>Two discrete random variables are <strong><em>independent</em></strong> if <span class="math inline">\(p(x,y) = p_X(x) \cdot p_Y(y)\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-159" class="definition"><strong>Definition 5.6  </strong></span>Two continuous random variables are <strong><em>independent</em></strong> if <span class="math inline">\(f(x,y) = f_X(x) \cdot f_Y(y)\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-160" class="definition"><strong>Definition 5.7  </strong></span>If two random variables are not independent, they are <strong><em>dependent</em></strong>.</p>
+</div>
+<p><strong>Note:</strong> You can also check independence by seeing if the conditional distribution equals the marginal distribution, i.e., <span class="math inline">\(p_{Y|X}(y|x) = p_{Y}(y)\)</span> OR <span class="math inline">\(p_{X|Y}(x|y) = p_X(x)\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-161" class="example"><strong>Example 5.4  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint pdf, <span class="math inline">\(f(x)\)</span>, as follows. Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent?</p>
+</div>
+<p><span class="math inline">\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) &amp; 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 &amp; \text{otherwise}
+\end{cases}\)</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-162" class="example"><strong>Example 5.5  </strong></span>An apartment complex has the following joint distribution of <span class="math inline">\(X\)</span> bedrooms and <span class="math inline">\(Y\)</span> bathrooms. Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent?</p>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y &amp;#124; X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="conditional-distributions" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Conditional Distributions<a href="multivariate-random-variables.html#conditional-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-163" class="definition"><strong>Definition 5.8  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two discrete distributions with joint pmf <span class="math inline">\(p(x,y)\)</span> and marginal pmf of <span class="math inline">\(X\)</span> <span class="math inline">\(p_X(x)\)</span>. Then for any <span class="math inline">\(X\)</span> value of <span class="math inline">\(x\)</span> for which <span class="math inline">\(p_X(x) &gt; 0\)</span>, the <strong><em>conditional probability mass function</em></strong> of <span class="math inline">\(Y\)</span> given that <span class="math inline">\(X=x\)</span> is:
+<span class="math display">\[p_{Y|X}(y|x) = \frac{p(x,y)}{p_X(x)} \]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-164" class="definition"><strong>Definition 5.9  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two continuous distributions with joint pdf <span class="math inline">\(f(x,y)\)</span> and marginal pdf of <span class="math inline">\(X\)</span> <span class="math inline">\(f_X(x)\)</span>. Then for any <span class="math inline">\(X\)</span> value of <span class="math inline">\(x\)</span> for which <span class="math inline">\(f_X(x) &gt; 0\)</span>, the <strong><em>conditional probability density function</em></strong> of <span class="math inline">\(Y\)</span> given that <span class="math inline">\(X=x\)</span> is:</p>
+<p><span class="math display">\[f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)} \]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-165" class="example"><strong>Example 5.6  </strong></span>For the apartment example, determine the conditional pmf <span class="math inline">\(p_{Y|X}(y|x=2)\)</span>. The joint pmf, <span class="math inline">\(p_{X,Y}(x,y)\)</span>, is provided below.</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y &amp;#124; X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-166" class="example"><strong>Example 5.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint pdf, <span class="math inline">\(f(x,y)\)</span>, as follows. Determine the conditional pdf, <span class="math inline">\(f_{Y|X}(y|x)\)</span>.</p>
+</div>
+<p><span class="math inline">\(f(x,y) = \begin{cases} \frac{4}{3}(xy + x) &amp; 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 &amp; \text{otherwise}
+\end{cases}\)</span></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="expected-values-covariance-and-correlation" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Expected Values, Covariance, and Correlation<a href="multivariate-random-variables.html#expected-values-covariance-and-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-167" class="theorem"><strong>Theorem 5.1  </strong></span>Let X and Y be jointly distributed pmf <span class="math inline">\(p(x,y)\)</span> (if X and Y are discrete) or pdf <span class="math inline">\(f(x,y)\)</span> (if X and Y are continuous). The expected value of the function <span class="math inline">\(h(X,Y)\)</span>, <span class="math inline">\(E[h(X,Y)]\)</span>, is given by:</p>
+<p><span class="math display">\[E[h(X,Y)] = \sum_x \sum_y h(x,y) \cdot p(x,y) \text{ (if X and Y are discrete)} \]</span></p>
+<p><span class="math display">\[E[h(X,Y)] = \int_x \int_y h(x,y) \cdot f(x,y) dy dx \text{ (if X and Y are continuous)} \]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-168" class="definition"><strong>Definition 5.10  </strong></span>The <strong><em>covariance</em></strong> between two random variables is given by: <span class="math display">\[ Cov(X,Y) = E[XY] - E[X]E[Y]\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-171" class="definition"><strong>Definition 5.11  </strong></span>The <strong><em>correlation coefficient</em></strong> between two random variables is given by: <span class="math display">\[Corr(X,Y) = \rho_{XY} = \rho = \frac{Cov(X,Y)}{\sigma_X \cdot \sigma_Y}\]</span></p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-169" class="theorem"><strong>Theorem 5.2  </strong></span>For any two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, <span class="math inline">\(-1 \le \rho_{XY} \le 1\)</span>.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-170" class="theorem"><strong>Theorem 5.3  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent then <span class="math inline">\(\rho_{XY} = 0\)</span></p>
+</div>
+<p><strong>Note:</strong> <span class="math inline">\(\rho_{XY} = 0\)</span> does not imply that two random variables are independent!</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-172" class="example"><strong>Example 5.8  </strong></span>For the apartment example, determine <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(E[Y]\)</span>, <span class="math inline">\(E[XY]\)</span>, and <span class="math inline">\(Cov(X,Y)\)</span>. The joint pmf, <span class="math inline">\(p_{X,Y}(x,y)\)</span>, is provided below.</p>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y &amp;#124; X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-173" class="theorem"><strong>Theorem 5.4  </strong></span>Let X and Y be random variables and a and b be constants.</p>
+<ul>
+<li><span class="math inline">\(E[aX+bY] = aE[X] + bE[Y]\)</span></li>
+<li><span class="math inline">\(Var(aX+bY) = a^2 Var(X) + b^2 Var(Y) + 2ab \cdot Cov(X,Y)\)</span></li>
+<li><span class="math inline">\(Var(aX+bY) = a^2 Var(X) + b^2 Var(Y)\)</span>, if X and Y are independent</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="bivariate-normal-distribution" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Bivariate Normal Distribution<a href="multivariate-random-variables.html#bivariate-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong><em>bivariate normal distribution</em></strong> of (<span class="math inline">\(X\)</span>,<span class="math inline">\(Y\)</span>) has the following joint probability distribution function:</p>
+<p><span class="math display">\[f(x,y) = \frac{1}{2 \pi \sigma_1 \sigma_2 \sqrt{1-\rho^2}} \cdot exp\Bigg[-\frac{1}{2(1-\rho^2)}\bigg(\Big(\frac{x-\mu_X}{\sigma_X}\bigg)^2 + 2 \rho \frac{(x-\mu_X)(y-\mu_Y)}{\sigma_1 \sigma_2} + \Big(\frac{y-\mu_Y}{\sigma_Y}\Big)^2 \bigg) \Bigg] \]</span></p>
+<p><span class="math display">\[-\infty &lt; x &lt; \infty , -\infty &lt; y &lt; \infty\]</span></p>
+<p>where <span class="math inline">\(E[X] = \mu_X\)</span>, <span class="math inline">\(Var(X) = \sigma_X^2\)</span>, <span class="math inline">\(E[Y] = \mu_Y\)</span>, <span class="math inline">\(Var(Y) = \sigma_Y^2\)</span>, <span class="math inline">\(\rho = Corr(X,Y)\)</span></p>
+<div class="float">
+<img src="images/bivariate1.png" style="width:50.0%" alt="Bivariate Normal Distribution" />
+<div class="figcaption">Bivariate Normal Distribution</div>
+</div>
+<p>We won’t work directly with the multivariate normal distribution, but there are some useful properties of normal random variables which we will use.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-174" class="theorem"><strong>Theorem 5.5  </strong></span>If <span class="math inline">\(X \sim \mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y \sim \mathcal{N}(\mu_Y,\sigma^2_Y)\)</span>, then:
+<span class="math inline">\(X+Y \sim \mathcal{N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y+2Cov(X,Y))\)</span>, that is, the sum of normal random variables is a normal random variable.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-175" class="theorem"><strong>Theorem 5.6  </strong></span>If <span class="math inline">\(X \sim \mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y \sim \mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> and X and Y are independent, then: <span class="math inline">\(X+Y \sim \mathcal{N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y)\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-176" class="example"><strong>Example 5.9  </strong></span>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent normal random variables with means <span class="math inline">\(\mu_X=2\)</span> and <span class="math inline">\(\mu_Y=3\)</span> and variances <span class="math inline">\(\sigma_X^2=1\)</span> and <span class="math inline">\(\sigma_Y^2=4\)</span>. Determine the distribution of <span class="math inline">\(Z = 4X-Y\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-5" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> R Companion for Chapter 5<a href="multivariate-random-variables.html#r-companion-for-chapter-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-177" class="example"><strong>Example 5.10  </strong></span>Let’s return to the Hubble dataset. Let’s load the dataset into R and then plot the data. Note the plot parameter <strong>pch=16</strong> fills in the data points for a nicer looking plot.</p>
+</div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="multivariate-random-variables.html#cb88-1" tabindex="-1"></a>hubble <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&quot;hubble.csv&quot;</span>)</span>
+<span id="cb88-2"><a href="multivariate-random-variables.html#cb88-2" tabindex="-1"></a><span class="fu">plot</span>(Velocity<span class="sc">~</span>Distance,<span class="at">data=</span>hubble, <span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<p>There appears to be a positive relationship between Distance and Velocity. We can calculate the correlation and covariance between the two variables as well.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="multivariate-random-variables.html#cb89-1" tabindex="-1"></a><span class="fu">cor</span>(hubble<span class="sc">$</span>Distance,hubble<span class="sc">$</span>Velocity)</span></code></pre></div>
+<pre><code>## [1] 0.789032</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="multivariate-random-variables.html#cb91-1" tabindex="-1"></a><span class="fu">cov</span>(hubble<span class="sc">$</span>Distance,hubble<span class="sc">$</span>Velocity)</span></code></pre></div>
+<pre><code>## [1] 189.159</code></pre>
+<p>The correlation is +0.789 indicating a positive, moderately strong linear relationship between Distance and Velocity. The covariance is 189.159 which is less interpretable since covariance is dependent on the units of measurement. For this reason, we typically prefer to use correlation rather than covariance.</p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-178" class="example"><strong>Example 5.11  </strong></span>The <strong>mtcars</strong> dataset is provided in the base version of R. To find out more info about this dataset, you can get details by calling <strong>?mtcars</strong>.</p>
+</div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="multivariate-random-variables.html#cb93-1" tabindex="-1"></a><span class="co"># get info on the mtcars dataset</span></span>
+<span id="cb93-2"><a href="multivariate-random-variables.html#cb93-2" tabindex="-1"></a>?mtcars</span></code></pre></div>
+<p>In the side window of R Studio, it should display the following description after running <strong>?mtcars</strong>.</p>
+<p>The data were extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).</p>
+<p>Let’s load the dataset and take a look at the first few values.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="multivariate-random-variables.html#cb94-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb94-2"><a href="multivariate-random-variables.html#cb94-2" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>In the code below, we extract just these two variables from <strong>mtcars</strong> and create a new dataset <strong>m</strong>. From this new dataset <strong>m</strong>, we can construct a two-way table of counts for the combinations of <strong>cyl</strong> and <strong>gear</strong>.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="multivariate-random-variables.html#cb96-1" tabindex="-1"></a><span class="co"># creating new dataset m</span></span>
+<span id="cb96-2"><a href="multivariate-random-variables.html#cb96-2" tabindex="-1"></a>m <span class="ot">=</span> mtcars[ , <span class="fu">c</span>(<span class="st">&quot;cyl&quot;</span>, <span class="st">&quot;gear&quot;</span>)]</span>
+<span id="cb96-3"><a href="multivariate-random-variables.html#cb96-3" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="multivariate-random-variables.html#cb96-4" tabindex="-1"></a><span class="co"># construct a two-way table of counts for cyl and gear</span></span>
+<span id="cb96-5"><a href="multivariate-random-variables.html#cb96-5" tabindex="-1"></a>m.table <span class="ot">=</span> <span class="fu">table</span>(m<span class="sc">$</span>cyl, m<span class="sc">$</span>gear)</span>
+<span id="cb96-6"><a href="multivariate-random-variables.html#cb96-6" tabindex="-1"></a>m.table</span></code></pre></div>
+<pre><code>##    
+##      3  4  5
+##   4  1  8  2
+##   6  2  4  1
+##   8 12  0  2</code></pre>
+<div style="page-break-after: always;"></div>
+<p>We can also construct the joint probability mass function by dividing our table by the total number of observations.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="multivariate-random-variables.html#cb98-1" tabindex="-1"></a><span class="co"># calculate the number of total observations</span></span>
+<span id="cb98-2"><a href="multivariate-random-variables.html#cb98-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">sum</span>(m.table); n</span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="multivariate-random-variables.html#cb100-1" tabindex="-1"></a><span class="co"># construct the joint pmf</span></span>
+<span id="cb100-2"><a href="multivariate-random-variables.html#cb100-2" tabindex="-1"></a>m.pmf <span class="ot">=</span> m.table<span class="sc">/</span>n; m.pmf</span></code></pre></div>
+<pre><code>##    
+##           3       4       5
+##   4 0.03125 0.25000 0.06250
+##   6 0.06250 0.12500 0.03125
+##   8 0.37500 0.00000 0.06250</code></pre>
+<p>Using the table, we can see that P(gear=3 and cyl=8) = 0.375 for example. What is P(gear=4 and cylinder = 4)? The middle entry of the table tells us this value is 0.125. In other words, 12.5% of the cars in this dataset have 4 gears and 4 cylinders.</p>
+<p>Next, we are going to look at the joint probability mass function (PMF) of the variables <strong>cyl</strong> and <strong>gear</strong>. We can get the marginal PMFs by summing across rows and columns of the joint pmf.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="multivariate-random-variables.html#cb102-1" tabindex="-1"></a><span class="co"># marginal pmf of gear</span></span>
+<span id="cb102-2"><a href="multivariate-random-variables.html#cb102-2" tabindex="-1"></a><span class="fu">colSums</span>(m.pmf)</span></code></pre></div>
+<pre><code>##       3       4       5 
+## 0.46875 0.37500 0.15625</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="multivariate-random-variables.html#cb104-1" tabindex="-1"></a><span class="co"># marginal pmf of cyl</span></span>
+<span id="cb104-2"><a href="multivariate-random-variables.html#cb104-2" tabindex="-1"></a><span class="fu">rowSums</span>(m.pmf)</span></code></pre></div>
+<pre><code>##       4       6       8 
+## 0.34375 0.21875 0.43750</code></pre>
+<p>From the tables above, you should see that P(gear=3)=0.46875 and P(cyl=4)=0.34375.</p>
+<p>Finally, we can get the correlation as follows. Note that gear and cyl have a negative, moderate linear relationship.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="multivariate-random-variables.html#cb106-1" tabindex="-1"></a><span class="fu">cor</span>(m<span class="sc">$</span>cyl,m<span class="sc">$</span>gear)</span></code></pre></div>
+<pre><code>## [1] -0.4926866</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="continuous-random-variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
