@@ -3246,6 +3246,507 @@ Finally, we can get the correlation as follows. Note that gear and cyl have a ne
 ## [1] -0.4926866
 \end{verbatim}
 
+\chapter{Sampling Distributions, Central Limit Theorem, and Estimation}\label{sampling-distributions-central-limit-theorem-and-estimation}
+
+In this chapter, we will explore sampling distributions, focusing on the variability of sample statistics, which is crucial for inference. We will then dive into the Central Limit Theorem (CLT), which demonstrates how the distribution of sample means approaches normality as the sample size grows, forming the backbone of many statistical methods. Finally, we will introduce point estimation, highlighting how to derive reliable population parameter estimates through sample data and discussing properties such as bias and standard error.
+
+\section{Statistics and Their Distributions}\label{statistics-and-their-distributions}
+
+\begin{definition}
+A \textbf{\emph{statistic}} is any quantity whose value can be calculated from sample data.
+\end{definition}
+
+\begin{definition}
+The random variables \(X_1, X_2, \ldots, X_n\) are said to form a \textbf{\emph{random sample}} of size \(n\) if \(X_i\) are \textbf{\emph{independent and identically distributed (IID)}}.
+\end{definition}
+
+In chapter 1, we came across a few statistics. We can measure the center of a sample with the sample mean, \(\bar{x}\) and the sample median, \(\tilde{x}\). If we want to describe the spread of a sample, there are the sample variance (\(s^2\)) and sample standard deviation (\(s\)).
+
+In fact, since each random sample could potentially be different, sample statistics have a probability distribution associated with them.
+
+\newpage
+
+\section{The Distribution of the Sample Mean}\label{the-distribution-of-the-sample-mean}
+
+\begin{example}
+Suppose a researcher claims that Radon-222 has a half-life (median decay time) of 6 days and the the time between particles decaying can be modeled as an exponential(\(\lambda = 0.1155\)) random variable. This random variable has a mean time of 8.66 days between decays. To test the accuracy of this claim, we measured the decay times for 50 Radon-222 particles and found a sample mean of \(\bar{x} = 5.67\) and sample variance of \(s^2 = 28.94\). Do we have enough information to reject the claim?
+\end{example}
+
+To answer this question, we need to know the distribution of \(\bar{X}\) and specifically, we would like to calculate the probability of observing such a sample mean assuming the historical estimate is accurate.
+
+\vspace{0.5cm}
+
+Let's first explore the sampling distribtuion on \(\bar{X}\) using simulations.
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Simulate 10,000 Radon-222 decay times and plot the data as a histogram.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+\NormalTok{sims }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{10000}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(sims,}\AttributeTok{main=}\StringTok{"10,000 simulations of Radon{-}222 decay times"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-101-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(sims)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.916651
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(sims)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 77.21487
+\end{verbatim}
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Simulate four exponential(\(\lambda=0.1155\)) random variables five times and calculate the sample mean of each sample.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{sample1 }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{); mean1 }\OtherTok{=} \FunctionTok{mean}\NormalTok{(sample1)}
+\NormalTok{sample2 }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{); mean2 }\OtherTok{=} \FunctionTok{mean}\NormalTok{(sample2)}
+\NormalTok{sample3 }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{); mean3 }\OtherTok{=} \FunctionTok{mean}\NormalTok{(sample3)}
+\NormalTok{sample4 }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{); mean4 }\OtherTok{=} \FunctionTok{mean}\NormalTok{(sample4)}
+\NormalTok{sample5 }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{); mean5 }\OtherTok{=} \FunctionTok{mean}\NormalTok{(sample5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $\bar{x}$\\
+\hline
+6.538371 & 10.230673 & 1.261530 & 1.210349 & 4.810231\\
+\hline
+3.775486 & 25.064663 & 10.645559 & 4.672579 & 11.039572\\
+\hline
+8.281970 & 1.273125 & 12.040997 & 6.597661 & 7.048438\\
+\hline
+10.715182 & 38.302461 & 9.130244 & 8.963151 & 16.777759\\
+\hline
+16.242729 & 5.668802 & 2.917173 & 5.095063 & 7.480942\\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Compute the mean and variance of the five sample means.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{means }\OtherTok{=} \FunctionTok{c}\NormalTok{(mean1,mean2,mean3,mean4,mean5)}
+\FunctionTok{mean}\NormalTok{(means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.431388
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21.8483
+\end{verbatim}
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Repeat the experiment 10,000 times, that is, simulate 10,000 samples of 4 exponential(\(\lambda=0.1155\)) random variables. Create a histogram of the sample means and calculate the mean and variance of the sample means.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+\NormalTok{nsims }\OtherTok{=} \DecValTok{10000}
+\NormalTok{means }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,nsims)}
+\NormalTok{simdata }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nsims)\{}
+\NormalTok{  simdata }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{)}
+\NormalTok{  means[i] }\OtherTok{=} \FunctionTok{mean}\NormalTok{(simdata)}
+\NormalTok{\}}
+
+\FunctionTok{hist}\NormalTok{(means,}\AttributeTok{main=}\StringTok{"10,000 simulations of sample means of 4 Radon{-}222 decay times"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-105-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.649116
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.9354
+\end{verbatim}
+
+\begin{theorem}
+
+Let \(X_1, X_2, \ldots, X_n\) be a random sample from a distribution with mean value \(\mu\) and standard deviation \(\sigma\) and let \(\bar{X} = \frac{1}{n} \sum X_i\). Then:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E[\bar{X}] = \mu\)
+\item
+  \(Var(\bar{X}) = \sigma_{\bar{X}}^2 = \frac{\sigma^2}{n}\)
+\item
+  \(\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}\)
+\end{itemize}
+
+\end{theorem}
+
+\begin{example}
+Show that \(Var(\bar{X}) = \frac{\sigma^2}{n}\).
+\end{example}
+
+\newpage
+
+\begin{definition}
+If \(\hat{\theta}\) is an estimator for \(\sigma\), then the \textbf{\emph{standard error}} of \(\hat{\theta}\) is: \(SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}\). It is the magnitude of a typical or representative deviation between an estimate and the value of \(\theta\). If the standard error is a function of unknown parameters, then we can estimate it with the \textbf{\emph{estimated standard error}} which is denoted \(s_{\hat{\theta}}\)
+\end{definition}
+
+\begin{example}
+If \(X_1, X_2, \ldots, X_{50}\) are iid Uniform{[}10,20{]} random variables, then determine \(E[\bar{X}]\) and \(SE(\bar{X})\).
+\end{example}
+
+\vfill \vfill
+
+\newpage
+
+\textbf{Note:} The symbol, \(\stackrel{\cdot}{\sim}\), stands for ``approximately distributed as''.
+
+\begin{theorem}
+\textbf{\emph{Central Limit Theorem}}: Let \(X_1, X_2, \ldots, X_n\) be a random sample from a distribution with mean \(\mu\) and variance \(\sigma^2\). If n is sufficiently large, \(\bar{X}\) has approximately a normal distribution with mean \(\mu_{\bar{X}} = \mu\) and variance \(\sigma_{\bar{X}}^2 = \sigma^2/n\). In other words, \(\bar{X} \stackrel{\cdot}{\sim} \mathcal{N}(\mu,\sigma^2)\).
+\end{theorem}
+
+This result is nontrivial and extremely useful! It allows us to determine how likely or unlikely a sample mean is if we are given a hypothesized population mean.
+
+\begin{example}
+Suppose that \(X_1, X_2, \ldots, X_{50}\) is a random sample from an exponential(\(\lambda = 0.1155\)) random variable (the historical claim). Determine the approximate sampling distribution of \(\bar{X}\).
+\end{example}
+
+\vfill
+
+\newpage
+
+\begin{example}
+Suppose the decay time of Radon-222 follows an exponential distribution with \(\lambda = 0.1155\) decays/day (the historical claim). What is the probability that a random sample of 50 Radon particles results in a sample mean of less than 5.67 days/decay? Do you believe the historical claim?
+\end{example}
+
+\vfill
+
+\begin{example}
+Suppose \(X_1, X_2, \ldots, X_{50}\) are iid Uniform{[}10,20{]} random variables. Determine the sampling distribution of \(\bar{X}\) and calculate \(P(\bar{X}<14)\).
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{Several General Concepts of Point Estimation}\label{several-general-concepts-of-point-estimation}
+
+\begin{definition}
+A \textbf{\emph{point estimate}} of a parameter \(\theta\) is a single number that can be regarded as a sensible value for \(\theta\) and is often denoted with a hat (i.e., \(\hat{\theta}\)). A point estimate is obtained by selecting a suitable statistic and computing its value from the given sample data. The selected statistic, \(\hat{\theta}\), is called the \textbf{\emph{point estimator}} of \(\theta\).
+\end{definition}
+
+\begin{example}
+\leavevmode
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\)
+\item
+  \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i -\bar{X})^2\)
+\end{enumerate}
+
+\end{example}
+
+\begin{definition}
+The \textbf{\emph{bias}} of a point estimator \(\hat{\theta}\) for a parameter \(\theta\) is defined as \(Bias[\hat{\theta}] = E[\hat{\theta}] - \theta\).
+\end{definition}
+
+\begin{definition}
+A statistic \(\hat{\theta}\) is called an \textbf{\emph{unbiased estimator}} of the parameter \(\theta\) if \(E[\hat{\theta}] = \theta\).
+\end{definition}
+
+\begin{example}
+\(\bar{X}\) is an unbiased estimator for \(\mu\).
+\end{example}
+
+\begin{example}
+
+Which of the following two estimators for \(\sigma^2\) is unbiased for \(\sigma^2\)?
+
+\begin{itemize}
+\tightlist
+\item
+  \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i -\bar{X})^2\)
+\end{itemize}
+
+\bigskip
+
+\begin{itemize}
+\tightlist
+\item
+  \(\gamma = \frac{1}{n} \sum_{i=1}^n (X_i -\bar{X})^2\)
+\end{itemize}
+
+\bigskip
+
+\end{example}
+
+\begin{definition}
+The \textbf{\emph{mean squared error (MSE)}} of an estimator \(\hat{\theta}\) of a parameter \(\theta\) is defined by \(E[(\hat{\theta} - \theta)^2] = Var + Bias^2\).
+\end{definition}
+
+Typically, unbiased estimators are preferred though some advanced methods consider biased estimators that minimize MSE.
+
+\begin{example}
+Suppose \(X_1, X_2, \ldots, X_n\) are exponential(\(\lambda\)) random variables. Is \(\bar{X}\) an unbiased estimator for \(\lambda\)?
+\end{example}
+
+\vfill \vfill
+
+\begin{example}
+Suppose \(X_1, X_2, \ldots, X_n\) are Poisson(\(\lambda\)) random variables. Is \(\bar{X}\) an unbiased estimator for \(\lambda\)?
+\end{example}
+
+\vfill \vfill
+
+\newpage
+
+\section{Methods of Point Estimation}\label{methods-of-point-estimation}
+
+There are a variety of ways to obtain a point estimate. These methods include:
+
+\begin{itemize}
+\item
+  Method of Moments
+\item
+  Maximum Likelihood Estimation
+\item
+  Bayesian Estimation
+\end{itemize}
+
+While we won't cover how these estimation methods are completed, we will compare different estimators. Each of these methods could produce a different point estimate.
+
+\begin{example}
+Suppose \(X_1, X_2, X_3\) are a random sample of \(\mathcal{N}(\mu=10,\sigma^2=4)\). Four estimators are given below. Determine if each estimator is unbiased and calculate its standard error. Which of the four estimators is preferred for estimating \(\mu\)?
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \(\hat{Y_1} = \frac{X_1 + X_2 + X_3}{3}\) \vfill
+\item
+  \(\hat{Y_2} = \frac{X_1}{2}+\frac{X_2}{4}+\frac{X_3}{4}\) \vfill
+\item
+  \(\hat{Y_3} = X_1\) \vfill
+\item
+  \(\hat{Y_4} = \frac{X_1+X_2+X_3}{2}\) \vfill
+\end{enumerate}
+
+\section{R Companion for Chapter 6}\label{r-companion-for-chapter-6}
+
+\begin{example}
+What does the distribution of the sample means of independent (continuous) uniform random variables look like? The Central Limit Theorem tells us that for a large sample size, the distribution of such means will be approximately normally distributed. Let's see this in action.
+
+Suppose we know a bus arrives once per hour at a designated stop but we don't know when the next bus is and we don't know when the last bus came. We will model this as a continuous uniform{[}0,60{]} random variable. In other words, the next bus could come in anywhere from 0 to 60 minutes with all possibilities being equally likely. In the code below, we simulate 10,000 uniform{[}0,60{]} random variables and look at the histogram of results.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Generate 10,000 uniform[0,60] random varibles}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2020}\NormalTok{)}
+\NormalTok{bus }\OtherTok{=} \FunctionTok{runif}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{60}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(bus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-106-1} \end{center}
+
+The mean and variance of this sampling distribution is calculated below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(bus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.79179
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(bus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 298.1569
+\end{verbatim}
+
+From chapter 4, we know that if \(X \sim Uniform[a,b]\), then \(E[X] = \frac{b+a}{2}\) and \(Var(X) = \frac{(b-a)^2}{12}\). For a uniform{[}0,60{]} random variable, we get the theoretical values of \(E[X] = \frac{60+0}{2}=30\) and \(Var(X)=\frac{(60-0)^2}{12}=300\). Our simulated values are very close to these theoretical values.
+
+\newpage
+
+Now, let's suppose we have to wait for two buses, each being modeled as an independent uniform{[}0,60{]}. Let's look at the sampling distribution for the mean of the two bus wait times.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2020}\NormalTok{)}
+\NormalTok{bus2 }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10000}\NormalTok{) }\CommentTok{\# initialize this vector to zeros}
+
+\CommentTok{\# 10,000 simulations of 2 bus waits}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{)\{}
+\NormalTok{x1 }\OtherTok{=} \FunctionTok{runif}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{60}\NormalTok{) }\CommentTok{\# n=2}
+\NormalTok{bus2[i] }\OtherTok{=} \FunctionTok{mean}\NormalTok{(x1)}
+\NormalTok{\}}
+
+\FunctionTok{mean}\NormalTok{(bus2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.90972
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(bus2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 149.6154
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(bus2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-108-1} \end{center}
+
+Notice that the average of two bus waits is no longer uniform and instead has more of a triangular shape. Our simulations of two bus waits had a mean of 30.05955 and variance of 151.2226. From chapter 6, we know that \(E[\bar{X}]=\mu\) and \(Var(\bar{X})=\frac{\sigma^2}{n}\).
+
+For this simulation, the theoretical values for these quantities are \(E[\bar{X}]=\mu=30\) and \(Var(\bar{X})=\frac{\sigma^2}{n}=\frac{300}{2}=150\). Again, our simulations give values very close to the theoretical values.
+
+\newpage
+
+Finally, let's suppose that we repeat the experiment for 30 days straight and look at the distribution of sample means of 30 days. We will simulate these 30 day periods 10,000 times.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2020}\NormalTok{)}
+\NormalTok{bus30 }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10000}\NormalTok{) }\CommentTok{\# initialize this vector to zeros}
+
+\CommentTok{\# 10,000 simulations of 2 bus waits}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{)\{}
+\NormalTok{x2 }\OtherTok{=} \FunctionTok{runif}\NormalTok{(}\DecValTok{30}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{60}\NormalTok{) }\CommentTok{\# n=30}
+\NormalTok{bus30[i] }\OtherTok{=} \FunctionTok{mean}\NormalTok{(x2)}
+\NormalTok{\}}
+
+\FunctionTok{mean}\NormalTok{(bus30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.97879
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(bus30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.19619
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(bus30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-109-1} \end{center}
+
+Our simulations of 30 bus waits had a mean of 30.00598 and variance of 10.08975. The theoretical values for this simulation are \(E[\bar{X}]=\mu = 30\) and \(Var(\bar{X})=\frac{\sigma^2}{n} = \frac{300}{30}=10\).
+
+Notice that the distribution of sample means is narrower for n=30 than n=2 and the variance is lower when a larger sample size is used. Also note that the distribution is somewhat bell-shaped.
+
+In the coming chapters on Inferential Statistics, we will use the fact that the Central Limit Theorem states that the sampling distribution of sample means is approximately normally distributed.
+
   \bibliography{book.bib,packages.bib}
 
 \end{document}
