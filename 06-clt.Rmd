@@ -145,7 +145,7 @@ Show that $Var(\bar{X}) = \frac{\sigma^2}{n}$.
 \newpage
 
 :::{.definition}
-If $\hat{\theta}$ is an estimator for $\sigma$, then the ***standard error*** of $\hat{\theta}$ is: $SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}$. It is the magnitude of a typical or representative deviation between an estimate and the value of $\theta$. If the standard error is a function of unknown parameters, then we can estimate it with the ***estimated standard error*** which is denoted $s_{\hat{\theta}}$
+If $\hat{\theta}$ is an estimator for $\theta$, then the ***standard error*** of $\hat{\theta}$ is: $SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}$. It is the magnitude of a typical or representative deviation between an estimate and the value of $\theta$. If the standard error is a function of unknown parameters, then we can estimate it with the ***estimated standard error*** which is denoted $s_{\hat{\theta}}$
 :::
 
 :::{.example}
@@ -156,11 +156,73 @@ If $X_1, X_2, \ldots, X_{50}$ are iid Uniform[10,20] random variables, then dete
 
 \newpage
 
-**Note:** The symbol, $\stackrel{\cdot}{\sim}$, stands for "approximately distributed as".
+Let's go back to our simulations to explore the shape of the sampling distribution of sample means. 
+
+\vspace{0.5cm}
+```{r,out.width="70%"}
+set.seed(2026)
+nsims = 10000
+n = c(4, 10, 30, 100)
+means = cbind(rep(0,nsims), rep(0,nsims), rep(0,nsims), rep(0,nsims))
+count = 1
+
+for(j in n){
+for(i in 1:nsims){
+  simdata = rexp(n=j,rate=0.1155)
+  means[i,count] = mean(simdata)
+}
+  count = count +1
+}
+
+par(mfrow = c(1, 4)) 
+hist(means[ , 1], main = "",
+     sub = "n = 4",
+     xlab = "Sample means", prob = TRUE)
+lines(density(means[ , 1]),lwd=2,lty=2)
+hist(means[ , 2], main = "",
+     sub = "n = 10",
+     xlab = "Sample means", prob = TRUE)
+lines(density(means[ , 2]),lwd=2,lty=2)
+hist(means[ , 3], main = "",
+     sub = "n = 30",
+     xlab = "Sample means", prob = TRUE)
+lines(density(means[ , 3]),lwd=2,lty=2)
+hist(means[ , 4], main = "",
+     sub = "n = 100",
+     xlab = "Sample means", prob = TRUE)
+lines(density(means[ , 4]),lwd=2,lty=2)
+```
+
+\vspace{0.5cm}
+```{r,echo=F}
+# Create the data frame
+# Create the data frame
+# 1. Calculate the values and combine them into a matrix
+mat <- rbind(
+  `Mean of Means` = c(mean(means[, 1]), mean(means[, 2]), mean(means[, 3]), mean(means[, 4])),
+  `Var of Means`  = c(var(means[, 1]), var(means[, 2]), var(means[, 3]), var(means[, 4]))
+)
+
+# 2. Convert to a data frame
+data <- as.data.frame(mat)
+
+# 3. Optional: Give the columns clean names based on n
+colnames(data) <- c("n = 4", "n = 10", "n = 30", "n = 100")
+
+#data = t(data)
+#rownames(data) = NULL
+
+# Render the table using kable with 'pipe' format
+kt(data)
+```
+
 
 :::{.theorem}
 ***Central Limit Theorem***: Let $X_1, X_2, \ldots, X_n$ be a random sample from a distribution with mean $\mu$ and variance $\sigma^2$. If n is sufficiently large, $\bar{X}$ has approximately a normal distribution with mean $\mu_{\bar{X}} = \mu$ and variance $\sigma_{\bar{X}}^2 = \sigma^2/n$. In other words, $\bar{X} \stackrel{\cdot}{\sim} \mathcal{N}(\mu,\sigma^2)$.
 :::
+
+**Note:** The symbol, $\stackrel{\cdot}{\sim}$, stands for "approximately distributed as".
+
 
 This result is nontrivial and extremely useful! It allows us to determine how likely or unlikely a sample mean is if we are given a hypothesized population mean.
 

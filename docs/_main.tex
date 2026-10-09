@@ -3467,7 +3467,7 @@ Show that \(Var(\bar{X}) = \frac{\sigma^2}{n}\).
 \newpage
 
 \begin{definition}
-If \(\hat{\theta}\) is an estimator for \(\sigma\), then the \textbf{\emph{standard error}} of \(\hat{\theta}\) is: \(SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}\). It is the magnitude of a typical or representative deviation between an estimate and the value of \(\theta\). If the standard error is a function of unknown parameters, then we can estimate it with the \textbf{\emph{estimated standard error}} which is denoted \(s_{\hat{\theta}}\)
+If \(\hat{\theta}\) is an estimator for \(\theta\), then the \textbf{\emph{standard error}} of \(\hat{\theta}\) is: \(SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}\). It is the magnitude of a typical or representative deviation between an estimate and the value of \(\theta\). If the standard error is a function of unknown parameters, then we can estimate it with the \textbf{\emph{estimated standard error}} which is denoted \(s_{\hat{\theta}}\)
 \end{definition}
 
 \begin{example}
@@ -3478,11 +3478,67 @@ If \(X_1, X_2, \ldots, X_{50}\) are iid Uniform{[}10,20{]} random variables, the
 
 \newpage
 
-\textbf{Note:} The symbol, \(\stackrel{\cdot}{\sim}\), stands for ``approximately distributed as''.
+Let's go back to our simulations to explore the shape of the sampling distribution of sample means.
+
+\vspace{0.5cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+\NormalTok{nsims }\OtherTok{=} \DecValTok{10000}
+\NormalTok{n }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{means }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,nsims), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,nsims), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,nsims), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,nsims))}
+\NormalTok{count }\OtherTok{=} \DecValTok{1}
+
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in}\NormalTok{ n)\{}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nsims)\{}
+\NormalTok{  simdata }\OtherTok{=} \FunctionTok{rexp}\NormalTok{(}\AttributeTok{n=}\NormalTok{j,}\AttributeTok{rate=}\FloatTok{0.1155}\NormalTok{)}
+\NormalTok{  means[i,count] }\OtherTok{=} \FunctionTok{mean}\NormalTok{(simdata)}
+\NormalTok{\}}
+\NormalTok{  count }\OtherTok{=}\NormalTok{ count }\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{\}}
+
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{)) }
+\FunctionTok{hist}\NormalTok{(means[ , }\DecValTok{1}\NormalTok{], }\AttributeTok{main =} \StringTok{""}\NormalTok{,}
+     \AttributeTok{sub =} \StringTok{"n = 4"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Sample means"}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(means[ , }\DecValTok{1}\NormalTok{]),}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(means[ , }\DecValTok{2}\NormalTok{], }\AttributeTok{main =} \StringTok{""}\NormalTok{,}
+     \AttributeTok{sub =} \StringTok{"n = 10"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Sample means"}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(means[ , }\DecValTok{2}\NormalTok{]),}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(means[ , }\DecValTok{3}\NormalTok{], }\AttributeTok{main =} \StringTok{""}\NormalTok{,}
+     \AttributeTok{sub =} \StringTok{"n = 30"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Sample means"}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(means[ , }\DecValTok{3}\NormalTok{]),}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(means[ , }\DecValTok{4}\NormalTok{], }\AttributeTok{main =} \StringTok{""}\NormalTok{,}
+     \AttributeTok{sub =} \StringTok{"n = 100"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Sample means"}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(means[ , }\DecValTok{4}\NormalTok{]),}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-106-1} \end{center}
+
+\vspace{0.5cm}
+\begin{table}[!h]
+\centering
+\begin{tabular}{l|c|c|c|c}
+\hline
+  & n = 4 & n = 10 & n = 30 & n = 100\\
+\hline
+Mean of Means & 8.649116 & 8.627836 & 8.625484 & 8.667377\\
+\hline
+Var of Means & 18.935399 & 7.571442 & 2.497474 & 0.754795\\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{theorem}
 \textbf{\emph{Central Limit Theorem}}: Let \(X_1, X_2, \ldots, X_n\) be a random sample from a distribution with mean \(\mu\) and variance \(\sigma^2\). If n is sufficiently large, \(\bar{X}\) has approximately a normal distribution with mean \(\mu_{\bar{X}} = \mu\) and variance \(\sigma_{\bar{X}}^2 = \sigma^2/n\). In other words, \(\bar{X} \stackrel{\cdot}{\sim} \mathcal{N}(\mu,\sigma^2)\).
 \end{theorem}
+
+\textbf{Note:} The symbol, \(\stackrel{\cdot}{\sim}\), stands for ``approximately distributed as''.
 
 This result is nontrivial and extremely useful! It allows us to determine how likely or unlikely a sample mean is if we are given a hypothesized population mean.
 
@@ -3629,7 +3685,7 @@ Suppose we know a bus arrives once per hour at a designated stop but we don't kn
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-106-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-108-1} \end{center}
 
 The mean and variance of this sampling distribution is calculated below.
 
@@ -3694,7 +3750,7 @@ Now, let's suppose we have to wait for two buses, each being modeled as an indep
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-108-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-110-1} \end{center}
 
 Notice that the average of two bus waits is no longer uniform and instead has more of a triangular shape. Our simulations of two bus waits had a mean of 30.05955 and variance of 151.2226. From chapter 6, we know that \(E[\bar{X}]=\mu\) and \(Var(\bar{X})=\frac{\sigma^2}{n}\).
 
@@ -3739,7 +3795,7 @@ Finally, let's suppose that we repeat the experiment for 30 days straight and lo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-109-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth,height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-111-1} \end{center}
 
 Our simulations of 30 bus waits had a mean of 30.00598 and variance of 10.08975. The theoretical values for this simulation are \(E[\bar{X}]=\mu = 30\) and \(Var(\bar{X})=\frac{\sigma^2}{n} = \frac{300}{30}=10\).
 
