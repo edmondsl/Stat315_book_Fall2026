@@ -3803,6 +3803,314 @@ Notice that the distribution of sample means is narrower for n=30 than n=2 and t
 
 In the coming chapters on Inferential Statistics, we will use the fact that the Central Limit Theorem states that the sampling distribution of sample means is approximately normally distributed.
 
+\chapter{Confidence Intervals for One Population Parameter}\label{confidence-intervals-for-one-population-parameter}
+
+In this chapter, we will explore how to construct confidence intervals for one-parameter population values, such as the population mean or proportion. In Chapter 6, we discussed how to derive a point estimate for a population parameter. Since each sample may produce a different point estimate, it's essential to account for the inherent randomness in this process. Confidence intervals provide a way to quantify the uncertainty associated with these estimates by creating a range of plausible values for the parameter, rather than relying on a single estimate. This approach gives us a more reliable method to assess the precision of our estimates.
+
+\section{Basic Concepts of Confidence Intervals}\label{basic-concepts-of-confidence-intervals}
+
+In Chapter 6, we examined how to find a point estimate for an unknown population parameter. When reporting point estimates, it is important to note the amount of uncertainty associated with the point estimate. This is especially key when we want to do Statistical Inference.
+
+We will examine two methods of Statistical Inference:
+
+\begin{itemize}
+\item
+  Confidence Intervals
+\item
+  Hypothesis Tests
+\end{itemize}
+
+\begin{definition}
+A \textbf{\emph{confidence interval}} is a range of values, derived from sample data, that reflects the uncertainty associated with an estimate of an unknown population parameter. It provides an interval within which the parameter is likely to fall, with a specified level of confidence (e.g., 95\%). The confidence level indicates the probability that the interval will contain the true parameter in repeated sampling.
+\end{definition}
+
+There are many flavors of confidence intervals:
+
+\begin{itemize}
+\tightlist
+\item
+  Some are one-sided while others are two-sided
+\item
+  Some assume population variance is known while others do not
+\item
+  Some assume a higher confidence level while others assume a lower confidence level
+\end{itemize}
+
+\newpage
+
+\textbf{\emph{General Form of a Confidence Interval (Two-Sided)}}
+
+\vspace{6cm}
+
+\section{Confidence Intervals for a Population Mean when the Population Standard Deviation is Known.}\label{confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-known.}
+
+Recall that if we take a random sample from a normal population or if \(n\) is `large' enough (by the Central Limit Theorem) then \(\bar{X} \sim N(\mu, \frac{\sigma^{2}}{n})\). Further, from Chapter 4, we know that \(Z = \frac{(\bar{X}-\mu)}{\frac{\sigma}{\sqrt{n}}}\) has a standard normal distribution.
+
+We can use this result to produce a confidence interval.
+
+\begin{theorem}
+If our random sample comes from a normal distribution or \(n\) is `large' and \(\sigma\) is known, then a \(100(1-\alpha)\%\) confidence interval for \(\mu\) is given by:
+\({\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}}\)
+\end{theorem}
+
+\newpage
+
+\begin{definition}
+\(\alpha\) is the probability that a confidence interval from repeated sampling does not contain the true population parameter. It represents the likelihood of the confidence interval failing to capture the parameter in repeated samples, and is equal to \(1 - \text{confidence level}\).
+\end{definition}
+
+\begin{example}
+Suppose we collect a random sample and use it to create a confidence interval. Further, suppose that we do this process 100 times and create 100 confidence intervals.
+\end{example}
+
+\vspace{7cm}
+
+\begin{example}
+Suppose we want to create a two-sided 95\% confidence interval for \(\mu\).
+\end{example}
+
+\newpage
+
+\textbf{\emph{Writing and Interpreting a Confidence Interval}}
+
+Here's how to write confidence intervals:
+
+\vfill
+
+Here's how to interpret confidence intervals:
+
+\vfill
+
+\newpage
+
+\begin{example}
+A random sample of 16 CPU chips has a total of 342 defects. Suppose we know the population standard deviation is 4.52 and also that the number of defects/chip is approximately normally distributed.
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Calculate a point estimate for \(\mu\), the true mean number of defects/chip.
+\end{enumerate}
+
+\vfill
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculate a 95\% CI for \(\mu\).
+\end{enumerate}
+
+\vfill
+
+\newpage
+
+\begin{example}
+Suppose that GPAs are approximately normally distributed with population variance \(\sigma^2=1.2\). If we take a random sample of 12 students and find a sample mean of 2.87. Construct a 90\% confidence interval for \(\mu\).
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{Confidence Intervals for a Population Mean when the Population Standard Deviation is Unknown.}\label{confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-unknown.}
+
+In this section, we will assume that both \(\mu\) and \(\sigma\) are unknown.
+
+Recall that if we take a random sample from a normal population or if \(n\) is `large' enough (by the Central Limit Theorem) then \(\bar{X} \sim N(\mu, \frac{\sigma^{2}}{n})\). Further, from Chapter 4, we know that \(Z = \frac{(\bar{X}-\mu)}{\frac{\sigma}{\sqrt{n}}}\) has a standard normal distribution.
+
+If \(\sigma\) is unknown, then \(\frac{(\bar{X}-\mu)}{\frac{S}{\sqrt{n}}}\) does \textbf{\emph{not}} have a normal distribution.
+
+\begin{definition}
+The \textbf{\emph{t-distribution}} is a probability distribution used in statistics that is similar to the normal distribution but has heavier tails. It is typically used when estimating population parameters when the sample size is small and/or the population standard deviation is unknown. The t-distribution becomes closer to the normal distribution as the sample size increases. \(t_{k}\) denotes a t-distribution with \(k\) degrees of freedom.
+\end{definition}
+
+\textbf{\emph{Properties of the t-distribution}}
+
+\begin{itemize}
+\tightlist
+\item
+  Each \(t_{k}\) curve is bell-shaped and centered at zero.
+\item
+  Each \(t_{k}\) curve has more spread than the standard normal curve.
+\item
+  As \(k\) increases, the spread of the corresponding \(t_{k}\) curve decreases.
+\item
+  As \(k \to \infty\), the sequence of \(t_{k}\) curves approaches the standard normal curve.
+\end{itemize}
+
+\begin{example}
+Find \(t^*\) such that the area under the curve to the right of \(t^*\) is 0.025 for \(df=10\).
+\end{example}
+
+\vfill
+
+\begin{example}
+Find \(t^*\) such that the area under the curve to the left of \(t^*\) is 0.05 for \(df=14\).
+\end{example}
+
+\vfill
+
+\begin{example}
+Find the two values, \(t_1\) and \(t_2\), such that the area under the curve is the middle 95\% for \(df=24\).
+\end{example}
+
+\vfill
+
+\begin{example}
+Suppose \(t^*=2.1\) and \(df=9\). Calculate \(P(t(9) \geq t^*)\).
+\end{example}
+
+\vfill
+
+\newpage
+
+\begin{theorem}
+If \(\bar{X}\) is the mean of a random sample of size n from an (approximately) normal distribution (or \(n\) large enough) with mean \(\mu\) and sample standard devitation \(s\), then \(t = \frac{(\bar{X}-\mu)}{(\frac{S}{\sqrt{n}})}\) follows a t-distribution with (n-1) degrees of freedom.
+\end{theorem}
+
+\begin{theorem}
+Let \(\bar{x}\) and s be the sample mean and sample standard deviation from a random sample from a (approximately) normal population (or \(n\) is large enough) with mean \(\mu\). Then a \(100(1-\alpha)\%\) confidence interval for \(\mu\) is given by:
+\({\bar{x} \pm t_{\alpha/2} \cdot \frac{s}{\sqrt{n}}\text{, df=n-1}}\)
+\end{theorem}
+
+\vspace{3cm}
+
+\begin{example}
+Suppose a random sample of 30 Hummers have a mean of 9.8 miles/gallon (MPG) and a sample standard deviation of 2.2. Compute a 95\% confidence interval for \(\mu\).
+\end{example}
+
+\newpage
+
+\begin{example}
+Suppose a random sample of 17 Priuses have a mean of 52.3 MPG and variance of 14.9. Construct a 99\% confidence interval for \(\mu\).
+\end{example}
+
+\newpage
+
+\section{Confidence Intervals for a Single Population Proportion.}\label{confidence-intervals-for-a-single-population-proportion.}
+
+\begin{theorem}
+Provided that \(n\) is sufficiently large, a \(100(1 - \alpha)\%\) confidence interval for a population proportion \(p\) is given by \(\hat{p} \pm z_{\alpha/2}*\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\).
+\end{theorem}
+
+\newpage
+
+\begin{example}
+Suppose a random sample of 80 students finds 45 of them spend more than 20 hours/week on homework. Construct a \(95\%\) confidence interval for the true proportion of students that spend more 20 hours/week on homework.
+\end{example}
+
+\newpage
+
+\section{One-Sided Confidence Intervals}\label{one-sided-confidence-intervals}
+
+\begin{example}
+Suppose a random sample of 30 Hummers have a mean of 9.8 miles/gallon (MPG) and a sample standard deviation of 2.2. Find the upper bound for a \(95\%\) lower confidence interval for \(\mu\).
+\end{example}
+
+\vspace{6cm}
+
+\begin{example}
+
+Suppose a random sample of 17 Priuses have a mean of 52.3 MPG abd a sample variance of 14.9. Find the lower bound for a \(99\%\) upper confidence interval for \(\mu\).
+
+\newpage
+
+\section{R Companion for Chapter 7}\label{r-companion-for-chapter-7}
+
+\begin{example}
+The following example uses the dataset \textbf{faithful} which contains the duration of eruption (in minutes) and waiting times between eruptions for Old Faithful geyser in Yellowstone National Park, Wyoming, USA.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# look up info on the faithful dataset}
+\NormalTok{?faithful}
+
+\CommentTok{\#load the faithful dataset}
+\FunctionTok{data}\NormalTok{(faithful)}
+\end{Highlighting}
+\end{Shaded}
+
+We can use the \textbf{t.test} function to run a hypothesis test (see Chapter 8) and to create a confidence interval for an unknown parameter.
+
+Suppose we want to create a \(95\%\) confidence interval for the true duration of eruptions for Old Faithful. By default, R will produce a \(95\%\) confidence interval unless otherwise specified. Since the population variance of eruption times for Old Faithful is unknown, the confidence interval will be created using the t-distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(faithful}\SpecialCharTok{$}\NormalTok{eruptions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = 50.397, df = 271, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  3.351534 3.624032
+## sample estimates:
+## mean of x 
+##  3.487783
+\end{verbatim}
+
+In the output, we see that the \(95\%\) confidence interval for the true mean eruption duration is 3.351534 \textless{} \(\mu\) \textless{} 3.624032. If someone were to claim that the average eruption duration of Old Faithful is 4 minutes, we would reject this claim.
+
+We could create a \(99\%\) confidence interval for the true mean eruption duration as well. This will be a wider confidence interval since we are requiring a higher confidence.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(faithful}\SpecialCharTok{$}\NormalTok{eruptions, }\AttributeTok{conf.level =} \FloatTok{0.99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = 50.397, df = 271, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 99 percent confidence interval:
+##  3.308257 3.667309
+## sample estimates:
+## mean of x 
+##  3.487783
+\end{verbatim}
+
+The \(99\%\) confidence interval for the true mean eruption duration is 3.308257 \textless{} \(\mu\) \textless{} 3.667309.
+
+We can also create one-sided confidence intervals by using the \textbf{alternative} argument with either \textbf{greater} or \textbf{less}. Below, a \(90\%\) upper one-sided confidence interval is created.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(faithful}\SpecialCharTok{$}\NormalTok{eruptions, }\AttributeTok{conf.level =} \FloatTok{0.9}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = 50.397, df = 271, p-value < 2.2e-16
+## alternative hypothesis: true mean is greater than 0
+## 90 percent confidence interval:
+##  3.398876      Inf
+## sample estimates:
+## mean of x 
+##  3.487783
+\end{verbatim}
+
+The \(90\%\) upper one-sided confidence interval is 3.398876 \textless{} \(\mu\). We are \(90\%\) confident that the true mean eruption duration of Old Faithful is at least 3.339 minutes.
+
+\end{example}
+
   \bibliography{book.bib,packages.bib}
 
 \end{document}
