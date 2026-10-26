@@ -1,0 +1,247 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(formatR)
+library(tidyverse)
+library(kableExtra)
+
+# Set so that long lines in R will be wrapped:
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=FALSE)
+knitr::opts_chunk$set(cache=TRUE,warning=F)
+knitr::opts_chunk$set(out.height='40%',fig.align = "center")
+add.space = 0
+
+# kable table global setup
+kt = function(data) {
+  kable(data, align = "c", escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("striped"),
+                  latex_options = c("hold_position"))
+}
+```
+
+# Hypothesis Tests for One Population Parameter
+
+In the previous chapter, we explored Statistical Inference through the application of confidence intervals, which allowed us to estimate population parameters within a range of plausible values. In this chapter, we will turn our attention to hypothesis testing, another fundamental approach in Statistical Inference. Hypothesis testing provides a structured framework to evaluate specific claims or assumptions about a population parameter by analyzing sample data. Through this method, we can determine whether the evidence supports or refutes a given hypothesis, helping us make informed decisions in the presence of uncertainty.
+
+## Basic Concepts of Hypothesis Testing
+
+:::{.example}
+Imagine a company claims that its employees spend, on average, 5 hours per week using social media during work hours. The management is concerned that this may be affecting productivity and wants to verify if the average time is indeed 5 hours. To test this claim, a random sample of employees is surveyed, and the average time spent on social media is calculated. By formulating and testing a hypothesis, the company can assess whether the claim holds up under scrutiny or if the evidence suggests a different average usage.
+:::
+
+- One way to test this claim would be to collect a sample and see if 5 is contained in the confidence interval for $\mu$.
+- Another approach to testing this claim is to again collect a sample and see how consistent that sample is with initial hypothesis of $\mu=5$. This is called hypothesis testing.
+
+**Goal of Hypothesis Testing:** Test competing claims about a population parameter.
+
+\newpage
+
+:::{.definition}
+The ***null hypothesis***, denoted \( H_0 \), represents the initial claim or assumption that is presumed to be true in the absence of evidence to the contrary.
+:::
+
+:::{.definition}
+The ***alternative hypothesis***, denoted \( H_a \), is the statement that contradicts \( H_0 \), often described as the opposite of the null hypothesis, and represents what we are testing for in the analysis.
+:::
+
+- The null hypothesis will be rejected in favor of the alternative hypothesis if the sample evidence suggests that $H_0$ is false.
+
+- The two possible conclusions of a hypothesis test are **Reject $H_0$** or **Fail to Reject $H_0$**.
+
+
+**Formulating Hypotheses**
+
+1. $H_0$ contains $=$, $\leq$, $\geq$.
+2. $H_a$ contains $\neq$, $>$, $<$
+3. Usually, the claim we are attempting to show is more plausible is $H_a$
+
+:::{.example}
+Jorge claims that homework for this class takes, on average, six hours per week. Aaron doesn't think the average is six hours, so he collects a random sample of eight students and records the time it takes them to complete the homework.
+:::
+
+\vfill
+
+:::{.example}
+Brenda claims that newly graduated data science majors from CSU have an average salary of \$63,000, but Rawand believes it is smaller.
+:::
+
+\vfill
+
+:::{.example}
+Rosa believes less than 50\% of college students have consumed alcohol. You collect a random sample of 20 students to test the claim.
+:::
+
+\vfill
+
+
+\newpage
+
+**Different Types of Hypothesis Tests**
+
+There are three different types of hypothesis tests.
+
+**1. Left-tailed test** \vfill
+
+**2. Right-tailed test** \vfill
+
+**3. Two-tailed test** \vfill
+
+
+\newpage
+
+**Errors in Hypothesis Testing**
+
+After collecting a sample, we will decide which hypothesis is supported by the data.
+
+Since we don't know the true parameter value, there is a chance we will make an error.
+
+
+**Two Types of Error**
+
+1. Type I error ($\alpha$): Reject $H_0$ when $H_0$ is true.
+2. Type II error ($\beta$): Fail to reject $H_0$ when $H_0$ is false.
+
+**Note:** $\alpha$ is also called the level of significance for a test.
+
+:::{.example}
+Jury trials, $H_0:$ Defendant is innocent vs. $H_A:$ Defendant is guilty
+:::
+
+\vfill
+
+\newpage
+
+**Six Steps for Hypothesis Testing**
+
+*Different textbooks will give a different number of steps or outline on how to complete a hypothesis test. For our class, stick to the following method.*
+
+**Step 1:** State the hypotheses.
+\vfill
+
+
+**Step 2:** Determine the level of significance.
+\vfill
+
+**Step 3:** Compute a test statistic.
+\vfill \vfill \vfill \vfill
+
+\newpage
+
+
+**Step 4:** Calculate a p-value and plot the results.
+
+The ***p-value*** is the probability of observing a test statistic as extreme as, or more extreme than, the one obtained from the sample data, assuming the null hypothesis is true.
+
+\vfill
+
+
+**The p-value does not measure the probability that the null hypothesis is true.**
+
+[ASA Statement on p-values: https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf)
+
+
+**Step 5:** Make a statistical decision.
+\vfill
+
+**Step 6:** Interpret the statistical decision (in the context of the problem).
+\vfill \vfill \vfill
+
+\newpage
+
+## Tests About a Population Mean, $\mu$
+
+**Case 1: $\sigma$ known**
+
+If $\sigma$ is known, then the test statistic is the following:
+
+\[z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\] 
+
+:::{.example}
+A materials scientist is developing a new alloy intended for use in aerospace engineering, where the average tensile strength is claimed to be 1500 MPa (megapascals). Based on previous research, the tensile strength of this alloy is known to be normally distributed with a population variance of 40 MPa².
+
+To validate the claim, the scientist tests a sample of 10 specimens and finds a sample mean tensile strength of 1495 MPa. The goal is to perform a hypothesis test at a significance level of \( \alpha = 0.05 \) to determine whether the average tensile strength is actually different from the claimed 1500 MPa.
+:::
+
+\vfill
+
+
+\newpage
+
+:::{.example}
+An engineering firm claims that a new fuel-efficient engine design provides an average fuel efficiency of at least 40 miles per gallon (mpg). The design specifications guarantee this minimum efficiency, and engineers want to verify that the engine consistently meets this standard. It is known from previous tests that fuel efficiency for this type of engine follows a normal distribution with a population variance of 9 mpg².
+
+A random sample of 8 engines is tested, and the sample shows an average fuel efficiency of 38.5 mpg. The engineers decide to conduct a one-sided hypothesis test at a significance level of \( \alpha = 0.05 \) to determine if the true average fuel efficiency is actually lower than the claimed 40 mpg.
+
+In addition, state what Type I and Type II errors are in the context of the problem.
+:::
+
+\vfill
+
+\newpage
+
+**Case 2: $\sigma$ unknown**
+
+If $\sigma$ is unknown, then the test statistic is the following:
+
+\[t_{stat} = \frac{\bar{x}-\mu_0}{s/\sqrt{n}}, df=n-1\] 
+
+:::{.example}
+A chemist claims that a newly synthesized chemical compound has an average melting point of 250°C. However, the chemist does not know the population variance for the melting point of this compound. To test the consistency of the compound, a sample of 31 batches is produced and their melting points are measured. The sample has a mean melting point of 247°C, with a sample standard deviation of 8.4°C.
+
+The chemist wants to perform a hypothesis test at a significance level of \( \alpha = 0.10 \) to determine whether the true average melting point is different from the claimed 250°C.
+:::
+
+
+\newpage
+
+:::{.example}
+A software engineer claims that a new web application backend has an average response time of less than 200 milliseconds under typical user load. However, the team wants to verify this claim to ensure that the system meets performance expectations.
+
+To test this, a sample of 50 response times is collected from the application under standard load conditions. The sample mean response time is 210 milliseconds, with a sample standard deviation of 25 milliseconds. The engineer performs a one-sided hypothesis test at a significance level of \( \alpha = 0.05 \) to determine if the true average response time is actually greater than the claimed 200 milliseconds.
+:::
+
+\vfill
+
+\newpage
+
+## Tests Concerning a Population Proportion, $p$
+
+We can run a hypothesis test for a population proportion using the following formula:
+
+\[z = \frac{\bar{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\] 
+
+:::{.example}
+A mathematics department claims that at least 80% of its students pass a standardized math proficiency exam required for graduation. A new curriculum is introduced, and the department wants to evaluate whether the pass rate has fallen below this benchmark.
+
+To test this, a random sample of 150 students who took the exam under the new curriculum is selected, and 112 students passed. The department conducts a one-sided hypothesis test at a significance level of \( \alpha = 0.05 \) to determine if the true pass rate is now less than the claimed 80%.
+:::
+
+\vfill
+
+\newpage
+
+## R Companion for Chapter 8
+
+:::{.example}
+The **faithful** dataset of Old Faith Geyser data is used again for this example. Since the population variance of Old Faithful eruption duration is unknown, the t-distribution is used to complete the following hypothesis tests.
+:::
+
+Let $\mu$ denote the true mean eruption duration of Old Faithful and we want to test $H_0: \mu = 3$ vs. $H_a: \mu \neq 3$ at $\alpha = 0.05$.
+
+```{r}
+t.test(faithful$eruptions,mu = 3)
+```
+
+From the output, we see that the p-value is $1.5 \cdot 10^{-11}$. This is less than $\alpha=0.05$, so we would reject $H_0: \mu = 3$ and conclude the true mean eruption duration of Old Faithful differs from 3 minutes.
+
+Suppose we want to test $H_0: \mu = 3.5$ vs. $H_a: \mu < 3.5$ at $\alpha=0.05$. In other words, we would like to test to see if the mean is less than 3.5 minutes.
+
+```{r}
+t.test(faithful$eruptions,mu=3.5,alternative = "less")
+```
+
+Here, the p-value is 0.43, so we would fail to reject $H_0: \mu = 3.5$. In other words, we don't have sufficient evidence to conclude the true mean eruption duration is less than 3.5 minutes.

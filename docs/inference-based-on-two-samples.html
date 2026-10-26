@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Inference Based On Two Samples | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="STAT315 Notes" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Inference Based On Two Samples | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="STAT315 Notes" />
+  <meta name="github-repo" content="edmondsl.github.io/Stat315_book_Fall2026/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Inference Based On Two Samples | STAT 315 Notes Fall 2026" />
+  
+  <meta name="twitter:description" content="STAT315 Notes" />
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hypothesis-tests-for-one-population-parameter.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT315 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>3</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variables"><i class="fa fa-check"></i><b>3.1</b> Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Probability Distributions for Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-values-means"><i class="fa fa-check"></i><b>3.3</b> Expected Values (Means)</a></li>
+<li class="chapter" data-level="3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables"><i class="fa fa-check"></i><b>3.4</b> Bernoulli and Binomial Random Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables"><i class="fa fa-check"></i><b>3.5</b> Geometric, Discrete Uniform, and Poisson Random Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#r-companion-for-chapter-3"><i class="fa fa-check"></i><b>3.6</b> R Companion for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>4</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#probability-density-function-pdf"><i class="fa fa-check"></i><b>4.1</b> Probability Density Function (pdf)</a></li>
+<li class="chapter" data-level="4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#cumulative-distribution-functions"><i class="fa fa-check"></i><b>4.2</b> Cumulative Distribution Functions</a></li>
+<li class="chapter" data-level="4.3" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-values"><i class="fa fa-check"></i><b>4.3</b> Expected Values</a></li>
+<li class="chapter" data-level="4.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#normal-distribution"><i class="fa fa-check"></i><b>4.4</b> Normal Distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#the-exponential-and-uniform-random-variables"><i class="fa fa-check"></i><b>4.5</b> The Exponential and Uniform Random Variables</a></li>
+<li class="chapter" data-level="4.6" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#continuous-uniformab-random-variable"><i class="fa fa-check"></i><b>4.6</b> (Continuous) Uniform[a,b] Random Variable</a></li>
+<li class="chapter" data-level="4.7" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#r-companion-for-chapter-4"><i class="fa fa-check"></i><b>4.7</b> R Companion for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html"><i class="fa fa-check"></i><b>5</b> Multivariate Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#joint-probability-distributions"><i class="fa fa-check"></i><b>5.1</b> Joint Probability Distributions</a></li>
+<li class="chapter" data-level="5.2" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#marginal-probability-functions"><i class="fa fa-check"></i><b>5.2</b> Marginal Probability Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#independent-random-variables"><i class="fa fa-check"></i><b>5.3</b> Independent Random Variables</a></li>
+<li class="chapter" data-level="5.4" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>5.4</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="5.5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#expected-values-covariance-and-correlation"><i class="fa fa-check"></i><b>5.5</b> Expected Values, Covariance, and Correlation</a></li>
+<li class="chapter" data-level="5.6" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>5.6</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#r-companion-for-chapter-5"><i class="fa fa-check"></i><b>5.7</b> R Companion for Chapter 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions, Central Limit Theorem, and Estimation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#statistics-and-their-distributions"><i class="fa fa-check"></i><b>6.1</b> Statistics and Their Distributions</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#the-distribution-of-the-sample-mean"><i class="fa fa-check"></i><b>6.2</b> The Distribution of the Sample Mean</a></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#several-general-concepts-of-point-estimation"><i class="fa fa-check"></i><b>6.3</b> Several General Concepts of Point Estimation</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#methods-of-point-estimation"><i class="fa fa-check"></i><b>6.4</b> Methods of Point Estimation</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#r-companion-for-chapter-6"><i class="fa fa-check"></i><b>6.5</b> R Companion for Chapter 6</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals for One Population Parameter</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#basic-concepts-of-confidence-intervals"><i class="fa fa-check"></i><b>7.1</b> Basic Concepts of Confidence Intervals</a></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-known."><i class="fa fa-check"></i><b>7.2</b> Confidence Intervals for a Population Mean when the Population Standard Deviation is Known.</a></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-unknown."><i class="fa fa-check"></i><b>7.3</b> Confidence Intervals for a Population Mean when the Population Standard Deviation is Unknown.</a></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-single-population-proportion."><i class="fa fa-check"></i><b>7.4</b> Confidence Intervals for a Single Population Proportion.</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#one-sided-confidence-intervals"><i class="fa fa-check"></i><b>7.5</b> One-Sided Confidence Intervals</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference-based-on-two-samples" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Inference Based On Two Samples<a href="inference-based-on-two-samples.html#inference-based-on-two-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In Chapters 7 and 8, we explored hypothesis tests and confidence intervals for making statistical inferences about a single population parameter. In this chapter, we will expand these methods to compare two population parameters. We’ll cover hypothesis tests for both independent and paired samples using z-tests and t-tests, as well as tests for comparing two population proportions. Additionally, we will introduce confidence intervals for the difference between two parameters and discuss the concept of statistical power in the context of two-sample inference.</p>
+<div id="z-tests-and-confidence-intervals-for-a-difference-between-two-population-parameters" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> z-tests and Confidence Intervals for a Difference Between Two Population Parameters<a href="inference-based-on-two-samples.html#z-tests-and-confidence-intervals-for-a-difference-between-two-population-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-234" class="example"><strong>Example 9.1  </strong></span>A manufacturer produces two types of industrial batteries, Model A and Model B, which are used in renewable energy systems. The company claims that the lifespan of both battery models is approximately the same, but an engineering team wants to verify this by conducting a study. They know the population standard deviations of the lifespans for both models from previous extensive testing.</p>
+<p>A sample of 15 Model A batteries has an average lifespan of 8.5 years with a known population standard deviation of 1.2 years. A sample of 15 Model B batteries has an average lifespan of 9.1 years with a known population standard deviation of 1.5 years. The engineers perform a hypothesis test to determine if there is sufficient evidence to suggest a difference in the average lifespan between the two battery models.</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>One way to test this claim is create a confidence interval for the difference in means (<span class="math inline">\(\mu_1 - \mu_2\)</span>).</li>
+<li>Another approach to testing this claim is to see how consistent that sample is with initial hypothesis of <span class="math inline">\(\mu_1-\mu_2=0\)</span>.</li>
+</ol>
+<p>Note: We must make an assumption of whether the samples from the two populations are independent or dependent. In this section (9.1) and the next section (9.2), we will assume the samples are independent.</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Assumptions for Comparison of Independent Samples</strong></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X_1, X_2, \ldots, X_{n_1}\)</span> are a random sample from a distribution with mean <span class="math inline">\(\mu_1\)</span> and variance <span class="math inline">\(\sigma_1^2\)</span>.</li>
+<li><span class="math inline">\(Y_1, Y_2, \ldots, Y_{n_2}\)</span> are a random sample from a distribution with mean <span class="math inline">\(\mu_2\)</span> and variance <span class="math inline">\(\sigma_2^2\)</span>.</li>
+<li>The X and Y samples are independent.</li>
+</ol>
+<p><strong>Notation</strong></p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-235" class="theorem"><strong>Theorem 9.1  </strong></span>If X and Y are independent, then</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(E[\bar{X}-\bar{Y}] = \mu_1 - \mu_2\)</span></p></li>
+<li><p><span class="math inline">\(Var(\bar{X} - \bar{Y}) = \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}\)</span> (<span class="math inline">\(\sigma_1^2\)</span> and <span class="math inline">\(\sigma_2^2\)</span> may be unknown)</p></li>
+</ol>
+</div>
+<p><strong>Proof:</strong></p>
+<p><strong>Writing Hypotheses for Difference in Means</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Testing <span class="math inline">\(\mu_1 \neq \mu_2\)</span>
+</p></li>
+<li><p>Testing <span class="math inline">\(\mu_1 &gt; \mu_2\)</span>
+</p></li>
+<li><p>Testing <span class="math inline">\(\mu_1 &lt; \mu_2\)</span>
+</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p>We can complete a hypothesis test for the difference in means (assuming the variances or standard deviations of the two populations are known) by using the following test statistic.</p>
+<p><span class="math display">\[z= \frac{(\bar{x_1}-\bar{x_2})-D_0)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-236" class="example"><strong>Example 9.2  </strong></span>A sample of 15 Model A batteries has an average lifespan of 8.5 years with a known population standard deviation of 1.2 years. A sample of 15 Model B batteries has an average lifespan of 9.1 years with a known population standard deviation of 1.5 years. The engineers perform a hypothesis test to determine if there is sufficient evidence to suggest a difference in the average lifespan between the two battery models.</p>
+</div>
+<p>A two-sided confidence interval for the difference in means can also be completed with the following formula, assuming again that the population standard deviations are known.</p>
+<p><span class="math display">\[(\bar{x}_1-\bar{x}_2) \pm z_{\alpha/2} \cdot \sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\]</span></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-two-sample-t-test-and-confidence-interval" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> The Two-Sample t-test and Confidence Interval<a href="inference-based-on-two-samples.html#the-two-sample-t-test-and-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the population standard deviations of the two populations are unknown, we can estimate them and use similar methods as in section 9.1.</p>
+<p>A confidence interval for the difference in means can be completed with the following formula if the population standard deviations are unknown.</p>
+<p><span class="math display">\[(\bar{x}_1-\bar{x}_2) \pm t_{\alpha/2,\nu} \cdot \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\]</span></p>
+<p>For the above confidence interval, you must calculate the degrees of freedom (<span class="math inline">\(\nu\)</span>). Round the value of <span class="math inline">\(\nu\)</span> to the next lowest integer if it is not a whole number.</p>
+<p><span class="math display">\[\nu = \frac{\big(s_1^2/n_1 + s_2^2/n_2\big)^2}{(s_1^2/n_1)^2/(n_1-1) + (s_2^2/n_2)^2/(n_2-1)}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-237" class="example"><strong>Example 9.3  </strong></span>It has been claimed that people in Okinawa live longer on average than people on the Japanese mainland. To investigate this, a study is conducted. A random sample of 25 people from Okinawa shows an average lifespan of 84.7 years, with a sample variance of 25 years². Meanwhile, a sample of 22 people from the Japanese mainland finds an average lifespan of 83.2 years, with a sample variance of 20 years².</p>
+<p>We will use this data to calculate a 95% confidence interval for the difference in average lifespan between Okinawa and the Japanese mainland. Given the sample sizes and variances, the degrees of freedom for the test can be approximated as 43. The goal is to determine whether there is a statistically significant difference in the average lifespan between the two populations.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<p>We can complete a hypothesis test for the difference in means (assuming the variances or standard deviations of the two populations are unknown) by using the following test statistic. This is called a <strong>two-sample t-test</strong>.</p>
+<p><span class="math display">\[t= \frac{(\bar{x}_1-\bar{x}_2-D_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}, df = \nu \]</span></p>
+<p><span class="math display">\[\nu = \frac{\big(s_1^2/n_1 + s_2^2/n_2\big)^2}{(s_1^2/n_1)^2/(n_1-1) + (s_2^2/n_2)^2/(n_2-1)}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-238" class="example"><strong>Example 9.4  </strong></span>Using the data from the Okinawa life expectancy study, conduct a hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.05\)</span> to determine if the average lifespan in Okinawa (<span class="math inline">\(\mu_1\)</span>) is significantly greater than the average lifespan on the Japanese mainland (<span class="math inline">\(\mu_2\)</span>).</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="analysis-of-paired-data" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Analysis of Paired Data<a href="inference-based-on-two-samples.html#analysis-of-paired-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous two sections, we assumed that the two samples were independent. However, this assumption does not always hold true in practice.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-239" class="example"><strong>Example 9.5  </strong></span>Examples of paired samples include:</p>
+<ul>
+<li><p><strong>Before/after studies</strong>: The same individuals are measured before and after an intervention.</p></li>
+<li><p><strong>Matched-pair designs</strong>: For example, comparing blood pressure in the right and left arms of the same individuals.</p></li>
+<li><p><strong>Sibling studies</strong>: Measuring certain traits (e.g., height or test scores) in siblings to see if there are significant differences.</p></li>
+<li><p><strong>Repeated measurements</strong>: Taking the same measurement under different conditions (e.g., testing reaction time under different levels of noise for the same participants).</p></li>
+</ul>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-240" class="definition"><strong>Definition 9.1  </strong></span>A sample is <strong>paired</strong> if the same subjects or closely matched subjects are measured twice under different conditions.</p>
+</div>
+<p>A <strong>paired t-test</strong> helps control for differences between individuals by focusing on the differences between the paired measurements.</p>
+<p><strong>Advantage:</strong> A paired t-test allows us to use a <strong>smaller sample size</strong> because it reduces the variance that comes from differences between individuals, leaving only the variation between the paired measurements themselves.</p>
+<p><strong>Disadvantage:</strong> It’s not always <strong>feasible</strong> to collect paired data. If this is the case, you can use a two-sample t-test under the assumption that the samples are independent.</p>
+<p><strong>CI and Hypothesis Tests for Paired Samples (<span class="math inline">\(\mu_d\)</span>)</strong></p>
+<p>When doing inference for the true average change (<span class="math inline">\(\mu_d\)</span>), we compare ``treatments” (e.g. before/after) on an individual level.</p>
+<strong>Create a ``new”, single sample based on the sample differences:</strong>
+<p>Using the ``new’’ sample, use the same procedures for inference as for a single population.</p>
+<p><span class="math display">\[t = \frac{\bar{d}-\mu_{d_0}}{s_d/\sqrt{n}}, df = n-1\]</span></p>
+<p><span class="math display">\[\bar{d} \pm t_{\alpha/2,n-1} \cdot \frac{s_d}{\sqrt{n}}\]</span></p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-241" class="example"><strong>Example 9.6  </strong></span>A pharmaceutical company is testing a new drug designed to lower blood pressure. They select a group of 10 patients with high blood pressure and measure their systolic blood pressure before and after administering the drug. The company wants to know if the drug significantly lowers blood pressure. Assume that the differences in blood pressure before and after the treatment are approximately normally distributed. Complete a six-step hypothesis test to test the claim the average systolic blood pressure is less after receiving the drug at <span class="math inline">\(\alpha=0.05\)</span>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="inferences-concerning-a-difference-between-population-proportions" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Inferences Concerning a Difference Between Population Proportions<a href="inference-based-on-two-samples.html#inferences-concerning-a-difference-between-population-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can complete a hypothesis test for the difference in proportions.</p>
+<p><span class="math display">\[z = \frac{(\bar{p_1}-\bar{p_2})-D_0}{\sqrt{(\hat{p}\cdot (1-\hat{p})\cdot(\frac{1}{n_1} + \frac{1}{n_2})}}\]</span></p>
+<p><span class="math display">\[\hat{p} = \frac{n_1}{n_1+n_2} \bar{p_1} + \frac{n_2}{n_1+n_2} \bar{p_2}\]</span></p>
+<p>We can also create a confidence interval for the difference in proportions.</p>
+<p><span class="math display">\[(\bar{p_1}-\bar{p_2}) \pm z_{\alpha/2} \cdot \sqrt{\frac{\bar{p_1}(1-\bar{p_1})}{n_1} + \frac{\bar{p_2}(1-\bar{p_2})}{n_2}}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-242" class="example"><strong>Example 9.7  </strong></span>A study is conducted to compare the proportion of college students who binge drank in the last year at two campuses: CSU-Fort Collins and CSU-Pueblo. A random sample of 80 students from CSU-Fort Collins found that 44 of them reported binge drinking in the past year. Meanwhile, a sample of 75 students from CSU-Pueblo found that 45 of them reported binge drinking.</p>
+<p>Create a 90% confidence interval for the difference in proportions of binge drinking between the two campuses. Additionally, test whether there is significant evidence to suggest that one campus has a higher proportion of binge drinkers than the other.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="statistical-power" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Statistical Power<a href="inference-based-on-two-samples.html#statistical-power" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Statistical power is an essential concept in hypothesis testing, representing the probability that a test correctly rejects a false null hypothesis. In other words, it quantifies how likely we are to detect an effect when there is one.</p>
+<p><strong>Definitions</strong></p>
+<ul>
+<li><p><strong>Type I error (<span class="math inline">\(\alpha\)</span>)</strong>: The probability of rejecting the null hypothesis when it is actually true. For instance, if <span class="math inline">\(\alpha = 0.05\)</span>, there is a 5% chance of incorrectly rejecting the null hypothesis when it is true.</p></li>
+<li><p><strong>Type II error (<span class="math inline">\(\beta\)</span>)</strong>: The probability of failing to reject the null hypothesis when it is false.</p></li>
+<li><p><strong>Statistical Power</strong>: Defined as the probability of rejecting the null hypothesis when it is false, i.e., correctly detecting a true effect.</p>
+<p><span class="math display">\[
+\text{Power} = 1 - \beta = P(\text{Reject } H_0 \&gt;|\&gt; H_0 \text{ is false})
+\]</span></p></li>
+</ul>
+<p>Power depends on several factors:</p>
+<ul>
+<li><p>The effect size (how large the true difference is between the groups).</p></li>
+<li><p>The sample size (larger sample sizes increase power).</p></li>
+<li><p>The significance level (<span class="math inline">\(\alpha\)</span>).</p></li>
+<li><p>The variability in the data (lower variability increases power).</p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-243" class="example"><strong>Example 9.8  </strong></span>Consider a study to test the effectiveness of a new online learning platform for improving exam scores. The platform’s developers claim that it will increase the average exam score by 5 points compared to traditional learning methods. Previous studies show that the standard deviation of exam scores is 10 points. You decide to conduct a study with 50 students in each group (online and traditional learning).</p>
+</div>
+<ul>
+<li><p><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: The mean exam score is the same for both groups.</p></li>
+<li><p><strong>Alternative Hypothesis (<span class="math inline">\(H_a\)</span>)</strong>: The mean exam score for the online group is higher by 5 points.</p></li>
+</ul>
+<p>We want to know the statistical power of detecting this difference if it exists, using an online power calculator instead of hand calculations.</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Step-by-Step Power Analysis</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Determine effect size</strong>:
+Using Cohen’s <span class="math inline">\(d\)</span>, the effect size can be calculated as:
+<span class="math display">\[
+d = \frac{\mu_1 - \mu_2}{\sigma} = \frac{5}{10} = 0.5
+\]</span>
+This represents a moderate effect size.</p></li>
+<li><p><strong>Choose significance level (<span class="math inline">\(\alpha\)</span>)</strong>:
+Set <span class="math inline">\(\alpha = 0.05\)</span> for a 5% risk of Type I error.</p></li>
+<li><p><strong>Calculate Power in R</strong>:
+Rather than performing hand calculations, you can input these parameters into R. Simply provide the effect size, sample size, significance level, and test type (two-sample t-test).</p></li>
+<li><p><strong>Interpret the results</strong>:
+R will output the statistical power. For this example, the power may be around 0.75, meaning there is a 75% chance of detecting a 5-point difference in exam scores if the platform truly has this effect.</p></li>
+</ol>
+<p><strong>Cohen’s <span class="math inline">\(d\)</span> and Effect Size Guidelines</strong></p>
+<ul>
+<li><p><strong>Small effect size</strong>: <span class="math inline">\(d &lt; 0.2\)</span></p></li>
+<li><p><strong>Moderate effect size</strong>: <span class="math inline">\(0.2 &lt; d &lt; 0.8\)</span></p></li>
+<li><p><strong>Large effect size</strong>: <span class="math inline">\(d &gt; 0.8\)</span></p></li>
+</ul>
+<p><strong>Key Takeaways</strong></p>
+<ul>
+<li><p><strong>Larger sample sizes</strong> increase statistical power, as they provide more data to detect true differences.</p></li>
+<li><p><strong>Larger effect sizes</strong> (i.e., bigger differences between the groups) also increase power.</p></li>
+<li><p><strong>Smaller variability</strong> (lower standard deviation) enhances the power of a test by making the effect easier to detect.</p></li>
+</ul>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-244" class="example"><strong>Example 9.9  </strong></span>A tech company has released a new version of their app and wants to compare user engagement time (in minutes) between the new version and the old version. Suppose the standard deviation of engagement time is 20 minutes, and they expect the new version to increase engagement by 10 minutes. They plan to randomly select 100 users for each version.</p>
+<ul>
+<li><strong>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</strong>: There is no difference in engagement time between the two versions.</li>
+<li><strong>Alternative Hypothesis (<span class="math inline">\(H_a\)</span>)</strong>: Engagement time is higher for the new version by 5 minutes.</li>
+</ul>
+<p>Using R, determine the probability of detecting this 5-minute increase with 100 users per group at <span class="math inline">\(\alpha = 0.05\)</span>, that is, calculate the statistical power.</p>
+</div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="inference-based-on-two-samples.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb150-2"><a href="inference-based-on-two-samples.html#cb150-2" tabindex="-1"></a></span>
+<span id="cb150-3"><a href="inference-based-on-two-samples.html#cb150-3" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb150-4"><a href="inference-based-on-two-samples.html#cb150-4" tabindex="-1"></a>effect_size <span class="ot">=</span> <span class="fl">0.25</span>  <span class="co"># Given effect size</span></span>
+<span id="cb150-5"><a href="inference-based-on-two-samples.html#cb150-5" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="dv">100</span>  <span class="co"># Sample size for Group 1</span></span>
+<span id="cb150-6"><a href="inference-based-on-two-samples.html#cb150-6" tabindex="-1"></a>n2 <span class="ot">=</span> <span class="dv">100</span>  <span class="co"># Sample size for Group 2</span></span>
+<span id="cb150-7"><a href="inference-based-on-two-samples.html#cb150-7" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span>  <span class="co"># Significance level</span></span>
+<span id="cb150-8"><a href="inference-based-on-two-samples.html#cb150-8" tabindex="-1"></a></span>
+<span id="cb150-9"><a href="inference-based-on-two-samples.html#cb150-9" tabindex="-1"></a><span class="co"># Power calculation</span></span>
+<span id="cb150-10"><a href="inference-based-on-two-samples.html#cb150-10" tabindex="-1"></a><span class="fu">pwr.t2n.test</span>(<span class="at">n1 =</span> n1, <span class="at">n2 =</span> n2, <span class="at">d =</span> effect_size, </span>
+<span id="cb150-11"><a href="inference-based-on-two-samples.html#cb150-11" tabindex="-1"></a>                      <span class="at">sig.level =</span> alpha, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##      t test power calculation 
+## 
+##              n1 = 100
+##              n2 = 100
+##               d = 0.25
+##       sig.level = 0.05
+##           power = 0.5465182
+##     alternative = greater</code></pre>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-9" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> R Companion for Chapter 9<a href="inference-based-on-two-samples.html#r-companion-for-chapter-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-245" class="example"><strong>Example 9.10  </strong></span>The dataset is included in the base version of R. This dataset include 71 observations of the growth rate of chickens using a variety of feed supplements.</p>
+</div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="inference-based-on-two-samples.html#cb152-1" tabindex="-1"></a><span class="fu">data</span>(chickwts)</span>
+<span id="cb152-2"><a href="inference-based-on-two-samples.html#cb152-2" tabindex="-1"></a></span>
+<span id="cb152-3"><a href="inference-based-on-two-samples.html#cb152-3" tabindex="-1"></a><span class="co"># pick out some random indices of the dataset and look at the elements</span></span>
+<span id="cb152-4"><a href="inference-based-on-two-samples.html#cb152-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb152-5"><a href="inference-based-on-two-samples.html#cb152-5" tabindex="-1"></a>chickwts[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">71</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">replace =</span> F),]</span></code></pre></div>
+<pre><code>##    weight      feed
+## 28    250   soybean
+## 22    271   linseed
+## 65    318    casein
+## 17    148   linseed
+## 36    248   soybean
+## 42    226 sunflower
+## 49    325  meatmeal
+## 45    334 sunflower
+## 56    242  meatmeal
+## 8     124 horsebean</code></pre>
+<p>We can create a boxplot of the weights for the various types of feed.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="inference-based-on-two-samples.html#cb154-1" tabindex="-1"></a><span class="fu">boxplot</span>(weight<span class="sc">~</span>feed,<span class="at">data=</span>chickwts)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" height="40%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<p>Based on the boxplot, there appears be a difference in weights between <strong>casein</strong> and <strong>horsebean</strong>. To test this, let’s run the hypothesis test <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 \neq 0\)</span>, where <span class="math inline">\(\mu_1\)</span> is the true mean weight of chicks given casein and <span class="math inline">\(\mu_2\)</span> is the true mean weight of chicks given horsebean. We will use <span class="math inline">\(\alpha = 0.05\)</span> for the following examples.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="inference-based-on-two-samples.html#cb155-1" tabindex="-1"></a><span class="co"># create new dataset of chicks given casein</span></span>
+<span id="cb155-2"><a href="inference-based-on-two-samples.html#cb155-2" tabindex="-1"></a>chicks1 <span class="ot">=</span> chickwts[chickwts<span class="sc">$</span>feed<span class="sc">==</span><span class="st">&quot;casein&quot;</span>,]</span>
+<span id="cb155-3"><a href="inference-based-on-two-samples.html#cb155-3" tabindex="-1"></a>chicks2 <span class="ot">=</span> chickwts[chickwts<span class="sc">$</span>feed<span class="sc">==</span><span class="st">&quot;horsebean&quot;</span>,]</span>
+<span id="cb155-4"><a href="inference-based-on-two-samples.html#cb155-4" tabindex="-1"></a><span class="fu">t.test</span>(chicks1<span class="sc">$</span>weight,chicks2<span class="sc">$</span>weight,<span class="at">mu=</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  chicks1$weight and chicks2$weight
+## t = 7.3423, df = 18.36, p-value = 7.21e-07
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  116.6982 210.0685
+## sample estimates:
+## mean of x mean of y 
+##  323.5833  160.2000</code></pre>
+<p>The test statistic is <span class="math inline">\(t=7.34\)</span> and corresponds to p-value of <span class="math inline">\(7.21 \cdot 10^{-7}\)</span>. Since the p-value is less than <span class="math inline">\(\alpha=0.05\)</span>, we would reject <span class="math inline">\(H_0\)</span> and conclude that the true mean chick weights differ between casein and horsebean feed.</p>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-246" class="example"><strong>Example 9.11  </strong></span>Suppose we want to test if the true mean weight of casein feed chicks is more than 200 units greater than the true mean weight of horsebean feed chicks, i.e., <span class="math inline">\(H_0: \mu_1 - \mu_2 = 200\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; 200\)</span>.</p>
+</div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="inference-based-on-two-samples.html#cb157-1" tabindex="-1"></a><span class="fu">t.test</span>(chicks1<span class="sc">$</span>weight,chicks2<span class="sc">$</span>weight,<span class="at">mu=</span><span class="dv">200</span>,<span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  chicks1$weight and chicks2$weight
+## t = -1.6455, df = 18.36, p-value = 0.9416
+## alternative hypothesis: true difference in means is greater than 200
+## 95 percent confidence interval:
+##  124.8371      Inf
+## sample estimates:
+## mean of x mean of y 
+##  323.5833  160.2000</code></pre>
+<p>The test statistic for this hypothesis test is <span class="math inline">\(t=-1.6455\)</span> with a p-value of <span class="math inline">\(0.9416\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, we would fail to reject <span class="math inline">\(H_0: \mu_1 - \mu_2 = 200\)</span> and conclude there is not sufficient evidence to say that the true mean weight of casein feed chicks is more than 200 units greater than the true mean weight of horsebean feed chicks.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hypothesis-tests-for-one-population-parameter.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Hypothesis Tests for One Population Parameter | STAT 315 Notes Fall 2026</title>
+  <meta name="description" content="STAT315 Notes" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Hypothesis Tests for One Population Parameter | STAT 315 Notes Fall 2026" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="STAT315 Notes" />
+  <meta name="github-repo" content="edmondsl.github.io/Stat315_book_Fall2026/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Hypothesis Tests for One Population Parameter | STAT 315 Notes Fall 2026" />
+  
+  <meta name="twitter:description" content="STAT315 Notes" />
+  
+
+<meta name="author" content="Colorado State University" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="confidence-intervals-for-one-population-parameter.html"/>
+<link rel="next" href="inference-based-on-two-samples.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT315 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preliminaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-started-with-r"><i class="fa fa-check"></i>Getting Started With R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html"><i class="fa fa-check"></i><b>1</b> Basic Concepts of Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#populations-samples-and-processes"><i class="fa fa-check"></i><b>1.1</b> Populations, Samples, and Processes</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#methods-of-collecting-a-sample"><i class="fa fa-check"></i><b>1.2</b> Methods of Collecting a Sample</a></li>
+<li class="chapter" data-level="1.3" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of Data</a></li>
+<li class="chapter" data-level="1.4" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summarizing-qualitative-data"><i class="fa fa-check"></i><b>1.4</b> Summarizing Qualitative Data</a></li>
+<li class="chapter" data-level="1.5" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#summary-statistics-for-quantitative-data"><i class="fa fa-check"></i><b>1.5</b> Summary Statistics for Quantitative Data</a></li>
+<li class="chapter" data-level="1.6" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>1.6</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="1.7" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#notation-for-population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>1.7</b> Notation for Population Parameters and Sample Statistics</a></li>
+<li class="chapter" data-level="1.8" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#descriptive-statistics-vs.-inferential-statistics"><i class="fa fa-check"></i><b>1.8</b> Descriptive Statistics vs. Inferential Statistics</a></li>
+<li class="chapter" data-level="1.9" data-path="basic-concepts-of-statistics.html"><a href="basic-concepts-of-statistics.html#r-companion-for-chapter-1"><i class="fa fa-check"></i><b>1.9</b> R Companion for Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>2.1</b> Sample Space and Events</a></li>
+<li class="chapter" data-level="2.2" data-path="probability.html"><a href="probability.html#set-theory"><i class="fa fa-check"></i><b>2.2</b> Set Theory</a></li>
+<li class="chapter" data-level="2.3" data-path="probability.html"><a href="probability.html#axioms-and-rules-of-probability"><i class="fa fa-check"></i><b>2.3</b> Axioms and Rules of Probability</a></li>
+<li class="chapter" data-level="2.4" data-path="probability.html"><a href="probability.html#counting-techniques"><i class="fa fa-check"></i><b>2.4</b> Counting Techniques</a></li>
+<li class="chapter" data-level="2.5" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.5</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.6" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>2.6</b> Independence</a></li>
+<li class="chapter" data-level="2.7" data-path="probability.html"><a href="probability.html#objective-vs.-subjective-probability"><i class="fa fa-check"></i><b>2.7</b> Objective vs. Subjective Probability</a></li>
+<li class="chapter" data-level="2.8" data-path="probability.html"><a href="probability.html#r-companion-for-chapter-2"><i class="fa fa-check"></i><b>2.8</b> R Companion for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>3</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variables"><i class="fa fa-check"></i><b>3.1</b> Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distributions-for-discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Probability Distributions for Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-values-means"><i class="fa fa-check"></i><b>3.3</b> Expected Values (Means)</a></li>
+<li class="chapter" data-level="3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#bernoulli-and-binomial-random-variables"><i class="fa fa-check"></i><b>3.4</b> Bernoulli and Binomial Random Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#geometric-discrete-uniform-and-poisson-random-variables"><i class="fa fa-check"></i><b>3.5</b> Geometric, Discrete Uniform, and Poisson Random Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#r-companion-for-chapter-3"><i class="fa fa-check"></i><b>3.6</b> R Companion for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>4</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#probability-density-function-pdf"><i class="fa fa-check"></i><b>4.1</b> Probability Density Function (pdf)</a></li>
+<li class="chapter" data-level="4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#cumulative-distribution-functions"><i class="fa fa-check"></i><b>4.2</b> Cumulative Distribution Functions</a></li>
+<li class="chapter" data-level="4.3" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-values"><i class="fa fa-check"></i><b>4.3</b> Expected Values</a></li>
+<li class="chapter" data-level="4.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#normal-distribution"><i class="fa fa-check"></i><b>4.4</b> Normal Distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#the-exponential-and-uniform-random-variables"><i class="fa fa-check"></i><b>4.5</b> The Exponential and Uniform Random Variables</a></li>
+<li class="chapter" data-level="4.6" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#continuous-uniformab-random-variable"><i class="fa fa-check"></i><b>4.6</b> (Continuous) Uniform[a,b] Random Variable</a></li>
+<li class="chapter" data-level="4.7" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#r-companion-for-chapter-4"><i class="fa fa-check"></i><b>4.7</b> R Companion for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html"><i class="fa fa-check"></i><b>5</b> Multivariate Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#joint-probability-distributions"><i class="fa fa-check"></i><b>5.1</b> Joint Probability Distributions</a></li>
+<li class="chapter" data-level="5.2" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#marginal-probability-functions"><i class="fa fa-check"></i><b>5.2</b> Marginal Probability Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#independent-random-variables"><i class="fa fa-check"></i><b>5.3</b> Independent Random Variables</a></li>
+<li class="chapter" data-level="5.4" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#conditional-distributions"><i class="fa fa-check"></i><b>5.4</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="5.5" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#expected-values-covariance-and-correlation"><i class="fa fa-check"></i><b>5.5</b> Expected Values, Covariance, and Correlation</a></li>
+<li class="chapter" data-level="5.6" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>5.6</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="multivariate-random-variables.html"><a href="multivariate-random-variables.html#r-companion-for-chapter-5"><i class="fa fa-check"></i><b>5.7</b> R Companion for Chapter 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions, Central Limit Theorem, and Estimation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#statistics-and-their-distributions"><i class="fa fa-check"></i><b>6.1</b> Statistics and Their Distributions</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#the-distribution-of-the-sample-mean"><i class="fa fa-check"></i><b>6.2</b> The Distribution of the Sample Mean</a></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#several-general-concepts-of-point-estimation"><i class="fa fa-check"></i><b>6.3</b> Several General Concepts of Point Estimation</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#methods-of-point-estimation"><i class="fa fa-check"></i><b>6.4</b> Methods of Point Estimation</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions-central-limit-theorem-and-estimation.html"><a href="sampling-distributions-central-limit-theorem-and-estimation.html#r-companion-for-chapter-6"><i class="fa fa-check"></i><b>6.5</b> R Companion for Chapter 6</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals for One Population Parameter</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#basic-concepts-of-confidence-intervals"><i class="fa fa-check"></i><b>7.1</b> Basic Concepts of Confidence Intervals</a></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-known."><i class="fa fa-check"></i><b>7.2</b> Confidence Intervals for a Population Mean when the Population Standard Deviation is Known.</a></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-population-mean-when-the-population-standard-deviation-is-unknown."><i class="fa fa-check"></i><b>7.3</b> Confidence Intervals for a Population Mean when the Population Standard Deviation is Unknown.</a></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#confidence-intervals-for-a-single-population-proportion."><i class="fa fa-check"></i><b>7.4</b> Confidence Intervals for a Single Population Proportion.</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals-for-one-population-parameter.html"><a href="confidence-intervals-for-one-population-parameter.html#one-sided-confidence-intervals"><i class="fa fa-check"></i><b>7.5</b> One-Sided Confidence Intervals</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 315 Notes Fall 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hypothesis-tests-for-one-population-parameter" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Hypothesis Tests for One Population Parameter<a href="hypothesis-tests-for-one-population-parameter.html#hypothesis-tests-for-one-population-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous chapter, we explored Statistical Inference through the application of confidence intervals, which allowed us to estimate population parameters within a range of plausible values. In this chapter, we will turn our attention to hypothesis testing, another fundamental approach in Statistical Inference. Hypothesis testing provides a structured framework to evaluate specific claims or assumptions about a population parameter by analyzing sample data. Through this method, we can determine whether the evidence supports or refutes a given hypothesis, helping us make informed decisions in the presence of uncertainty.</p>
+<div id="basic-concepts-of-hypothesis-testing" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Basic Concepts of Hypothesis Testing<a href="hypothesis-tests-for-one-population-parameter.html#basic-concepts-of-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-221" class="example"><strong>Example 8.1  </strong></span>Imagine a company claims that its employees spend, on average, 5 hours per week using social media during work hours. The management is concerned that this may be affecting productivity and wants to verify if the average time is indeed 5 hours. To test this claim, a random sample of employees is surveyed, and the average time spent on social media is calculated. By formulating and testing a hypothesis, the company can assess whether the claim holds up under scrutiny or if the evidence suggests a different average usage.</p>
+</div>
+<ul>
+<li>One way to test this claim would be to collect a sample and see if 5 is contained in the confidence interval for <span class="math inline">\(\mu\)</span>.</li>
+<li>Another approach to testing this claim is to again collect a sample and see how consistent that sample is with initial hypothesis of <span class="math inline">\(\mu=5\)</span>. This is called hypothesis testing.</li>
+</ul>
+<p><strong>Goal of Hypothesis Testing:</strong> Test competing claims about a population parameter.</p>
+<div style="page-break-after: always;"></div>
+<div class="definition">
+<p><span id="def:unlabeled-div-222" class="definition"><strong>Definition 8.1  </strong></span>The <strong><em>null hypothesis</em></strong>, denoted <span class="math inline">\(H_0\)</span>, represents the initial claim or assumption that is presumed to be true in the absence of evidence to the contrary.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-223" class="definition"><strong>Definition 8.2  </strong></span>The <strong><em>alternative hypothesis</em></strong>, denoted <span class="math inline">\(H_a\)</span>, is the statement that contradicts <span class="math inline">\(H_0\)</span>, often described as the opposite of the null hypothesis, and represents what we are testing for in the analysis.</p>
+</div>
+<ul>
+<li><p>The null hypothesis will be rejected in favor of the alternative hypothesis if the sample evidence suggests that <span class="math inline">\(H_0\)</span> is false.</p></li>
+<li><p>The two possible conclusions of a hypothesis test are <strong>Reject <span class="math inline">\(H_0\)</span></strong> or <strong>Fail to Reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
+</ul>
+<p><strong>Formulating Hypotheses</strong></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span> contains <span class="math inline">\(=\)</span>, <span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span>.</li>
+<li><span class="math inline">\(H_a\)</span> contains <span class="math inline">\(\neq\)</span>, <span class="math inline">\(&gt;\)</span>, <span class="math inline">\(&lt;\)</span></li>
+<li>Usually, the claim we are attempting to show is more plausible is <span class="math inline">\(H_a\)</span></li>
+</ol>
+<div class="example">
+<p><span id="exm:unlabeled-div-224" class="example"><strong>Example 8.2  </strong></span>Jorge claims that homework for this class takes, on average, six hours per week. Aaron doesn’t think the average is six hours, so he collects a random sample of eight students and records the time it takes them to complete the homework.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-225" class="example"><strong>Example 8.3  </strong></span>Brenda claims that newly graduated data science majors from CSU have an average salary of $63,000, but Rawand believes it is smaller.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-226" class="example"><strong>Example 8.4  </strong></span>Rosa believes less than 50% of college students have consumed alcohol. You collect a random sample of 20 students to test the claim.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<p><strong>Different Types of Hypothesis Tests</strong></p>
+<p>There are three different types of hypothesis tests.</p>
+<p><strong>1. Left-tailed test</strong> </p>
+<p><strong>2. Right-tailed test</strong> </p>
+<p><strong>3. Two-tailed test</strong> </p>
+<div style="page-break-after: always;"></div>
+<p><strong>Errors in Hypothesis Testing</strong></p>
+<p>After collecting a sample, we will decide which hypothesis is supported by the data.</p>
+<p>Since we don’t know the true parameter value, there is a chance we will make an error.</p>
+<p><strong>Two Types of Error</strong></p>
+<ol style="list-style-type: decimal">
+<li>Type I error (<span class="math inline">\(\alpha\)</span>): Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true.</li>
+<li>Type II error (<span class="math inline">\(\beta\)</span>): Fail to reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false.</li>
+</ol>
+<p><strong>Note:</strong> <span class="math inline">\(\alpha\)</span> is also called the level of significance for a test.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-227" class="example"><strong>Example 8.5  </strong></span>Jury trials, <span class="math inline">\(H_0:\)</span> Defendant is innocent vs. <span class="math inline">\(H_A:\)</span> Defendant is guilty</p>
+</div>
+<div style="page-break-after: always;"></div>
+<p><strong>Six Steps for Hypothesis Testing</strong></p>
+<p><em>Different textbooks will give a different number of steps or outline on how to complete a hypothesis test. For our class, stick to the following method.</em></p>
+<p><strong>Step 1:</strong> State the hypotheses.
+</p>
+<p><strong>Step 2:</strong> Determine the level of significance.
+</p>
+<p><strong>Step 3:</strong> Compute a test statistic.
+</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Step 4:</strong> Calculate a p-value and plot the results.</p>
+<p>The <strong><em>p-value</em></strong> is the probability of observing a test statistic as extreme as, or more extreme than, the one obtained from the sample data, assuming the null hypothesis is true.</p>
+<p><strong>The p-value does not measure the probability that the null hypothesis is true.</strong></p>
+<p><a href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">ASA Statement on p-values: https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf</a></p>
+<p><strong>Step 5:</strong> Make a statistical decision.
+</p>
+<p><strong>Step 6:</strong> Interpret the statistical decision (in the context of the problem).
+</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="tests-about-a-population-mean-mu" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Tests About a Population Mean, <span class="math inline">\(\mu\)</span><a href="hypothesis-tests-for-one-population-parameter.html#tests-about-a-population-mean-mu" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Case 1: <span class="math inline">\(\sigma\)</span> known</strong></p>
+<p>If <span class="math inline">\(\sigma\)</span> is known, then the test statistic is the following:</p>
+<p><span class="math display">\[z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-228" class="example"><strong>Example 8.6  </strong></span>A materials scientist is developing a new alloy intended for use in aerospace engineering, where the average tensile strength is claimed to be 1500 MPa (megapascals). Based on previous research, the tensile strength of this alloy is known to be normally distributed with a population variance of 40 MPa².</p>
+<p>To validate the claim, the scientist tests a sample of 10 specimens and finds a sample mean tensile strength of 1495 MPa. The goal is to perform a hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.05\)</span> to determine whether the average tensile strength is actually different from the claimed 1500 MPa.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-229" class="example"><strong>Example 8.7  </strong></span>An engineering firm claims that a new fuel-efficient engine design provides an average fuel efficiency of at least 40 miles per gallon (mpg). The design specifications guarantee this minimum efficiency, and engineers want to verify that the engine consistently meets this standard. It is known from previous tests that fuel efficiency for this type of engine follows a normal distribution with a population variance of 9 mpg².</p>
+<p>A random sample of 8 engines is tested, and the sample shows an average fuel efficiency of 38.5 mpg. The engineers decide to conduct a one-sided hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.05\)</span> to determine if the true average fuel efficiency is actually lower than the claimed 40 mpg.</p>
+<p>In addition, state what Type I and Type II errors are in the context of the problem.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<p><strong>Case 2: <span class="math inline">\(\sigma\)</span> unknown</strong></p>
+<p>If <span class="math inline">\(\sigma\)</span> is unknown, then the test statistic is the following:</p>
+<p><span class="math display">\[t_{stat} = \frac{\bar{x}-\mu_0}{s/\sqrt{n}}, df=n-1\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-230" class="example"><strong>Example 8.8  </strong></span>A chemist claims that a newly synthesized chemical compound has an average melting point of 250°C. However, the chemist does not know the population variance for the melting point of this compound. To test the consistency of the compound, a sample of 31 batches is produced and their melting points are measured. The sample has a mean melting point of 247°C, with a sample standard deviation of 8.4°C.</p>
+<p>The chemist wants to perform a hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.10\)</span> to determine whether the true average melting point is different from the claimed 250°C.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="example">
+<p><span id="exm:unlabeled-div-231" class="example"><strong>Example 8.9  </strong></span>A software engineer claims that a new web application backend has an average response time of less than 200 milliseconds under typical user load. However, the team wants to verify this claim to ensure that the system meets performance expectations.</p>
+<p>To test this, a sample of 50 response times is collected from the application under standard load conditions. The sample mean response time is 210 milliseconds, with a sample standard deviation of 25 milliseconds. The engineer performs a one-sided hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.05\)</span> to determine if the true average response time is actually greater than the claimed 200 milliseconds.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="tests-concerning-a-population-proportion-p" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Tests Concerning a Population Proportion, <span class="math inline">\(p\)</span><a href="hypothesis-tests-for-one-population-parameter.html#tests-concerning-a-population-proportion-p" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can run a hypothesis test for a population proportion using the following formula:</p>
+<p><span class="math display">\[z = \frac{\bar{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-232" class="example"><strong>Example 8.10  </strong></span>A mathematics department claims that at least 80% of its students pass a standardized math proficiency exam required for graduation. A new curriculum is introduced, and the department wants to evaluate whether the pass rate has fallen below this benchmark.</p>
+<p>To test this, a random sample of 150 students who took the exam under the new curriculum is selected, and 112 students passed. The department conducts a one-sided hypothesis test at a significance level of <span class="math inline">\(\alpha = 0.05\)</span> to determine if the true pass rate is now less than the claimed 80%.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="r-companion-for-chapter-8" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> R Companion for Chapter 8<a href="hypothesis-tests-for-one-population-parameter.html#r-companion-for-chapter-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:unlabeled-div-233" class="example"><strong>Example 8.11  </strong></span>The <strong>faithful</strong> dataset of Old Faith Geyser data is used again for this example. Since the population variance of Old Faithful eruption duration is unknown, the t-distribution is used to complete the following hypothesis tests.</p>
+</div>
+<p>Let <span class="math inline">\(\mu\)</span> denote the true mean eruption duration of Old Faithful and we want to test <span class="math inline">\(H_0: \mu = 3\)</span> vs. <span class="math inline">\(H_a: \mu \neq 3\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="hypothesis-tests-for-one-population-parameter.html#cb146-1" tabindex="-1"></a><span class="fu">t.test</span>(faithful<span class="sc">$</span>eruptions,<span class="at">mu =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = 7.0483, df = 271, p-value = 1.502e-11
+## alternative hypothesis: true mean is not equal to 3
+## 95 percent confidence interval:
+##  3.351534 3.624032
+## sample estimates:
+## mean of x 
+##  3.487783</code></pre>
+<p>From the output, we see that the p-value is <span class="math inline">\(1.5 \cdot 10^{-11}\)</span>. This is less than <span class="math inline">\(\alpha=0.05\)</span>, so we would reject <span class="math inline">\(H_0: \mu = 3\)</span> and conclude the true mean eruption duration of Old Faithful differs from 3 minutes.</p>
+<p>Suppose we want to test <span class="math inline">\(H_0: \mu = 3.5\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 3.5\)</span> at <span class="math inline">\(\alpha=0.05\)</span>. In other words, we would like to test to see if the mean is less than 3.5 minutes.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="hypothesis-tests-for-one-population-parameter.html#cb148-1" tabindex="-1"></a><span class="fu">t.test</span>(faithful<span class="sc">$</span>eruptions,<span class="at">mu=</span><span class="fl">3.5</span>,<span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = -0.17653, df = 271, p-value = 0.43
+## alternative hypothesis: true mean is less than 3.5
+## 95 percent confidence interval:
+##      -Inf 3.602007
+## sample estimates:
+## mean of x 
+##  3.487783</code></pre>
+<p>Here, the p-value is 0.43, so we would fail to reject <span class="math inline">\(H_0: \mu = 3.5\)</span>. In other words, we don’t have sufficient evidence to conclude the true mean eruption duration is less than 3.5 minutes.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="confidence-intervals-for-one-population-parameter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inference-based-on-two-samples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

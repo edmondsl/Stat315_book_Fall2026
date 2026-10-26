@@ -4109,6 +4109,742 @@ We can also create one-sided confidence intervals by using the \textbf{alternati
 
 The \(90\%\) upper one-sided confidence interval is 3.398876 \textless{} \(\mu\). We are \(90\%\) confident that the true mean eruption duration of Old Faithful is at least 3.339 minutes.
 
+\chapter{Hypothesis Tests for One Population Parameter}\label{hypothesis-tests-for-one-population-parameter}
+
+In the previous chapter, we explored Statistical Inference through the application of confidence intervals, which allowed us to estimate population parameters within a range of plausible values. In this chapter, we will turn our attention to hypothesis testing, another fundamental approach in Statistical Inference. Hypothesis testing provides a structured framework to evaluate specific claims or assumptions about a population parameter by analyzing sample data. Through this method, we can determine whether the evidence supports or refutes a given hypothesis, helping us make informed decisions in the presence of uncertainty.
+
+\section{Basic Concepts of Hypothesis Testing}\label{basic-concepts-of-hypothesis-testing}
+
+\begin{example}
+Imagine a company claims that its employees spend, on average, 5 hours per week using social media during work hours. The management is concerned that this may be affecting productivity and wants to verify if the average time is indeed 5 hours. To test this claim, a random sample of employees is surveyed, and the average time spent on social media is calculated. By formulating and testing a hypothesis, the company can assess whether the claim holds up under scrutiny or if the evidence suggests a different average usage.
+\end{example}
+
+\begin{itemize}
+\tightlist
+\item
+  One way to test this claim would be to collect a sample and see if 5 is contained in the confidence interval for \(\mu\).
+\item
+  Another approach to testing this claim is to again collect a sample and see how consistent that sample is with initial hypothesis of \(\mu=5\). This is called hypothesis testing.
+\end{itemize}
+
+\textbf{Goal of Hypothesis Testing:} Test competing claims about a population parameter.
+
+\newpage
+
+\begin{definition}
+The \textbf{\emph{null hypothesis}}, denoted \(H_0\), represents the initial claim or assumption that is presumed to be true in the absence of evidence to the contrary.
+\end{definition}
+
+\begin{definition}
+The \textbf{\emph{alternative hypothesis}}, denoted \(H_a\), is the statement that contradicts \(H_0\), often described as the opposite of the null hypothesis, and represents what we are testing for in the analysis.
+\end{definition}
+
+\begin{itemize}
+\item
+  The null hypothesis will be rejected in favor of the alternative hypothesis if the sample evidence suggests that \(H_0\) is false.
+\item
+  The two possible conclusions of a hypothesis test are \textbf{Reject \(H_0\)} or \textbf{Fail to Reject \(H_0\)}.
+\end{itemize}
+
+\textbf{Formulating Hypotheses}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(H_0\) contains \(=\), \(\leq\), \(\geq\).
+\item
+  \(H_a\) contains \(\neq\), \(>\), \(<\)
+\item
+  Usually, the claim we are attempting to show is more plausible is \(H_a\)
+\end{enumerate}
+
+\begin{example}
+Jorge claims that homework for this class takes, on average, six hours per week. Aaron doesn't think the average is six hours, so he collects a random sample of eight students and records the time it takes them to complete the homework.
+\end{example}
+
+\vfill
+
+\begin{example}
+Brenda claims that newly graduated data science majors from CSU have an average salary of \$63,000, but Rawand believes it is smaller.
+\end{example}
+
+\vfill
+
+\begin{example}
+Rosa believes less than 50\% of college students have consumed alcohol. You collect a random sample of 20 students to test the claim.
+\end{example}
+
+\vfill
+
+\newpage
+
+\textbf{Different Types of Hypothesis Tests}
+
+There are three different types of hypothesis tests.
+
+\textbf{1. Left-tailed test} \vfill
+
+\textbf{2. Right-tailed test} \vfill
+
+\textbf{3. Two-tailed test} \vfill
+
+\newpage
+
+\textbf{Errors in Hypothesis Testing}
+
+After collecting a sample, we will decide which hypothesis is supported by the data.
+
+Since we don't know the true parameter value, there is a chance we will make an error.
+
+\textbf{Two Types of Error}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Type I error (\(\alpha\)): Reject \(H_0\) when \(H_0\) is true.
+\item
+  Type II error (\(\beta\)): Fail to reject \(H_0\) when \(H_0\) is false.
+\end{enumerate}
+
+\textbf{Note:} \(\alpha\) is also called the level of significance for a test.
+
+\begin{example}
+Jury trials, \(H_0:\) Defendant is innocent vs.~\(H_A:\) Defendant is guilty
+\end{example}
+
+\vfill
+
+\newpage
+
+\textbf{Six Steps for Hypothesis Testing}
+
+\emph{Different textbooks will give a different number of steps or outline on how to complete a hypothesis test. For our class, stick to the following method.}
+
+\textbf{Step 1:} State the hypotheses.
+\vfill
+
+\textbf{Step 2:} Determine the level of significance.
+\vfill
+
+\textbf{Step 3:} Compute a test statistic.
+\vfill \vfill \vfill \vfill
+
+\newpage
+
+\textbf{Step 4:} Calculate a p-value and plot the results.
+
+The \textbf{\emph{p-value}} is the probability of observing a test statistic as extreme as, or more extreme than, the one obtained from the sample data, assuming the null hypothesis is true.
+
+\vfill
+
+\textbf{The p-value does not measure the probability that the null hypothesis is true.}
+
+\href{https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf}{ASA Statement on p-values: https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf}
+
+\textbf{Step 5:} Make a statistical decision.
+\vfill
+
+\textbf{Step 6:} Interpret the statistical decision (in the context of the problem).
+\vfill \vfill \vfill
+
+\newpage
+
+\section{\texorpdfstring{Tests About a Population Mean, \(\mu\)}{Tests About a Population Mean, \textbackslash mu}}\label{tests-about-a-population-mean-mu}
+
+\textbf{Case 1: \(\sigma\) known}
+
+If \(\sigma\) is known, then the test statistic is the following:
+
+\[z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\]
+
+\begin{example}
+A materials scientist is developing a new alloy intended for use in aerospace engineering, where the average tensile strength is claimed to be 1500 MPa (megapascals). Based on previous research, the tensile strength of this alloy is known to be normally distributed with a population variance of 40 MPa².
+
+To validate the claim, the scientist tests a sample of 10 specimens and finds a sample mean tensile strength of 1495 MPa. The goal is to perform a hypothesis test at a significance level of \(\alpha = 0.05\) to determine whether the average tensile strength is actually different from the claimed 1500 MPa.
+\end{example}
+
+\vfill
+
+\newpage
+
+\begin{example}
+An engineering firm claims that a new fuel-efficient engine design provides an average fuel efficiency of at least 40 miles per gallon (mpg). The design specifications guarantee this minimum efficiency, and engineers want to verify that the engine consistently meets this standard. It is known from previous tests that fuel efficiency for this type of engine follows a normal distribution with a population variance of 9 mpg².
+
+A random sample of 8 engines is tested, and the sample shows an average fuel efficiency of 38.5 mpg. The engineers decide to conduct a one-sided hypothesis test at a significance level of \(\alpha = 0.05\) to determine if the true average fuel efficiency is actually lower than the claimed 40 mpg.
+
+In addition, state what Type I and Type II errors are in the context of the problem.
+\end{example}
+
+\vfill
+
+\newpage
+
+\textbf{Case 2: \(\sigma\) unknown}
+
+If \(\sigma\) is unknown, then the test statistic is the following:
+
+\[t_{stat} = \frac{\bar{x}-\mu_0}{s/\sqrt{n}}, df=n-1\]
+
+\begin{example}
+A chemist claims that a newly synthesized chemical compound has an average melting point of 250°C. However, the chemist does not know the population variance for the melting point of this compound. To test the consistency of the compound, a sample of 31 batches is produced and their melting points are measured. The sample has a mean melting point of 247°C, with a sample standard deviation of 8.4°C.
+
+The chemist wants to perform a hypothesis test at a significance level of \(\alpha = 0.10\) to determine whether the true average melting point is different from the claimed 250°C.
+\end{example}
+
+\newpage
+
+\begin{example}
+A software engineer claims that a new web application backend has an average response time of less than 200 milliseconds under typical user load. However, the team wants to verify this claim to ensure that the system meets performance expectations.
+
+To test this, a sample of 50 response times is collected from the application under standard load conditions. The sample mean response time is 210 milliseconds, with a sample standard deviation of 25 milliseconds. The engineer performs a one-sided hypothesis test at a significance level of \(\alpha = 0.05\) to determine if the true average response time is actually greater than the claimed 200 milliseconds.
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{\texorpdfstring{Tests Concerning a Population Proportion, \(p\)}{Tests Concerning a Population Proportion, p}}\label{tests-concerning-a-population-proportion-p}
+
+We can run a hypothesis test for a population proportion using the following formula:
+
+\[z = \frac{\bar{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\]
+
+\begin{example}
+A mathematics department claims that at least 80\% of its students pass a standardized math proficiency exam required for graduation. A new curriculum is introduced, and the department wants to evaluate whether the pass rate has fallen below this benchmark.
+
+To test this, a random sample of 150 students who took the exam under the new curriculum is selected, and 112 students passed. The department conducts a one-sided hypothesis test at a significance level of \(\alpha = 0.05\) to determine if the true pass rate is now less than the claimed 80\%.
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{R Companion for Chapter 8}\label{r-companion-for-chapter-8}
+
+\begin{example}
+The \textbf{faithful} dataset of Old Faith Geyser data is used again for this example. Since the population variance of Old Faithful eruption duration is unknown, the t-distribution is used to complete the following hypothesis tests.
+\end{example}
+
+Let \(\mu\) denote the true mean eruption duration of Old Faithful and we want to test \(H_0: \mu = 3\) vs.~\(H_a: \mu \neq 3\) at \(\alpha = 0.05\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(faithful}\SpecialCharTok{$}\NormalTok{eruptions,}\AttributeTok{mu =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = 7.0483, df = 271, p-value = 1.502e-11
+## alternative hypothesis: true mean is not equal to 3
+## 95 percent confidence interval:
+##  3.351534 3.624032
+## sample estimates:
+## mean of x 
+##  3.487783
+\end{verbatim}
+
+From the output, we see that the p-value is \(1.5 \cdot 10^{-11}\). This is less than \(\alpha=0.05\), so we would reject \(H_0: \mu = 3\) and conclude the true mean eruption duration of Old Faithful differs from 3 minutes.
+
+Suppose we want to test \(H_0: \mu = 3.5\) vs.~\(H_a: \mu < 3.5\) at \(\alpha=0.05\). In other words, we would like to test to see if the mean is less than 3.5 minutes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(faithful}\SpecialCharTok{$}\NormalTok{eruptions,}\AttributeTok{mu=}\FloatTok{3.5}\NormalTok{,}\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  faithful$eruptions
+## t = -0.17653, df = 271, p-value = 0.43
+## alternative hypothesis: true mean is less than 3.5
+## 95 percent confidence interval:
+##      -Inf 3.602007
+## sample estimates:
+## mean of x 
+##  3.487783
+\end{verbatim}
+
+Here, the p-value is 0.43, so we would fail to reject \(H_0: \mu = 3.5\). In other words, we don't have sufficient evidence to conclude the true mean eruption duration is less than 3.5 minutes.
+
+\chapter{Inference Based On Two Samples}\label{inference-based-on-two-samples}
+
+In Chapters 7 and 8, we explored hypothesis tests and confidence intervals for making statistical inferences about a single population parameter. In this chapter, we will expand these methods to compare two population parameters. We'll cover hypothesis tests for both independent and paired samples using z-tests and t-tests, as well as tests for comparing two population proportions. Additionally, we will introduce confidence intervals for the difference between two parameters and discuss the concept of statistical power in the context of two-sample inference.
+
+\section{z-tests and Confidence Intervals for a Difference Between Two Population Parameters}\label{z-tests-and-confidence-intervals-for-a-difference-between-two-population-parameters}
+
+\begin{example}
+A manufacturer produces two types of industrial batteries, Model A and Model B, which are used in renewable energy systems. The company claims that the lifespan of both battery models is approximately the same, but an engineering team wants to verify this by conducting a study. They know the population standard deviations of the lifespans for both models from previous extensive testing.
+
+A sample of 15 Model A batteries has an average lifespan of 8.5 years with a known population standard deviation of 1.2 years. A sample of 15 Model B batteries has an average lifespan of 9.1 years with a known population standard deviation of 1.5 years. The engineers perform a hypothesis test to determine if there is sufficient evidence to suggest a difference in the average lifespan between the two battery models.
+\end{example}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  One way to test this claim is create a confidence interval for the difference in means (\(\mu_1 - \mu_2\)).
+\item
+  Another approach to testing this claim is to see how consistent that sample is with initial hypothesis of \(\mu_1-\mu_2=0\).
+\end{enumerate}
+
+Note: We must make an assumption of whether the samples from the two populations are independent or dependent. In this section (9.1) and the next section (9.2), we will assume the samples are independent.
+
+\newpage
+
+\textbf{Assumptions for Comparison of Independent Samples}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  \(X_1, X_2, \ldots, X_{n_1}\) are a random sample from a distribution with mean \(\mu_1\) and variance \(\sigma_1^2\).
+\item
+  \(Y_1, Y_2, \ldots, Y_{n_2}\) are a random sample from a distribution with mean \(\mu_2\) and variance \(\sigma_2^2\).
+\item
+  The X and Y samples are independent.
+\end{enumerate}
+
+\textbf{Notation}
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+     & \multicolumn{3}{|c|}{True Population Parameters}  & \multicolumn{3}{|c|}{Sample Statistics}\\ \hline
+     Group & Mean & Variance & SD & Mean & Variance & SD \\ \hline
+    Group \#1 & $\mu_1$ & $\sigma_1^2$ & $\sigma_1$ & $\bar{x}_1$ & $s_1^2$ & $s_1$ \\ \hline
+    Group \#2 & $\mu_2$ & $\sigma_2^2$ & $\sigma_2$ & $\bar{x}_2$ & $s_2^2$ & $s_2$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{theorem}
+
+If X and Y are independent, then
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \(E[\bar{X}-\bar{Y}] = \mu_1 - \mu_2\)
+\item
+  \(Var(\bar{X} - \bar{Y}) = \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}\) (\(\sigma_1^2\) and \(\sigma_2^2\) may be unknown)
+\end{enumerate}
+
+\end{theorem}
+
+\textbf{Proof:}
+
+\vfill
+
+\textbf{Writing Hypotheses for Difference in Means}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Testing \(\mu_1 \neq \mu_2\)
+  \vfill
+\item
+  Testing \(\mu_1 > \mu_2\)
+  \vfill
+\item
+  Testing \(\mu_1 < \mu_2\)
+  \vfill
+\end{enumerate}
+
+\newpage
+
+We can complete a hypothesis test for the difference in means (assuming the variances or standard deviations of the two populations are known) by using the following test statistic.
+
+\[z= \frac{(\bar{x_1}-\bar{x_2})-D_0)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}\]
+
+\begin{example}
+A sample of 15 Model A batteries has an average lifespan of 8.5 years with a known population standard deviation of 1.2 years. A sample of 15 Model B batteries has an average lifespan of 9.1 years with a known population standard deviation of 1.5 years. The engineers perform a hypothesis test to determine if there is sufficient evidence to suggest a difference in the average lifespan between the two battery models.
+\end{example}
+
+\vfill
+
+A two-sided confidence interval for the difference in means can also be completed with the following formula, assuming again that the population standard deviations are known.
+
+\[(\bar{x}_1-\bar{x}_2) \pm z_{\alpha/2} \cdot \sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\]
+
+\newpage
+
+\section{The Two-Sample t-test and Confidence Interval}\label{the-two-sample-t-test-and-confidence-interval}
+
+If the population standard deviations of the two populations are unknown, we can estimate them and use similar methods as in section 9.1.
+
+A confidence interval for the difference in means can be completed with the following formula if the population standard deviations are unknown.
+
+\[(\bar{x}_1-\bar{x}_2) \pm t_{\alpha/2,\nu} \cdot \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\]
+
+For the above confidence interval, you must calculate the degrees of freedom (\(\nu\)). Round the value of \(\nu\) to the next lowest integer if it is not a whole number.
+
+\[\nu = \frac{\big(s_1^2/n_1 + s_2^2/n_2\big)^2}{(s_1^2/n_1)^2/(n_1-1) + (s_2^2/n_2)^2/(n_2-1)}\]
+
+\begin{example}
+It has been claimed that people in Okinawa live longer on average than people on the Japanese mainland. To investigate this, a study is conducted. A random sample of 25 people from Okinawa shows an average lifespan of 84.7 years, with a sample variance of 25 years². Meanwhile, a sample of 22 people from the Japanese mainland finds an average lifespan of 83.2 years, with a sample variance of 20 years².
+
+We will use this data to calculate a 95\% confidence interval for the difference in average lifespan between Okinawa and the Japanese mainland. Given the sample sizes and variances, the degrees of freedom for the test can be approximated as 43. The goal is to determine whether there is a statistically significant difference in the average lifespan between the two populations.
+\end{example}
+
+\vfill
+
+\newpage
+
+We can complete a hypothesis test for the difference in means (assuming the variances or standard deviations of the two populations are unknown) by using the following test statistic. This is called a \textbf{two-sample t-test}.
+
+\[t= \frac{(\bar{x}_1-\bar{x}_2-D_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}, df = \nu \]
+
+\[\nu = \frac{\big(s_1^2/n_1 + s_2^2/n_2\big)^2}{(s_1^2/n_1)^2/(n_1-1) + (s_2^2/n_2)^2/(n_2-1)}\]
+
+\begin{example}
+Using the data from the Okinawa life expectancy study, conduct a hypothesis test at a significance level of \(\alpha = 0.05\) to determine if the average lifespan in Okinawa (\(\mu_1\)) is significantly greater than the average lifespan on the Japanese mainland (\(\mu_2\)).
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{Analysis of Paired Data}\label{analysis-of-paired-data}
+
+In the previous two sections, we assumed that the two samples were independent. However, this assumption does not always hold true in practice.
+
+\begin{example}
+
+Examples of paired samples include:
+
+\begin{itemize}
+\item
+  \textbf{Before/after studies}: The same individuals are measured before and after an intervention.
+\item
+  \textbf{Matched-pair designs}: For example, comparing blood pressure in the right and left arms of the same individuals.
+\item
+  \textbf{Sibling studies}: Measuring certain traits (e.g., height or test scores) in siblings to see if there are significant differences.
+\item
+  \textbf{Repeated measurements}: Taking the same measurement under different conditions (e.g., testing reaction time under different levels of noise for the same participants).
+\end{itemize}
+
+\end{example}
+
+\begin{definition}
+A sample is \textbf{paired} if the same subjects or closely matched subjects are measured twice under different conditions.
+\end{definition}
+
+A \textbf{paired t-test} helps control for differences between individuals by focusing on the differences between the paired measurements.
+
+\textbf{Advantage:} A paired t-test allows us to use a \textbf{smaller sample size} because it reduces the variance that comes from differences between individuals, leaving only the variation between the paired measurements themselves.
+
+\textbf{Disadvantage:} It's not always \textbf{feasible} to collect paired data. If this is the case, you can use a two-sample t-test under the assumption that the samples are independent.
+
+\textbf{CI and Hypothesis Tests for Paired Samples (\(\mu_d\))}
+
+When doing inference for the true average change (\(\mu_d\)), we compare ``treatments'' (e.g.~before/after) on an individual level.
+
+\textbf{Create a ``new'', single sample based on the sample differences:}
+
+\begin{enumerate}
+\item For each individual, define $d_i = \text{difference between treatments for subject i}$.
+\item Calculate $\bar{d} = \frac{1}{n} \cdot \sum d_i$
+\item Calculate $s_d = \sqrt{\frac{\sum(d_i-\bar{d})^2}{n-1}}$
+\end{enumerate}
+
+Using the ``new'\,' sample, use the same procedures for inference as for a single population.
+
+\[t = \frac{\bar{d}-\mu_{d_0}}{s_d/\sqrt{n}}, df = n-1\]
+
+\[\bar{d} \pm t_{\alpha/2,n-1} \cdot \frac{s_d}{\sqrt{n}}\]
+
+\newpage
+
+\begin{example}
+A pharmaceutical company is testing a new drug designed to lower blood pressure. They select a group of 10 patients with high blood pressure and measure their systolic blood pressure before and after administering the drug. The company wants to know if the drug significantly lowers blood pressure. Assume that the differences in blood pressure before and after the treatment are approximately normally distributed. Complete a six-step hypothesis test to test the claim the average systolic blood pressure is less after receiving the drug at \(\alpha=0.05\).
+\end{example}
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|} \hline
+    Patient & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+    BP Before (mmHg) & 150 & 160 & 155 & 162 & 148 & 170 \\ \hline
+    BP After (mmHg)  & 140 & 152 & 148 & 150 & 140 & 160 \\ \hline
+    $d_i$ & & & & & & \\ \hline
+    $d_i - \bar{d}$ & & & & & & \\ \hline
+    $(d_i - \bar{d})^2$ & & & & & & \\ \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\section{Inferences Concerning a Difference Between Population Proportions}\label{inferences-concerning-a-difference-between-population-proportions}
+
+We can complete a hypothesis test for the difference in proportions.
+
+\[z = \frac{(\bar{p_1}-\bar{p_2})-D_0}{\sqrt{(\hat{p}\cdot (1-\hat{p})\cdot(\frac{1}{n_1} + \frac{1}{n_2})}}\]
+
+\[\hat{p} = \frac{n_1}{n_1+n_2} \bar{p_1} + \frac{n_2}{n_1+n_2} \bar{p_2}\]
+
+We can also create a confidence interval for the difference in proportions.
+
+\[(\bar{p_1}-\bar{p_2}) \pm z_{\alpha/2} \cdot \sqrt{\frac{\bar{p_1}(1-\bar{p_1})}{n_1} + \frac{\bar{p_2}(1-\bar{p_2})}{n_2}}\]
+
+\begin{example}
+A study is conducted to compare the proportion of college students who binge drank in the last year at two campuses: CSU-Fort Collins and CSU-Pueblo. A random sample of 80 students from CSU-Fort Collins found that 44 of them reported binge drinking in the past year. Meanwhile, a sample of 75 students from CSU-Pueblo found that 45 of them reported binge drinking.
+
+Create a 90\% confidence interval for the difference in proportions of binge drinking between the two campuses. Additionally, test whether there is significant evidence to suggest that one campus has a higher proportion of binge drinkers than the other.
+\end{example}
+
+\vfill
+
+\newpage
+
+\section{Statistical Power}\label{statistical-power}
+
+Statistical power is an essential concept in hypothesis testing, representing the probability that a test correctly rejects a false null hypothesis. In other words, it quantifies how likely we are to detect an effect when there is one.
+
+\textbf{Definitions}
+
+\begin{itemize}
+\item
+  \textbf{Type I error (\(\alpha\))}: The probability of rejecting the null hypothesis when it is actually true. For instance, if \(\alpha = 0.05\), there is a 5\% chance of incorrectly rejecting the null hypothesis when it is true.
+\item
+  \textbf{Type II error (\(\beta\))}: The probability of failing to reject the null hypothesis when it is false.
+\item
+  \textbf{Statistical Power}: Defined as the probability of rejecting the null hypothesis when it is false, i.e., correctly detecting a true effect.
+
+  \[
+  \text{Power} = 1 - \beta = P(\text{Reject } H_0 \>|\> H_0 \text{ is false})
+  \]
+\end{itemize}
+
+Power depends on several factors:
+
+\begin{itemize}
+\item
+  The effect size (how large the true difference is between the groups).
+\item
+  The sample size (larger sample sizes increase power).
+\item
+  The significance level (\(\alpha\)).
+\item
+  The variability in the data (lower variability increases power).
+\end{itemize}
+
+\begin{example}
+Consider a study to test the effectiveness of a new online learning platform for improving exam scores. The platform's developers claim that it will increase the average exam score by 5 points compared to traditional learning methods. Previous studies show that the standard deviation of exam scores is 10 points. You decide to conduct a study with 50 students in each group (online and traditional learning).
+\end{example}
+
+\begin{itemize}
+\item
+  \textbf{Null Hypothesis (\(H_0\))}: The mean exam score is the same for both groups.
+\item
+  \textbf{Alternative Hypothesis (\(H_a\))}: The mean exam score for the online group is higher by 5 points.
+\end{itemize}
+
+We want to know the statistical power of detecting this difference if it exists, using an online power calculator instead of hand calculations.
+
+\newpage
+
+\textbf{Step-by-Step Power Analysis}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Determine effect size}:
+  Using Cohen's \(d\), the effect size can be calculated as:
+  \[
+  d = \frac{\mu_1 - \mu_2}{\sigma} = \frac{5}{10} = 0.5
+  \]
+  This represents a moderate effect size.
+\item
+  \textbf{Choose significance level (\(\alpha\))}:
+  Set \(\alpha = 0.05\) for a 5\% risk of Type I error.
+\item
+  \textbf{Calculate Power in R}:
+  Rather than performing hand calculations, you can input these parameters into R. Simply provide the effect size, sample size, significance level, and test type (two-sample t-test).
+\item
+  \textbf{Interpret the results}:
+  R will output the statistical power. For this example, the power may be around 0.75, meaning there is a 75\% chance of detecting a 5-point difference in exam scores if the platform truly has this effect.
+\end{enumerate}
+
+\vfill
+
+\textbf{Cohen's \(d\) and Effect Size Guidelines}
+
+\begin{itemize}
+\item
+  \textbf{Small effect size}: \(d < 0.2\)
+\item
+  \textbf{Moderate effect size}: \(0.2 < d < 0.8\)
+\item
+  \textbf{Large effect size}: \(d > 0.8\)
+\end{itemize}
+
+\vfill
+
+\textbf{Key Takeaways}
+
+\begin{itemize}
+\item
+  \textbf{Larger sample sizes} increase statistical power, as they provide more data to detect true differences.
+\item
+  \textbf{Larger effect sizes} (i.e., bigger differences between the groups) also increase power.
+\item
+  \textbf{Smaller variability} (lower standard deviation) enhances the power of a test by making the effect easier to detect.
+\end{itemize}
+
+\vfill \vfill \vfill \vfill \vfill
+
+\newpage
+
+\begin{example}
+A tech company has released a new version of their app and wants to compare user engagement time (in minutes) between the new version and the old version. Suppose the standard deviation of engagement time is 20 minutes, and they expect the new version to increase engagement by 10 minutes. They plan to randomly select 100 users for each version.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Null Hypothesis (\(H_0\))}: There is no difference in engagement time between the two versions.
+\item
+  \textbf{Alternative Hypothesis (\(H_a\))}: Engagement time is higher for the new version by 5 minutes.
+\end{itemize}
+
+Using R, determine the probability of detecting this 5-minute increase with 100 users per group at \(\alpha = 0.05\), that is, calculate the statistical power.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pwr)}
+
+\CommentTok{\# Parameters}
+\NormalTok{effect\_size }\OtherTok{=} \FloatTok{0.25}  \CommentTok{\# Given effect size}
+\NormalTok{n1 }\OtherTok{=} \DecValTok{100}  \CommentTok{\# Sample size for Group 1}
+\NormalTok{n2 }\OtherTok{=} \DecValTok{100}  \CommentTok{\# Sample size for Group 2}
+\NormalTok{alpha }\OtherTok{=} \FloatTok{0.05}  \CommentTok{\# Significance level}
+
+\CommentTok{\# Power calculation}
+\FunctionTok{pwr.t2n.test}\NormalTok{(}\AttributeTok{n1 =}\NormalTok{ n1, }\AttributeTok{n2 =}\NormalTok{ n2, }\AttributeTok{d =}\NormalTok{ effect\_size, }
+                      \AttributeTok{sig.level =}\NormalTok{ alpha, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      t test power calculation 
+## 
+##              n1 = 100
+##              n2 = 100
+##               d = 0.25
+##       sig.level = 0.05
+##           power = 0.5465182
+##     alternative = greater
+\end{verbatim}
+
+\newpage
+
+\section{R Companion for Chapter 9}\label{r-companion-for-chapter-9}
+
+\begin{example}
+The dataset \textbf{chickwts} is included in the base version of R. This dataset include 71 observations of the growth rate of chickens using a variety of feed supplements.
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(chickwts)}
+
+\CommentTok{\# pick out some random indices of the dataset and look at the elements}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2020}\NormalTok{)}
+\NormalTok{chickwts[}\FunctionTok{sample}\NormalTok{(}\AttributeTok{x=}\DecValTok{71}\NormalTok{,}\AttributeTok{size=}\DecValTok{10}\NormalTok{,}\AttributeTok{replace =}\NormalTok{ F),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    weight      feed
+## 28    250   soybean
+## 22    271   linseed
+## 65    318    casein
+## 17    148   linseed
+## 36    248   soybean
+## 42    226 sunflower
+## 49    325  meatmeal
+## 45    334 sunflower
+## 56    242  meatmeal
+## 8     124 horsebean
+\end{verbatim}
+
+We can create a boxplot of the weights for the various types of feed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(weight}\SpecialCharTok{\textasciitilde{}}\NormalTok{feed,}\AttributeTok{data=}\NormalTok{chickwts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[height=0.4\textheight]{_main_files/figure-latex/unnamed-chunk-123-1} \end{center}
+
+\newpage
+
+Based on the boxplot, there appears be a difference in weights between \textbf{casein} and \textbf{horsebean}. To test this, let's run the hypothesis test \(H_0: \mu_1 - \mu_2 = 0\) vs.~\(H_a: \mu_1 - \mu_2 \neq 0\), where \(\mu_1\) is the true mean weight of chicks given casein and \(\mu_2\) is the true mean weight of chicks given horsebean. We will use \(\alpha = 0.05\) for the following examples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# create new dataset of chicks given casein}
+\NormalTok{chicks1 }\OtherTok{=}\NormalTok{ chickwts[chickwts}\SpecialCharTok{$}\NormalTok{feed}\SpecialCharTok{==}\StringTok{"casein"}\NormalTok{,]}
+\NormalTok{chicks2 }\OtherTok{=}\NormalTok{ chickwts[chickwts}\SpecialCharTok{$}\NormalTok{feed}\SpecialCharTok{==}\StringTok{"horsebean"}\NormalTok{,]}
+\FunctionTok{t.test}\NormalTok{(chicks1}\SpecialCharTok{$}\NormalTok{weight,chicks2}\SpecialCharTok{$}\NormalTok{weight,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  chicks1$weight and chicks2$weight
+## t = 7.3423, df = 18.36, p-value = 7.21e-07
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  116.6982 210.0685
+## sample estimates:
+## mean of x mean of y 
+##  323.5833  160.2000
+\end{verbatim}
+
+The test statistic is \(t=7.34\) and corresponds to p-value of \(7.21 \cdot 10^{-7}\). Since the p-value is less than \(\alpha=0.05\), we would reject \(H_0\) and conclude that the true mean chick weights differ between casein and horsebean feed.
+
+\newpage
+
+\begin{example}
+Suppose we want to test if the true mean weight of casein feed chicks is more than 200 units greater than the true mean weight of horsebean feed chicks, i.e., \(H_0: \mu_1 - \mu_2 = 200\) vs.~\(H_a: \mu_1 - \mu_2 > 200\).
+\end{example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(chicks1}\SpecialCharTok{$}\NormalTok{weight,chicks2}\SpecialCharTok{$}\NormalTok{weight,}\AttributeTok{mu=}\DecValTok{200}\NormalTok{,}\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  chicks1$weight and chicks2$weight
+## t = -1.6455, df = 18.36, p-value = 0.9416
+## alternative hypothesis: true difference in means is greater than 200
+## 95 percent confidence interval:
+##  124.8371      Inf
+## sample estimates:
+## mean of x mean of y 
+##  323.5833  160.2000
+\end{verbatim}
+
+The test statistic for this hypothesis test is \(t=-1.6455\) with a p-value of \(0.9416\). At \(\alpha=0.05\), we would fail to reject \(H_0: \mu_1 - \mu_2 = 200\) and conclude there is not sufficient evidence to say that the true mean weight of casein feed chicks is more than 200 units greater than the true mean weight of horsebean feed chicks.
+
 \end{example}
 
   \bibliography{book.bib,packages.bib}
